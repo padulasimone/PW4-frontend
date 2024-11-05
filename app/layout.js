@@ -2,7 +2,9 @@
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Head from "next/head";
+
 import MainHeader from "@/components/main-header";
+import Footer from "@/components/footer";
 
 export const metadata = {
   title: "Login & Signup Form",
@@ -20,8 +22,9 @@ export default function RootLayout({ children }) {
         />
       </Head>
       <body>
-        <MainHeader />
+        <MainHeader></MainHeader>
         {children}
+        <Footer></Footer>
       </body>
     </html>
   );

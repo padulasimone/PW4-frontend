@@ -7,7 +7,7 @@
 
 .topBackground {
   width: 100%;
-  background-color: #F3BC9F;
+  background-color: #f3bc9f;
 }
 
 .hero {
@@ -50,7 +50,9 @@
 }
 
 .sideImage:hover {
-  transform: scale(1.05); /* Ingrandisce leggermente l’immagine al passaggio del mouse */
+  transform: scale(
+    1.05
+  ); /* Ingrandisce leggermente l’immagine al passaggio del mouse */
 }
 
 .button {
@@ -64,7 +66,9 @@
 }
 
 .button:hover {
-  transform: scale(1.05); /* Ingrandisce leggermente il bottone al passaggio del mouse */
+  transform: scale(
+    1.05
+  ); /* Ingrandisce leggermente il bottone al passaggio del mouse */
   background-color: #e36f52; /* Colore leggermente più scuro per l’effetto hover */
 }
 
