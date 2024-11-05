@@ -1,0 +1,99 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: "Quicksand";
+  font-style: italic;
+  color: #333;
+}
+
+.introduction {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.introduction h2 {
+  color: #000000;
+  text-align: center;
+}
+
+.introduction p {
+  line-height: 1.6; 
+  color: #555; 
+}
+
+.contactForm {
+  margin-top: 2rem;
+  background-color: #f9f9f9; 
+  padding: 2rem; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  max-width: 550px; 
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #555; /* Colore del testo delle etichette */
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: #848484; 
+  outline: none; 
+}
+
+.checkboxGroup {
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.checkboxGroup label {
+  margin-left: 1rem;
+}
+
+.submitButton {
+  background-color: #5ea061; /* Verde */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease; /* Transizione al cambio di colore */
+  width: 100%; /* Pulsante a larghezza completa */
+  margin-top: 1rem; /* Margine superiore per separare dai campi del modulo */
+}
+
+.submitButton:hover {
+  background-color: #53ad58; /* Verde scuro */
+}
+
+.mapContainer {
+  display: flex;
+  justify-content: right; 
+}
+
+.map {
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 600px; 
+  height: 400px; 
+}
+

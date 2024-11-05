@@ -1,8 +1,8 @@
 import "./globals.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 import MainHeader from "@/components/main-header";
+import Footer from "@/components/footer";
 
 export const metadata = {
   title: "Create Next App",
@@ -13,8 +13,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <MainHeader />
+        <MainHeader></MainHeader>
         {children}
+        <Footer></Footer>
       </body>
     </html>
   );

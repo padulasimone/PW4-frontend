@@ -1,0 +1,53 @@
+.footer {
+  padding: 40px;
+  background-color: #333333;
+  color: #fff;
+  font-family: "Quicksand";
+  font-style: italic;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #f3bc9f;
+}
+
+.section p {
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 2;
+  margin: 0.5rem 0;
+}
+
+.smallFooter {
+  background-color: #333333cf;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+
+  color: #fff;
+  font-family: "Quicksand";
+}
+.smallFooter p {
+  margin: 10px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: left;
+  }
+}
+
+
+
