@@ -1,6 +1,5 @@
 // app/layout.js
 import "./globals.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Head from "next/head";
 
 import MainHeader from "@/components/main-header";
