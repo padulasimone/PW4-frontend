@@ -2,7 +2,7 @@
   padding: 2rem 1rem;
   font-family: "Quicksand";
   font-style: italic;
-  color: #333;
+ 
 }
 
 .introduction {
@@ -21,7 +21,7 @@
 
 .introduction p {
   line-height: 1.6;
-  color: #555;
+  
 }
 
 .formContainer {
