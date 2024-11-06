@@ -33,7 +33,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/Registrazione" className={classes.link}>
+              <Link href="/api/getUsers" className={classes.link}>
                 Registrazione
               </Link>
             </li>

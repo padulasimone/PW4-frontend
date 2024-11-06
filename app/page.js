@@ -1,5 +1,3 @@
-
-
 import styles from "./page.module.css";
 import Image from "next/image";
 
@@ -39,22 +37,14 @@ export default function Home() {
               src="/immagini/foto1.jpg"
               alt="Interno pasticceria"
               width={600}
-              height={400}
+              height={500}
               className={styles.sideImage}
             />
           </div>
         </section>
 
-        <section className={styles.fullWidthImage}>
-          <Image
-            src="/immagini/foto2.jpg"
-            alt="Chef con cliente"
-            width={1200}
-            height={600}
-            className={styles.diagonalImage}
-          />
-          <div className={styles.whiteOverlay}></div>{" "}
-          {/* Sovrapposizione bianca */}
+        <section className={styles.fullWidthImageContainer}>
+          <div className={styles.whiteOverlay}></div> {/* Sovrapposizione bianca */}
         </section>
       </div>
 
