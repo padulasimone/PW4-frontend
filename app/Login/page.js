@@ -30,14 +30,14 @@ export default function LoginPage() {
             <h2 className={styles.title}>Sign in</h2>
             <div className={styles.inputField}>
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Telefono / e-mail" />
             </div>
             <div className={styles.inputField}>
               <i className="fas fa-lock"></i>
               <input type="password" placeholder="Password" />
             </div>
             <input type="submit" value="Login" className={`${styles.btn} ${styles.solid}`} />
-            <p className={styles.socialText}>Or Sign in with social platforms</p>
+            {/*<p className={styles.socialText}>Or Sign in with social platforms</p>
             <div className={styles.socialMedia}>
               <a href="#" className={styles.socialIcon}>
                 <i className="fab fa-facebook-f"></i>
@@ -51,25 +51,29 @@ export default function LoginPage() {
               <a href="#" className={styles.socialIcon}>
                 <i className="fab fa-linkedin-in"></i>
               </a>
-            </div>
+            </div>*/}
           </form>
 
           <form className={styles.signUpForm}>
             <h2 className={styles.title}>Sign up</h2>
             <div className={styles.inputField}>
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Nome" />
+            </div>
+            <div className={styles.inputField}>
+              <i className="fas fa-user"></i>
+              <input type="text" placeholder="Cognome" />
             </div>
             <div className={styles.inputField}>
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Telefono / e-mail" />
             </div>
             <div className={styles.inputField}>
               <i className="fas fa-lock"></i>
               <input type="password" placeholder="Password" />
             </div>
             <input type="submit" className={styles.btn} value="Sign up" />
-            <p className={styles.socialText}>Or Sign up with social platforms</p>
+            {/*<p className={styles.socialText}>Or Sign up with social platforms</p>
             <div className={styles.socialMedia}>
               <a href="#" className={styles.socialIcon}>
                 <i className="fab fa-facebook-f"></i>
@@ -83,7 +87,7 @@ export default function LoginPage() {
               <a href="#" className={styles.socialIcon}>
                 <i className="fab fa-linkedin-in"></i>
               </a>
-            </div>
+            </div>*/}
           </form>
         </div>
       </div>
