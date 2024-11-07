@@ -6,13 +6,10 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.topBackground}>
         <section className={styles.hero}>
-          <Image
-            src="/immagini/hero.jpg"
-            alt="C'est la Vie main"
-            width={1200}
-            height={600}
-            className={styles.heroImage}
-          />
+          <div className={styles.heroContent}>
+            <h1>Welcome to C'est la Vie</h1>
+            <p>Unisciti a noi oggi per una grande esperienza!</p>
+          </div>
         </section>
 
         <section className={styles.textWithImage}>
