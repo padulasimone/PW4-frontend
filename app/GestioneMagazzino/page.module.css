@@ -10,7 +10,7 @@
 }
 
 .title {
-    font-size: 24px;
+    font-size: 30px;
     color: #333;
     text-align: center;
     margin-bottom: 20px;
@@ -80,4 +80,19 @@
 
 .delete:hover {
     background-color: #c82333;
+}
+
+.addButton {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    float: right;
+}
+
+.addButton:hover {
+    background-color: #45a049;
 }
