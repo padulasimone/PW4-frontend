@@ -34,7 +34,7 @@ export default function Home() {
           </div>
           <div className={styles.imageBlock}>
             <Image
-              src="/immagini/foto1.jpg"
+              src="/immagini/bakery.jpg"
               alt="Interno pasticceria"
               width={600}
               height={500}

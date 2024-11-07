@@ -2,7 +2,6 @@
   padding: 2rem 1rem;
   font-family: "Quicksand";
   font-style: italic;
- 
 }
 
 .introduction {
@@ -21,7 +20,6 @@
 
 .introduction p {
   line-height: 1.6;
-  
 }
 
 .formContainer {
@@ -112,12 +110,13 @@
 
 .socialCard {
   background-color: #f9f9f9;
-  padding: 1rem;
-  border-radius: 8px;
+  padding: 2rem;
+  border-radius: 40%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-
   transition: transform 0.2s ease;
+  width: 150px;
+  height: 150px;
 }
 
 .socialCard:hover {
