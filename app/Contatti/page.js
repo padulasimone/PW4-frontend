@@ -120,7 +120,7 @@ export default function Contatti() {
 
           <div className={classes.socialCard}>
             <a
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/pasticceriacestlavie"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -131,7 +131,7 @@ export default function Contatti() {
 
           <div className={classes.socialCard}>
             <a
-              href="https://www.instagram.com"
+              href="https://www.instagram.com/pasticceriacestlavie/"
               target="_blank"
               rel="noopener noreferrer"
             >

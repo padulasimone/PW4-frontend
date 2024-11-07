@@ -5,11 +5,6 @@
   font-family: "Quicksand";
   font-size: 18px;
   font-style: italic;
-  position: fixed; /* Rende il menu fisso */
-  top: 0; /* Posiziona il menu in alto alla pagina */
-  width: 100%; /* Assicura che il menu copra tutta la larghezza della pagina */
-  z-index: 1000; /* Porta il menu davanti agli altri elementi */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra per separare visivamente il menu dal contenuto */
 }
 
 .container {

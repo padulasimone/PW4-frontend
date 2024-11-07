@@ -22,7 +22,13 @@ export default function Header() {
                 Contatti
               </Link>
             </li>
+            <li>
+              <Link href="/DashboardUtenti" className={classes.link}>
+                Dashboard utenti
+              </Link>
+            </li>
           </ul>
+         
         </div>
 
         <div className={classes.navRight}>

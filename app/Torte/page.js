@@ -8,7 +8,6 @@ export default async function Torte() {
   return (
     <>
       <main className={classes.main}>
-        <h1 className={classes.title}>Torte</h1>
         <p className={classes.paragraph}>
           La nostra pasticceria a Varese propone una raffinata selezione di
           torte classiche e moderne, come la Saint Honoré e la Millefoglie,
@@ -22,12 +21,9 @@ export default async function Torte() {
           Tarte, la Paris-Brest e il Bosco Segreto!
           <br />
           <br />
-          <span className={classes.highlight}>
-            Le torte moderne sono soggette a disponibilità e stagionalità dei
-            prodotti.
-          </span>{" "}
-          Contattaci per organizzare il tuo ordine: siamo certi di avere il
-          dolce perfetto per te!
+          Le torte moderne sono soggette a disponibilità e stagionalità dei
+          prodotti. Contattaci per organizzare il tuo ordine: siamo certi di
+          avere il dolce perfetto per te!
         </p>
 
         <TortaGrid prodotto={torta}></TortaGrid>
