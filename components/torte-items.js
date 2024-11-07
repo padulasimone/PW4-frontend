@@ -13,7 +13,7 @@ export default function TorteItems({
     <article className={classes.torta}>
       <header>
         <div className={classes.image}>
-          <Image src={foto} alt={nome} fill />
+          <Image src={"/immaginiTorte/" + foto} alt={nome} fill />
         </div>
         <div className={classes.headerText}>
           <h2>{nome}</h2>
