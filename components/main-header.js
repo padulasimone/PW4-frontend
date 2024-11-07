@@ -52,9 +52,9 @@ export default function Header() {
                         <li><Link href="/Torte" className={classes.link}>Torte</Link></li>
                         <li><Link href="/Contatti" className={classes.link}>Contatti</Link></li>
                         {role === 'admin' ? (
-                            <li><Link href="/admin/dashboard" className={classes.link}>Dashboard Admin</Link></li>
+                            <li><Link href="/Dashboard" className={classes.link}>Dashboard Admin</Link></li>
                         ) : role === 'user' ? (
-                            <li><Link href="/user/dashboard" className={classes.link}>Dashboard Utente</Link></li>
+                            <li><Link href="/DashboardUtenti" className={classes.link}>Dashboard Utente</Link></li>
                         ) : null}
                     </ul>
                 </div>
