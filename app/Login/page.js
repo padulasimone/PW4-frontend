@@ -1,13 +1,16 @@
+// page.js
+
 "use client";
 
-import {useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./page.module.css";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
     const [isSignUpMode, setSignUpMode] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(""); // State for error message
+    const [errorMessage, setErrorMessage] = useState("");
     const containerRef = useRef(null);
+    const router = useRouter();
 
     useEffect(() => {
         if (containerRef.current) {
@@ -41,23 +44,16 @@ export default function LoginPage() {
                 body: JSON.stringify(data),
             });
 
-            const contentType = response.headers.get("Content-Type");
             if (!response.ok) {
                 const errorText = await response.text();
-                console.error("Error:", response.status, errorText);
-                throw new Error("Network response was not ok");
+                throw new Error(errorText || "Network response was not ok");
             }
 
-            if (contentType && contentType.includes("application/json")) {
-                const result = await response.json();
-                console.log("Success:", result);
-            } else {
-                const text = await response.text();
-                console.log("Response is not JSON:", text);
-            }
+            const result = await response.json();
+            console.log("Registrazione avvenuta con successo:", result);
         } catch (error) {
-            console.error("Error:", error);
-            setErrorMessage(error.message); // Set error message state
+            console.error("Errore:", error);
+            setErrorMessage(error.message);
         }
     };
 
@@ -79,36 +75,32 @@ export default function LoginPage() {
                 credentials: "include",
             });
 
-            const contentType = response.headers.get("Content-Type");
             if (!response.ok) {
-                if (response.status === 401) {
-                    throw new Error("Accesso negato, verifica la tua email prima di accedere. Ti abbiamo inviato una mail con il link di conferma.");
-                } else {
-                    const errorText = await response.text();
-                    console.error("Error:", response.status, errorText);
-                    throw new Error("Network response was not ok");
-                }
-            } else {
-                errorMessage && setErrorMessage(""); // Clear error message state
+                const errorText = await response.text();
+                throw new Error(errorText || "Network response was not ok");
             }
 
-            const setCookieHeader = response.headers.get("Set-Cookie");
-            if (setCookieHeader && setCookieHeader.includes("SESSION_COOKIE")) {
-                console.log("Set-Cookie header found:", setCookieHeader);
-                document.cookie = setCookieHeader;
-            } else {
-                console.warn("Set-Cookie header not found or does not contain SESSION_COOKIE");
-            }
+            const contentType = response.headers.get("Content-Type");
 
             if (contentType && contentType.includes("application/json")) {
                 const result = await response.json();
-                console.log("Success:", result);
+                localStorage.setItem("user", JSON.stringify(result));
+                localStorage.setItem("role", result.role);
             } else {
                 const text = await response.text();
-                console.log("Response is not JSON:", text);
+                console.log("Messaggio del server:", text);
+
+                localStorage.setItem("user", JSON.stringify({ nome: "Utente" }));
+                localStorage.setItem("role", "user");
             }
+
+            // Emettiamo l'evento personalizzato "userLoggedIn"
+            window.dispatchEvent(new Event("userLoggedIn"));
+
+            router.push("/"); // Redirige alla homepage dopo il login
+
         } catch (error) {
-            setErrorMessage(error.message); // Set error message state
+            setErrorMessage(error.message);
         }
     };
 
@@ -118,41 +110,40 @@ export default function LoginPage() {
                 <div className={styles.signinSignup}>
                     <form className={styles.signInForm} onSubmit={handleSignInSubmit}>
                         <h2 className={styles.title}>Sign in</h2>
-                        {errorMessage && <p className={styles.error}>{errorMessage}</p>} {/* Display error message */}
+                        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
                         <div className={styles.inputField}>
                             <i className="fas fa-user"></i>
-                            <input type="text" name="email" placeholder="Telefono / e-mail" required={true}/>
+                            <input type="text" name="email" placeholder="Telefono / e-mail" required />
                         </div>
                         <div className={styles.inputField}>
                             <i className="fas fa-lock"></i>
-                            <input type="password" name="password" placeholder="Password" required={true}/>
+                            <input type="password" name="password" placeholder="Password" required />
                         </div>
-                        <input type="submit" value="Login" className={`${styles.btn} ${styles.solid}`}/>
+                        <input type="submit" value="Login" className={`${styles.btn} ${styles.solid}`} />
                     </form>
                     <form className={styles.signUpForm} onSubmit={handleSignUpSubmit}>
                         <h2 className={styles.title}>Sign up</h2>
-                        {errorMessage && <p className={styles.error}>{errorMessage}</p>} {/* Display error message */}
+                        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
                         <div className={styles.inputField}>
                             <i className="fas fa-user"></i>
-                            <input type="text" name="nome" placeholder="Nome" required={true}/>
+                            <input type="text" name="nome" placeholder="Nome" required />
                         </div>
                         <div className={styles.inputField}>
                             <i className="fas fa-user"></i>
-                            <input type="text" name="cognome" placeholder="Cognome" required={true}/>
+                            <input type="text" name="cognome" placeholder="Cognome" required />
                         </div>
                         <div className={styles.inputField}>
                             <i className="fas fa-envelope"></i>
-                            <input type="email" name="email" placeholder="Telefono / e-mail" required={true}/>
+                            <input type="email" name="email" placeholder="Telefono / e-mail" required />
                         </div>
                         <div className={styles.inputField}>
                             <i className="fas fa-lock"></i>
-                            <input type="password" name="password" placeholder="Password" required={true}/>
+                            <input type="password" name="password" placeholder="Password" required />
                         </div>
-                        <input type="submit" className={styles.btn} value="Sign up"/>
+                        <input type="submit" className={styles.btn} value="Sign up" />
                     </form>
                 </div>
             </div>
-
             <div className={styles.panelsContainer}>
                 <div className={`${styles.panel} ${styles.leftPanel}`}>
                     <div className={styles.content}>
