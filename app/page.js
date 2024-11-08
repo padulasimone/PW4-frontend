@@ -6,10 +6,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.topBackground}>
         <section className={styles.hero}>
-          <div className={styles.heroContent}>
-            <h1>Welcome to C'est la Vie</h1>
-            <p>Unisciti a noi oggi per una grande esperienza!</p>
-          </div>
+          <div className={styles.heroContent}></div>
         </section>
 
         <section className={styles.textWithImage}>
@@ -27,7 +24,7 @@ export default function Home() {
               un’arte di alta qualità e creazioni che uniscono tradizione e
               innovazione.
             </p>
-            <button className={styles.button}>Ordina Ora</button>
+             {/* <button className={styles.button}>Ordina Ora</button> */}
           </div>
           <div className={styles.imageBlock}>
             <Image
@@ -41,7 +38,8 @@ export default function Home() {
         </section>
 
         <section className={styles.fullWidthImageContainer}>
-          <div className={styles.whiteOverlay}></div> {/* Sovrapposizione bianca */}
+          <div className={styles.whiteOverlay}></div>{" "}
+          {/* Sovrapposizione bianca */}
         </section>
       </div>
 
@@ -70,7 +68,7 @@ export default function Home() {
               un’arte di alta qualità e creazioni che uniscono tradizione e
               innovazione.
             </p>
-            <button className={styles.button}>Ordina Ora</button>
+              {/* <button className={styles.button}>Ordina Ora</button> */}
           </div>
         </section>
       </div>

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import classes from "@/components/main-header.module.css";
 import Link from "next/link";
 
@@ -7,39 +7,52 @@ export default function Header() {
     const [user, setUser] = useState(null);
     const [role, setRole] = useState(null);
 
+    // Recupera l'utente dal backend utilizzando il valore del cookie di sessione
     useEffect(() => {
-        // Funzione per aggiornare l'utente e il ruolo dallo storage
-        const updateUser = () => {
-            const storedUser = localStorage.getItem("user");
-            const storedRole = localStorage.getItem("role");
-            
-            if (storedUser) {
-                setUser(JSON.parse(storedUser));
-            }
-            
-            if (storedRole) {
-                setRole(storedRole);
+        const fetchUser = async () => {
+            try {
+                const res = await fetch("http://localhost:8080/utente", {
+                    credentials: "include",
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    setUser(data);
+                    setRole(data.ruolo);
+                }
+            } catch (error) {
+                console.error("Errore durante il recupero dell'utente:", error);
             }
         };
+        fetchUser();
 
-        // Esegui updateUser una volta quando il componente si monta
-        updateUser();
+        // Listen for the custom event "userLoggedIn"
+        const handleUserLoggedIn = () => {
+            fetchUser();
+        };
 
-        // Aggiungi un listener per l'evento "userLoggedIn"
-        window.addEventListener("userLoggedIn", updateUser);
+        window.addEventListener("userLoggedIn", handleUserLoggedIn);
 
-        // Pulisci l'event listener quando il componente si smonta
         return () => {
-            window.removeEventListener("userLoggedIn", updateUser);
+            window.removeEventListener("userLoggedIn", handleUserLoggedIn);
         };
     }, []);
 
-    const handleLogout = () => {
-        localStorage.removeItem("user");
-        localStorage.removeItem("role");
-        setUser(null);
-        setRole(null);
-        window.location.reload();
+    const handleLogout = async () => {
+        try {
+            const res = await fetch("http://localhost:8080/auth/logout", {
+                method: "DELETE",
+                credentials: "include",
+            });
+            if (res.ok) {
+                setUser(null);
+                setRole(null);
+                window.location.reload();
+            } else {
+                console.error("Errore durante il logout:", res.statusText);
+            }
+        } catch (error) {
+            console.error("Errore durante il logout:", error);
+        }
     };
 
     return (
@@ -47,14 +60,43 @@ export default function Header() {
             <div className={classes.container}>
                 <div className={classes.navCenter}>
                     <ul className={classes.navList}>
-                        <li><Link href="/" className={classes.link}>Home page</Link></li>
-                        <li><Link href="/" className={classes.link}>Prenota</Link></li>
-                        <li><Link href="/Torte" className={classes.link}>Torte</Link></li>
-                        <li><Link href="/Contatti" className={classes.link}>Contatti</Link></li>
-                        {role === 'admin' ? (
-                            <li><Link href="/admin/dashboard" className={classes.link}>Dashboard Admin</Link></li>
-                        ) : role === 'user' ? (
-                            <li><Link href="/user/dashboard" className={classes.link}>Dashboard Utente</Link></li>
+                        <li>
+                            <Link href="/" className={classes.link}>
+                                Home page
+                            </Link>
+                        </li>
+
+                        {role === "CLIENTE VERIFICATO" ? (
+                            <li>
+                                <Link href="/Prenotazione" className={classes.link}>
+                                    Prenota
+                                </Link>
+                            </li>
+                        ) : null}
+                        {role === "CLIENTE VERIFICATO" ? (
+                        <li>
+                            <Link href="/Torte" className={classes.link}>
+                                Torte
+                            </Link>
+                        </li>
+                        ) : null}
+                        <li>
+                            <Link href="/Contatti" className={classes.link}>
+                                Contatti
+                            </Link>
+                        </li>
+                        {role === "ADMIN" ? (
+                            <li>
+                                <Link href="/Dashboard" className={classes.link}>
+                                    Dashboard Admin
+                                </Link>
+                            </li>
+                        ) : role === "CLIENTE VERIFICATO" ? (
+                            <li>
+                                <Link href="/DashboardUtenti" className={classes.link}>
+                                    Dashboard Utente
+                                </Link>
+                            </li>
                         ) : null}
                     </ul>
                 </div>
@@ -64,13 +106,17 @@ export default function Header() {
                         <li>
                             {user ? (
                                 <>
-                                    <span className={classes.welcomeMessage}>Ciao, {user.nome}</span>
+                  <span className={classes.welcomeMessage}>
+                    Ciao, {user.nome}
+                  </span>
                                     <button onClick={handleLogout} className={classes.logoutButton}>
                                         Logout
                                     </button>
                                 </>
                             ) : (
-                                <Link href="/Login" className={classes.link}>Accedi</Link>
+                                <Link href="/Login" className={classes.link}>
+                                    Login
+                                </Link>
                             )}
                         </li>
                     </ul>
