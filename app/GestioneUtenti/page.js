@@ -1,7 +1,7 @@
 // pages/GestioneUtenti.js
 "use client";
 import { useState, useEffect } from 'react';
-import styles from './page.module.css';
+import classes from './page.module.css';
 
 const UserManagementTable = () => {
     const [users, setUsers] = useState([]);
@@ -66,34 +66,34 @@ const UserManagementTable = () => {
     }
 
     return (
-        <div className={styles.container}>
-            <h1 className={styles.title}>Gestione Utenti</h1>
-            <table className={styles.table}>
-                <thead className={styles.tableHead}>
+        <div className={classes.container}>
+            <h1 className={classes.title}>Gestione Utenti</h1>
+            <table className={classes.table}>
+                <thead className={classes.tableHead}>
                     <tr>
-                        <th className={styles.tableHeader}>ID</th>
-                        <th className={styles.tableHeader}>Nome</th>
-                        <th className={styles.tableHeader}>Cognome</th>
-                        <th className={styles.tableHeader}>Email</th>
-                        <th className={styles.tableHeader}>Telefono</th>
-                        <th className={styles.tableHeader}>Ruolo</th>
-                        <th className={styles.tableHeader}>Azioni</th>
+                        <th className={classes.tableHeader}>ID</th>
+                        <th className={classes.tableHeader}>Nome</th>
+                        <th className={classes.tableHeader}>Cognome</th>
+                        <th className={classes.tableHeader}>Email</th>
+                        <th className={classes.tableHeader}>Telefono</th>
+                        <th className={classes.tableHeader}>Ruolo</th>
+                        <th className={classes.tableHeader}>Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
                     {users.map((user) => (
-                        <tr key={user.id} className={styles.tableRow}>
-                            <td className={styles.tableCell}>{user.id}</td>
-                            <td className={styles.tableCell}>{user.nome}</td>
-                            <td className={styles.tableCell}>{user.cognome}</td>
-                            <td className={styles.tableCell}>{user.email}</td>
-                            <td className={styles.tableCell}>{user.telefono || 'N/A'}</td>
-                            <td className={styles.tableCell}>{user.ruolo}</td>
-                            <td className={styles.tableCell}>
-                                <button className={`${styles.edit} ${styles.button}`}
+                        <tr key={user.id} className={classes.tableRow}>
+                            <td className={classes.tableCell}>{user.id}</td>
+                            <td className={classes.tableCell}>{user.nome}</td>
+                            <td className={classes.tableCell}>{user.cognome}</td>
+                            <td className={classes.tableCell}>{user.email}</td>
+                            <td className={classes.tableCell}>{user.telefono || 'N/A'}</td>
+                            <td className={classes.tableCell}>{user.ruolo}</td>
+                            <td className={classes.tableCell}>
+                                <button className={`${classes.edit} ${classes.button}`}
                                         onClick={() => handleEditClick(user.id)}>Modifica
                                 </button>
-                                <button className={`${styles.delete} ${styles.button}`}
+                                <button className={`${classes.delete} ${classes.button}`}
                                         onClick={() => deleteUser(user.id)}>Elimina
                                 </button>
                             </td>

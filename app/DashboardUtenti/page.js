@@ -3,7 +3,7 @@ import classes from "./page.module.css";
 export default function DashboardUtenti() {
   return (
     <div className={classes.dashboard}>
-      <h1 className={classes.title}>Dashboard Utenti</h1>
+      <h1 className={classes.title}>Dashboard Utente</h1>
 
       <section className={classes.section}>
         <h2>Ordini Correnti</h2>
