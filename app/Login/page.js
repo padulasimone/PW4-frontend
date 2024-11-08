@@ -41,6 +41,7 @@ export default function LoginPage() {
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: "include",
                 body: JSON.stringify(data),
             });
 
@@ -49,7 +50,7 @@ export default function LoginPage() {
                 throw new Error(errorText || "Network response was not ok");
             }
 
-            const result = await response.json();
+            const result = await response.text();
             alert("Login successful.");
             router.push("/");
         } catch (error) {

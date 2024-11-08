@@ -16,7 +16,6 @@ export default function Header() {
                 });
                 if (res.ok) {
                     const data = await res.json();
-                    console.log(data);
                     setUser(data);
                     setRole(data.ruolo);
                 }
