@@ -65,11 +65,6 @@ export default function Header() {
                                 Home page
                             </Link>
                         </li>
-                        <li>
-                            <Link href="VerificaMail" className={classes.link}>
-                                VerificaMail
-                            </Link>
-                        </li>
 
                         {role === "CLIENTE VERIFICATO" ? (
                             <li>

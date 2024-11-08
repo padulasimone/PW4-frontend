@@ -94,8 +94,7 @@ export default function LoginPage() {
                 router.push("/");
             }
         } catch (error) {
-            console.error("Errore:", error);
-            setErrorMessage("Registrazione fallita. Riprova.");
+            setErrorMessage(error.message);
         }
     };
 
