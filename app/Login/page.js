@@ -178,6 +178,7 @@ export default function LoginPage() {
 
         </div>
       </div>
+      
       <div className={classes.panelsContainer}>
         <div className={`${classes.panel} ${classes.leftPanel}`}>
           <div className={classes.content}>
