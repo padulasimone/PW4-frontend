@@ -4,9 +4,92 @@
   color: #333;
 }
 
-
-
 .main {
   display: flex;
   flex-wrap: wrap;
 }
+
+.torta {
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  list-style: none;
+  justify-content: space-around;
+}
+
+.torta > li {
+  flex: 1 1 calc(33.333% - 3.33rem); /* Imposta 3 elementi per riga */
+
+  /* Modificare in caso di media query */
+  max-width: calc(
+          33.333% - 3.33rem
+  ); /* Larghezza fissa per tre elementi per riga */
+}
+
+.torta {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.3s ease;
+
+  /* Modificare in casp di media query */
+  min-height: 650px;
+  margin-top: 40px;
+}
+
+.torta:hover {
+  transform: scale(1.05);
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+.headerText {
+  padding: 15px;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+
+.headerText h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.prezzo {
+  font-size: 1.2rem;
+  color: #d9534f;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.content {
+  padding: 15px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.descrizione {
+  margin-bottom: 10px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.ingredienti {
+  color: #333;
+  font-style: italic;
+  margin-bottom: 5px;
+  text-transform: lowercase;
+}
+
+.quantita {
+  color: #333;
+}
+
+
