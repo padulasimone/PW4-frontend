@@ -72,12 +72,13 @@ export default function Header() {
                                 </Link>
                             </li>
                         ) : null}
-
+                        {role === "CLIENTE VERIFICATO" ? (
                         <li>
                             <Link href="/Torte" className={classes.link}>
                                 Torte
                             </Link>
                         </li>
+                        ) : null}
                         <li>
                             <Link href="/Contatti" className={classes.link}>
                                 Contatti
@@ -107,13 +108,13 @@ export default function Header() {
                   <span className={classes.welcomeMessage}>
                     Ciao, {user.nome}
                   </span>
-                                    <button onClick={handleLogout} className={classes.link}>
+                                    <button onClick={handleLogout} className={classes.logoutButton}>
                                         Logout
                                     </button>
                                 </>
                             ) : (
                                 <Link href="/Login" className={classes.link}>
-                                    Accedi
+                                    Login
                                 </Link>
                             )}
                         </li>
