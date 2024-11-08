@@ -1,12 +1,8 @@
-/* globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-/* Importa il font */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-
-html,
 body {
+  font-family: 'Montserrat', sans-serif;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Quicksand";
   font-style: italic;
 }

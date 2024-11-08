@@ -1,5 +1,5 @@
 "use client";
-import {useState} from 'react';
+import { useState } from 'react';
 import styles from './page.module.css';
 
 const AggiungiProdotto = () => {
@@ -13,8 +13,8 @@ const AggiungiProdotto = () => {
     });
 
     const handleInputChange = (e) => {
-        const {name, value} = e.target;
-        setProduct({...product, [name]: value});
+        const { name, value } = e.target;
+        setProduct({ ...product, [name]: value });
     };
 
     const handleSubmit = async (e) => {
@@ -46,30 +46,27 @@ const AggiungiProdotto = () => {
             <form onSubmit={handleSubmit} className={styles.form}>
                 <label>
                     Nome:
-                    <input type="text" name="nome" value={product.nome} onChange={handleInputChange} required/>
+                    <input type="text" name="nome" value={product.nome} onChange={handleInputChange} required placeholder="Nome del prodotto"/>
                 </label>
                 <label>
                     Descrizione:
-                    <input type="text" name="descrizione" value={product.descrizione} onChange={handleInputChange}
-                           required/>
+                    <input type="text" name="descrizione" value={product.descrizione} onChange={handleInputChange} required placeholder="Descrizione del prodotto"/>
                 </label>
                 <label>
                     Ingredienti:
-                    <input type="text" name="ingredienti" value={product.ingredienti} onChange={handleInputChange}
-                           required/>
+                    <input type="text" name="ingredienti" value={product.ingredienti} onChange={handleInputChange} required placeholder="Ingredienti del prodotto"/>
                 </label>
                 <label>
                     Prezzo:
-                    <input type="number" name="prezzo" value={product.prezzo} onChange={handleInputChange} required/>
+                    <input type="number" name="prezzo" value={product.prezzo} onChange={handleInputChange} required placeholder="Prezzo del prodotto"/>
                 </label>
                 <label>
                     Quantità:
-                    <input type="number" name="quantita" value={product.quantita} onChange={handleInputChange}
-                           required/>
+                    <input type="number" name="quantita" value={product.quantita} onChange={handleInputChange} required placeholder="Quantità disponibile"/>
                 </label>
                 <label>
                     Foto:
-                    <input type="text" name="foto" value={product.foto} onChange={handleInputChange} required/>
+                    <input type="text" name="foto" value={product.foto} onChange={handleInputChange} required placeholder="URL della foto del prodotto"/>
                 </label>
                 <button type="submit">Aggiungi</button>
             </form>

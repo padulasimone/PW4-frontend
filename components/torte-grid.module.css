@@ -4,14 +4,13 @@
   flex-wrap: wrap;
   padding: 20px;
   list-style: none;
-  justify-content: space-around; /* Distribuisce gli elementi equamente */
-  /* Distribuisce gli elementi equamente */
+  justify-content: space-around; 
 }
 
 .torta > li {
   flex: 1 1 calc(33.333% - 3.33rem); /* Imposta 3 elementi per riga */
 
-  /* Modificare in casp di media query */
+  /* Modificare in caso di media query */
   max-width: calc(
     33.333% - 3.33rem
   ); /* Larghezza fissa per tre elementi per riga */
