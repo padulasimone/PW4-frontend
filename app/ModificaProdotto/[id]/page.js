@@ -4,9 +4,17 @@ import { useState, useEffect } from "react";
 import styles from "./page.module.css";
 
 const ModificaProdotto = () => {
-  const idProdotto = window.location.pathname.split("/").pop();
+  const [idProdotto, setIdProdotto] = useState(null);
   const [product, setProduct] = useState(null);
   const [user, setUser] = useState(null);
+
+  // Recupera idProdotto lato client
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const id = window.location.pathname.split("/").pop();
+      setIdProdotto(id);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,19 +32,21 @@ const ModificaProdotto = () => {
   }, []);
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const res = await fetch(
-          `http://localhost:8080/prodotto/${idProdotto}`,
-          { credentials: "include" }
-        );
-        const data = await res.json();
-        setProduct(data);
-      } catch (error) {
-        console.error("Errore durante il recupero del prodotto:", error);
-      }
-    };
-    fetchProduct();
+    if (idProdotto) {
+      const fetchProduct = async () => {
+        try {
+          const res = await fetch(
+            `http://localhost:8080/prodotto/${idProdotto}`,
+            { credentials: "include" }
+          );
+          const data = await res.json();
+          setProduct(data);
+        } catch (error) {
+          console.error("Errore durante il recupero del prodotto:", error);
+        }
+      };
+      fetchProduct();
+    }
   }, [idProdotto]);
 
   const handleInputChange = (e) => {
@@ -89,7 +99,7 @@ const ModificaProdotto = () => {
           <input
             type="text"
             name="nome"
-            value={product.nome}
+            value={product.nome || ""}
             onChange={handleInputChange}
             className={styles.input}
           />
@@ -98,7 +108,7 @@ const ModificaProdotto = () => {
           Descrizione:
           <textarea
             name="descrizione"
-            value={product.descrizione}
+            value={product.descrizione || ""}
             onChange={handleInputChange}
             className={styles.textarea}
           />
@@ -107,7 +117,7 @@ const ModificaProdotto = () => {
           Ingredienti:
           <textarea
             name="ingredienti"
-            value={product.ingredienti}
+            value={product.ingredienti || ""}
             onChange={handleInputChange}
             className={styles.textarea}
           />
@@ -117,7 +127,7 @@ const ModificaProdotto = () => {
           <input
             type="number"
             name="prezzo"
-            value={product.prezzo}
+            value={product.prezzo || ""}
             onChange={handleInputChange}
             className={styles.input}
           />
@@ -127,7 +137,7 @@ const ModificaProdotto = () => {
           <input
             type="number"
             name="quantita"
-            value={product.quantita}
+            value={product.quantita || ""}
             onChange={handleInputChange}
             className={styles.input}
           />
@@ -137,7 +147,7 @@ const ModificaProdotto = () => {
           <input
             type="text"
             name="foto"
-            value={product.foto}
+            value={product.foto || ""}
             onChange={handleInputChange}
             className={styles.input}
           />

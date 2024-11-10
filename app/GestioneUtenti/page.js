@@ -61,9 +61,7 @@ const UserManagementTable = () => {
         }
     };
 
-    if (!currentUser || currentUser.ruolo !== 'ADMIN') {
-        return <p>Accesso negato. Solo gli amministratori possono visualizzare questa pagina.</p>;
-    }
+  
 
     return (
         <div className={classes.container}>

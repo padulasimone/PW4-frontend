@@ -14,27 +14,24 @@
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 30%;
- 
 }
 
 /* Titolo */
 .title {
-
   color: #333;
   font-size: 24px;
- 
+
   margin-bottom: 30px; /* Spazio tra il titolo e il form */
 }
 
 /* Stile per i label */
 .form label {
   font-size: 16px;
- 
+
   color: #444;
   display: flex;
   flex-direction: column;
   padding: 10px 0;
-  
 }
 
 /* Stile per gli input */
@@ -78,4 +75,16 @@
 
 .form input:focus::placeholder {
   color: #777;
+}
+
+@media (max-width: 767px) {
+  .form {
+    width: 90%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .form {
+    width: 50%;
+  }
 }
