@@ -207,10 +207,8 @@ export default function LoginPage() {
                         <input type="submit" className={classes.btn} value="Sign up"/>
                         {errorMessage && <p className={classes.error}>{errorMessage}</p>}
                     </form>
-
                 </div>
             </div>
-
             <div className={classes.panelsContainer}>
                 <div className={`${classes.panel} ${classes.leftPanel}`}>
                     <div className={classes.content}>
@@ -235,21 +233,19 @@ export default function LoginPage() {
                             Sign in
                         </button>
                     </div>
+                    {showVerificationDialog && (
+                        <div className={classes.verificationDialog}>
+                            <input
+                                type="text"
+                                value={verificationCode}
+                                onChange={(e) => setVerificationCode(e.target.value)}
+                                placeholder="Codice OTP"
+                            />
+                            <button onClick={handleVerificationSubmit}>Verifica</button>
+                        </div>
+                    )}
                 </div>
             </div>
-
-            {showVerificationDialog && (
-                <div className={classes.verificationDialog}>
-                   
-                    <input
-                        type="text"
-                        value={verificationCode}
-                        onChange={(e) => setVerificationCode(e.target.value)}
-                        placeholder="Codice OTP"
-                    />
-                    <button onClick={handleVerificationSubmit}>Verifica</button>
-                </div>
-            )}
         </div>
     );
 }
