@@ -240,14 +240,14 @@ export default function LoginPage() {
 
             {showVerificationDialog && (
                 <div className={classes.verificationDialog}>
-                    <h2>Enter Verification Code</h2>
+                   
                     <input
                         type="text"
                         value={verificationCode}
                         onChange={(e) => setVerificationCode(e.target.value)}
-                        placeholder="Verification Code"
+                        placeholder="Codice OTP"
                     />
-                    <button onClick={handleVerificationSubmit}>Verify</button>
+                    <button onClick={handleVerificationSubmit}>Verifica</button>
                 </div>
             )}
         </div>
