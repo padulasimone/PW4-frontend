@@ -1,5 +1,6 @@
 "use client";
 import {useState, useEffect} from "react";
+import {FaRegFileExcel} from "react-icons/fa6";
 import classes from "./page.module.css";
 
 const InventoryTable = () => {
@@ -98,15 +99,47 @@ const InventoryTable = () => {
         window.location.href = `/ModificaProdotto/${productId}`;
     };
 
+    const downloadExcel = async () => {
+        if (user && user.ruolo === "ADMIN") {
+            try {
+                const res = await fetch("http://localhost:8080/prodotto/excel", {
+                    method: "GET",
+                    credentials: "include",
+                });
+                if (res.ok) {
+                    const blob = await res.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    window.URL.revokeObjectURL(url);
+                    alert("File Excel scaricato con successo");
+                } else {
+                    console.error("Errore durante il download del file Excel");
+                }
+            } catch (error) {
+                console.error("Errore durante la chiamata API per il download del file Excel:", error);
+            }
+        } else {
+            console.error("Accesso negato: solo gli amministratori possono scaricare il file Excel");
+        }
+    };
+
     return (
         <div className={classes.container}>
             <h1 className={classes.title}>Gestione Magazzino</h1>
-            <button
-                className={classes.addButton}
-                onClick={() => (window.location.href = "/AggiungiProdotto")}
-            >
-                Aggiungi Prodotto
-            </button>
+            <div className={classes.addProductAndExport}>
+                <button
+                    className={classes.addButton}
+                    onClick={() => (window.location.href = "/AggiungiProdotto")}
+                >
+                    Aggiungi Prodotto
+                </button>
+                <button
+                    className={classes.exportButton}
+                    onClick={downloadExcel}
+                >
+                    Esporta Excel <FaRegFileExcel/>
+                </button>
+            </div>
+            <i className="fa-light fa-file-excel"></i>
             <table className={classes.table}>
                 <thead className={classes.tableHead}>
                 <tr>
@@ -153,7 +186,8 @@ const InventoryTable = () => {
                 </tbody>
             </table>
         </div>
-    );
+    )
+        ;
 };
 
 export default InventoryTable;

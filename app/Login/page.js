@@ -57,7 +57,7 @@ export default function LoginPage() {
             }
 
             const result = await response.text();
-            alert("Login successful.");
+            alert("Login effettuato con successo.");
             router.push("/");
         } catch (error) {
             setErrorMessage(error.message);
