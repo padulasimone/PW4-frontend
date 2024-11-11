@@ -1,12 +1,14 @@
-"use client";
-import { useState, useEffect } from "react";
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import Link from 'next/link'; 
 import classes from "@/components/main-header.module.css";
-import Link from "next/link";
-import AreaPersonale from "@/app/AreaPersonale/page";
 
 export default function Header() {
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
+  const router = useRouter();
 
   // Recupera l'utente dal backend utilizzando il valore del cookie di sessione
   useEffect(() => {
@@ -47,7 +49,7 @@ export default function Header() {
       if (res.ok) {
         setUser(null);
         setRole(null);
-        window.location.reload();
+        router.push('/');
       } else {
         console.error("Errore durante il logout:", res.statusText);
       }

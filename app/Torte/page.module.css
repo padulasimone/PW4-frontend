@@ -60,6 +60,7 @@ height: 100%;
 .headerText {
   
   text-align: center;
+  margin-top: 15px;
 }
 
 .headerText h2 {

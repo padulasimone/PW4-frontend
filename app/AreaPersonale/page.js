@@ -3,7 +3,7 @@ import classes from "./page.module.css";
 export default function AreaPersonale() {
   return (
     <div className={classes.dashboard}>
-      <h1 className={classes.title}>Dashboard Utente</h1>
+      <h1 className={classes.title}>Stato degli ordini</h1>
 
       <section className={classes.section}>
         <h2>Ordini Correnti</h2>
@@ -11,10 +11,6 @@ export default function AreaPersonale() {
           <div className={classes.orderItem}>
             <p className={classes.orderName}>Torta di compleanno</p>
             <p className={`${classes.status} ${classes.inProgress}`}>In preparazione</p>
-          </div>
-          <div className={classes.orderItem}>
-            <p className={classes.orderName}>Croissant</p>
-            <p className={`${classes.status} ${classes.delivered}`}>Consegnato</p>
           </div>
         </div>
       </section>

@@ -5,8 +5,11 @@
   width: 100%;
 }
 
-.topBackground {
+.topBackground, .bottomBackground {
   width: 100%;
+}
+
+.topBackground {
   background-color: #f3bc9f;
 }
 
@@ -33,6 +36,7 @@
 .textWithImage, .imageWithText {
   display: flex;
   align-items: center;
+  justify-content: center;
   max-width: 1200px;
   margin: 100px auto;
   height: 700px;
@@ -41,6 +45,7 @@
 .textBlock, .imageBlock {
   flex: 1;
   padding: 20px;
+  text-align: center;
 }
 
 .sideImage {
@@ -93,7 +98,6 @@
 }
 
 .bottomBackground {
-  width: 100%;
   background-color: white;
   clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
   position: relative;
@@ -101,78 +105,39 @@
   margin-top: -350px;
 }
 
-
-
-/* Layout di default per desktop */
-.textWithImage, .imageWithText {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 1200px;
-  margin: 100px auto;
-  height: 700px;
-}
-
-.textBlock, .imageBlock {
-  flex: 1;
-  padding: 20px;
-  text-align: center;
-}
-
-.sideImage {
-  width: 80%;
-  height: 500px;
-  object-fit: cover;
-  border-radius: 5px;
-  transition: transform 0.3s ease;
-}
-
-/* Hover per immagini */
-.sideImage:hover {
-  transform: scale(1.05);
-}
-
 /* Layout per tablet */
 @media (max-width: 1024px) {
   .textWithImage, .imageWithText {
     flex-direction: column;
     height: auto;
-    padding: 20px; /* Spazio extra intorno alla sezione per centratura */
+    padding: 20px;
   }
 
   .hero {
-    height: 350px; /* Altezza leggermente ridotta per una migliore proporzione su tablet */
-    background-position: center;
+    height: 350px;
     background-attachment: scroll; 
   }
 
   .textBlock, .imageBlock {
-    width: 90%; /* Limita la larghezza per mantenere il contenuto centrato */
-    padding: 20px;
-    margin: 0 auto; /* Centra i blocchi all'interno della sezione */
-    text-align: center;
+    width: 90%;
+    margin: 0 auto;
   }
 
   .sideImage {
-    width: 80%; /* Dimensione ridotta per miglior proporzione */
-    max-width: 500px; /* Limita la larghezza massima dell'immagine */
+    max-width: 500px;
     height: auto;
-    margin: 0 auto; /* Centra l'immagine */
+    margin: 0 auto;
   }
 
-  /* Font sizing per testo */
   .textBlock h2 {
-    font-size: 2rem; /* Aumenta leggermente il titolo per miglior visibilità */
-    margin-bottom: 10px;
+    font-size: 2rem;
   }
 
   .textBlock p {
-    font-size: 1.2rem; /* Dimensione del testo leggermente più grande per tablet */
-    line-height: 1.6; /* Aumenta l'interlinea per una leggibilità migliore */
-    margin-bottom: 10px;
+    font-size: 1.2rem;
+    line-height: 1.6;
   }
 }
-
 
 /* Layout per mobile */
 @media (max-width: 768px) {
@@ -182,18 +147,8 @@
   }
 
   .hero {
-    height: 450px; 
-    background-position: center;
+    height: 450px;
     background-attachment: scroll;
-  }
-
-  .heroContent {
-    padding: 1rem;
-  }
-
-  .hero h1,
-  .heroContent {
-    font-size: 1.5rem; 
   }
 
   .textBlock, .imageBlock {
@@ -202,16 +157,14 @@
   }
 
   .sideImage {
-    width: 90%; /* Immagini leggermente più piccole */
+    width: 90%;
     height: auto;
   }
 
-  /* Ordina testo sopra immagine */
   .textWithImage .textBlock {
     order: -1;
   }
 
-  /* Font sizing per mobile */
   .textBlock h2 {
     font-size: 2rem;
   }
@@ -221,8 +174,3 @@
     line-height: 1.4;
   }
 }
-
-
-
-
-
