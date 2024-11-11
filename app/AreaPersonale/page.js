@@ -1,6 +1,6 @@
 import classes from "./page.module.css";
 
-export default function DashboardUtenti() {
+export default function AreaPersonale() {
   return (
     <div className={classes.dashboard}>
       <h1 className={classes.title}>Dashboard Utente</h1>

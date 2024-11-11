@@ -3,8 +3,7 @@
   color: #333;
   background-color: #f9f9f9;
   padding: 20px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+ 
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 60%;
@@ -14,39 +13,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  
 }
 
 .torta {
   display: flex;
-  flex-wrap: wrap; /* Le card si avvolgono su più righe se necessario */
-  justify-content: space-between; /* Distribuisce le card in modo uniforme */
-  gap: 20px; /* Distanza tra le card */
-  padding: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+padding: 18px;
+gap: 35px;
+
   list-style: none;
-  width: 100%;
+  margin: auto;
+ 
 }
 
 .torta > li {
-  flex: 1 1 calc(33.33% - 20px); /* Imposta una larghezza fissa per ogni card (3 per riga) */
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  flex: 1 1 calc(33.33% - 25px);
+  margin-top: 25px;
+ 
 }
 
 .torta > li > article {
-  display: flex;
-  flex-direction: column;
-  height: 100%; /* Le card riempiono tutta la colonna */
+  width: 400px;
+height: 100%;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  height: 400px; /* Imposta un'altezza fissa per le card */
 }
 
 .torta > li > article:hover {
@@ -55,19 +51,14 @@
 
 .image {
   position: relative;
-  width: 100%; /* L'immagine occupa tutta la larghezza della card */
-  height: 50%; /* Imposta un'altezza fissa per l'immagine */
+  width: 400px;
+  height: 300px;
   overflow: hidden;
-}
-
-.image img {
-  object-fit: cover; /* Assicura che l'immagine copra tutta l'area senza distorsioni */
-  width: 100%;
-  height: 100%;
+  border-radius: 8px;
 }
 
 .headerText {
-  padding: 15px;
+  
   text-align: center;
 }
 
@@ -94,12 +85,12 @@
   line-height: 1.5;
 }
 
-.ingredienti {
-  color: #333;
-  margin-bottom: 5px;
-  text-transform: lowercase;
-}
-
+.ingredienti,
 .quantita {
   color: #333;
+}
+
+.ingredienti {
+  margin-bottom: 5px;
+  text-transform: lowercase;
 }

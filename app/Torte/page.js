@@ -20,10 +20,12 @@ export default function Torte() {
         }
         const data = await res.json();
         setProdotto(data);
+        console.log("Prodotti caricati:", data);
       } catch (error) {
         console.error("Errore durante il recupero dei prodotti:", error);
       }
     };
+    fetchProdotto(); // Chiama fetchProdotto
   }, []);
 
   // Recupera l'utente dal backend utilizzando il valore del cookie di sessione
