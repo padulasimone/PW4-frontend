@@ -63,7 +63,7 @@ const CakeReservation = () => {
 
   return (
     <div className={classes.container}>
-      <h1 className={classes.title}>Prenota le tue Torte</h1>
+      <h1 className={classes.title}>Fase 1 - Scelta</h1>
       <div className={classes.cakeList}>
         {cakes.map((cake, index) => (
           <div key={cake.id} className={classes.cakeItem}>

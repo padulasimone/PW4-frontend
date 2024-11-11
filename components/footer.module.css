@@ -1,14 +1,32 @@
 .footer {
+  position: relative;
   padding: 40px;
-  background-color: #333333;
+  background-image: url('/immagini/footer.jpg');
+  background-size: cover;
+  background-position: center;
   color: #fff;
   font-family: "Quicksand";
   font-style: italic;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.3);
+  z-index: 1;
 }
 
 .container {
+  position: relative;
+  z-index: 2; 
   display: flex;
   justify-content: space-between;
+  background-color: transparent; 
 }
 
 .section {
@@ -24,7 +42,7 @@
 
 .section p {
   font-size: 1rem;
-  color: #ccc;
+  color: #ffffff;
   line-height: 2;
   margin: 0.5rem 0;
 }
@@ -34,10 +52,10 @@
   padding: 15px;
   display: flex;
   justify-content: center;
-
   color: #fff;
   font-family: "Quicksand";
 }
+
 .smallFooter p {
   margin: 10px;
 }
@@ -48,6 +66,3 @@
     align-items: left;
   }
 }
-
-
-
