@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import styles from "./page.module.css";
+import classes from "./page.module.css";
 
 const ModificaProdotto = () => {
   const [idProdotto, setIdProdotto] = useState(null);
@@ -91,68 +91,68 @@ const ModificaProdotto = () => {
   if (!product) return <div>Caricamento...</div>;
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Modifica Prodotto</h1>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <label className={styles.label}>
+    <div className={classes.container}>
+      <h1 className={classes.title}>Modifica Prodotto</h1>
+      <form onSubmit={handleSubmit} className={classes.form}>
+        <label className={classes.label}>
           Nome:
           <input
             type="text"
             name="nome"
             value={product.nome || ""}
             onChange={handleInputChange}
-            className={styles.input}
+            className={classes.input}
           />
         </label>
-        <label className={styles.label}>
+        <label className={classes.label}>
           Descrizione:
           <textarea
             name="descrizione"
             value={product.descrizione || ""}
             onChange={handleInputChange}
-            className={styles.textarea}
+            className={classes.textarea}
           />
         </label>
-        <label className={styles.label}>
+        <label className={classes.label}>
           Ingredienti:
           <textarea
             name="ingredienti"
             value={product.ingredienti || ""}
             onChange={handleInputChange}
-            className={styles.textarea}
+            className={classes.textarea}
           />
         </label>
-        <label className={styles.label}>
+        <label className={classes.label}>
           Prezzo:
           <input
             type="number"
             name="prezzo"
             value={product.prezzo || ""}
             onChange={handleInputChange}
-            className={styles.input}
+            className={classes.input}
           />
         </label>
-        <label className={styles.label}>
+        <label className={classes.label}>
           Quantità:
           <input
             type="number"
             name="quantita"
             value={product.quantita || ""}
             onChange={handleInputChange}
-            className={styles.input}
+            className={classes.input}
           />
         </label>
-        <label className={styles.label}>
+        <label className={classes.label}>
           Foto:
           <input
             type="text"
             name="foto"
             value={product.foto || ""}
             onChange={handleInputChange}
-            className={styles.input}
+            className={classes.input}
           />
         </label>
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={classes.button}>
           Salva
         </button>
       </form>

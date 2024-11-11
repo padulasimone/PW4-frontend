@@ -1,6 +1,6 @@
 // pages/GestioneUtenti.js
 "use client";
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import classes from './page.module.css';
 
 const UserManagementTable = () => {
@@ -46,57 +46,60 @@ const UserManagementTable = () => {
     };
 
     const deleteUser = async (userId) => {
-        try {
-            const res = await fetch(`http://localhost:8080/utente/${userId}`, {
-                method: 'DELETE',
-                credentials: 'include',
-            });
-            if (res.ok) {
-                setUsers(users.filter(user => user.id !== userId));
-            } else {
-                console.error("Errore durante l'eliminazione dell'utente");
+        const isConfirmed = window.confirm('Sei sicuro di voler eliminare questo utente?');
+        if (isConfirmed) {
+            try {
+                const res = await fetch(`http://localhost:8080/utente/${userId}`, {
+                    method: 'DELETE',
+                    credentials: 'include',
+                });
+                if (res.ok) {
+                    setUsers(users.filter((user) => user.id !== userId));
+                } else {
+                    const errorData = await res.json();
+                    console.error('Errore durante l\'eliminazione dell\'utente:', errorData);
+                }
+            } catch (error) {
+                console.error('Errore durante l\'eliminazione dell\'utente:', error);
             }
-        } catch (error) {
-            console.error("Errore durante la chiamata API per eliminare l'utente:", error);
         }
     };
 
-  
 
     return (
         <div className={classes.container}>
             <h1 className={classes.title}>Gestione Utenti</h1>
             <table className={classes.table}>
                 <thead className={classes.tableHead}>
-                    <tr>
-                        <th className={classes.tableHeader}>ID</th>
-                        <th className={classes.tableHeader}>Nome</th>
-                        <th className={classes.tableHeader}>Cognome</th>
-                        <th className={classes.tableHeader}>Email</th>
-                        <th className={classes.tableHeader}>Telefono</th>
-                        <th className={classes.tableHeader}>Ruolo</th>
-                        <th className={classes.tableHeader}>Azioni</th>
-                    </tr>
+                <tr>
+                    <th className={classes.tableHeader}>ID</th>
+                    <th className={classes.tableHeader}>Nome</th>
+                    <th className={classes.tableHeader}>Cognome</th>
+                    <th className={classes.tableHeader}>Email</th>
+                    <th className={classes.tableHeader}>Telefono</th>
+                    <th className={classes.tableHeader}>Ruolo</th>
+                    <th className={classes.tableHeader}>Azioni</th>
+                </tr>
                 </thead>
                 <tbody>
-                    {users.map((user) => (
-                        <tr key={user.id} className={classes.tableRow}>
-                            <td className={classes.tableCell}>{user.id}</td>
-                            <td className={classes.tableCell}>{user.nome}</td>
-                            <td className={classes.tableCell}>{user.cognome}</td>
-                            <td className={classes.tableCell}>{user.email}</td>
-                            <td className={classes.tableCell}>{user.telefono || 'N/A'}</td>
-                            <td className={classes.tableCell}>{user.ruolo}</td>
-                            <td className={classes.tableCell}>
-                                <button className={`${classes.edit} ${classes.button}`}
-                                        onClick={() => handleEditClick(user.id)}>Modifica
-                                </button>
-                                <button className={`${classes.delete} ${classes.button}`}
-                                        onClick={() => deleteUser(user.id)}>Elimina
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
+                {users.map((user) => (
+                    <tr key={user.id} className={classes.tableRow}>
+                        <td className={classes.tableCell}>{user.id}</td>
+                        <td className={classes.tableCell}>{user.nome}</td>
+                        <td className={classes.tableCell}>{user.cognome}</td>
+                        <td className={classes.tableCell}>{user.email}</td>
+                        <td className={classes.tableCell}>{user.telefono || 'N/A'}</td>
+                        <td className={classes.tableCell}>{user.ruolo}</td>
+                        <td className={classes.tableCell}>
+                            <button className={`${classes.edit} ${classes.button}`}
+                                    onClick={() => handleEditClick(user.id)}>Modifica
+                            </button>
+                            <button className={`${classes.delete} ${classes.button}`}
+                                    onClick={() => deleteUser(user.id)}>Elimina
+                            </button>
+                        </td>
+                    </tr>
+                ))}
                 </tbody>
             </table>
         </div>

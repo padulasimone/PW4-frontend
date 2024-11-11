@@ -74,7 +74,7 @@ export default function Torte() {
                 <header>
                   <div className={classes.image}>
                     <Image
-                      src={"/immaginiTorte/" + torta.foto}
+                      src={"/immaginiTorte/" + torta.foto} // dà errore l'utlizzo di tutti i div
                       alt={torta.nome}
                       fill
                     />
