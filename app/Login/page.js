@@ -11,6 +11,7 @@ export default function LoginPage() {
     const [errorMessage, setErrorMessage] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
     const [showVerificationDialog, setShowVerificationDialog] = useState(false);
+    const [registrationData, setRegistrationData] = useState({});
     const containerRef = useRef(null);
     const router = useRouter();
 
@@ -30,10 +31,15 @@ export default function LoginPage() {
     const handleSignInSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const data = {
-            email: formData.get("email"),
-            password: formData.get("password"),
-        };
+        const identifier = formData.get("email"); // Può essere email o telefono
+        const password = formData.get("password");
+
+        // Controlla se l'input è un'email
+        const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identifier);
+
+        const data = isEmail
+            ? {email: identifier, password}
+            : {telefono: identifier, password};
 
         try {
             const response = await fetch("http://localhost:8080/auth/login", {
@@ -69,6 +75,8 @@ export default function LoginPage() {
             password: formData.get("password"),
         };
 
+        setRegistrationData(data);
+
         try {
             const response = await fetch("http://localhost:8080/auth/register", {
                 method: "POST",
@@ -100,7 +108,7 @@ export default function LoginPage() {
 
     const handleVerificationSubmit = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/auth/verifica/${data.telefono}/${verificationCode}`, {
+            const response = await fetch(`http://localhost:8080/auth/verifica/${registrationData.telefono}/${verificationCode}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
