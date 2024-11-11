@@ -100,3 +100,129 @@
   z-index: 0;
   margin-top: -350px;
 }
+
+
+
+/* Layout di default per desktop */
+.textWithImage, .imageWithText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 100px auto;
+  height: 700px;
+}
+
+.textBlock, .imageBlock {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+}
+
+.sideImage {
+  width: 80%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+/* Hover per immagini */
+.sideImage:hover {
+  transform: scale(1.05);
+}
+
+/* Layout per tablet */
+@media (max-width: 1024px) {
+  .textWithImage, .imageWithText {
+    flex-direction: column;
+    height: auto;
+    padding: 20px; /* Spazio extra intorno alla sezione per centratura */
+  }
+
+  .hero {
+    height: 350px; /* Altezza leggermente ridotta per una migliore proporzione su tablet */
+    background-position: center;
+    background-attachment: scroll; 
+  }
+
+  .textBlock, .imageBlock {
+    width: 90%; /* Limita la larghezza per mantenere il contenuto centrato */
+    padding: 20px;
+    margin: 0 auto; /* Centra i blocchi all'interno della sezione */
+    text-align: center;
+  }
+
+  .sideImage {
+    width: 80%; /* Dimensione ridotta per miglior proporzione */
+    max-width: 500px; /* Limita la larghezza massima dell'immagine */
+    height: auto;
+    margin: 0 auto; /* Centra l'immagine */
+  }
+
+  /* Font sizing per testo */
+  .textBlock h2 {
+    font-size: 2rem; /* Aumenta leggermente il titolo per miglior visibilità */
+    margin-bottom: 10px;
+  }
+
+  .textBlock p {
+    font-size: 1.2rem; /* Dimensione del testo leggermente più grande per tablet */
+    line-height: 1.6; /* Aumenta l'interlinea per una leggibilità migliore */
+    margin-bottom: 10px;
+  }
+}
+
+
+/* Layout per mobile */
+@media (max-width: 768px) {
+  .textWithImage, .imageWithText {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .hero {
+    height: 450px; 
+    background-position: center;
+    background-attachment: scroll;
+  }
+
+  .heroContent {
+    padding: 1rem;
+  }
+
+  .hero h1,
+  .heroContent {
+    font-size: 1.5rem; 
+  }
+
+  .textBlock, .imageBlock {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .sideImage {
+    width: 90%; /* Immagini leggermente più piccole */
+    height: auto;
+  }
+
+  /* Ordina testo sopra immagine */
+  .textWithImage .textBlock {
+    order: -1;
+  }
+
+  /* Font sizing per mobile */
+  .textBlock h2 {
+    font-size: 2rem;
+  }
+
+  .textBlock p {
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
+}
+
+
+
+
+
