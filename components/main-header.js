@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import classes from "@/components/main-header.module.css";
 import Link from "next/link";
+import AreaPersonale from "@/app/AreaPersonale/page";
 
 export default function Header() {
   const [user, setUser] = useState(null);
@@ -80,7 +81,7 @@ export default function Header() {
             {role === "CLIENTE VERIFICATO" && (
               <>
                 <li>
-                  <Link href="/Prenotazione" className={classes.link}>
+                  <Link href="/Prenota" className={classes.link}>
                     Prenota
                   </Link>
                 </li>
@@ -90,7 +91,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/DashboardUtenti" className={classes.link}>
+                  <Link href="/AreaPersonale" className={classes.link}>
                     Area personale
                   </Link>
                 </li>
