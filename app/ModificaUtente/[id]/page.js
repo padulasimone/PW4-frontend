@@ -2,7 +2,7 @@
 "use client";
 
 import {useState, useEffect} from "react";
-import styles from "./page.module.css";
+import classes from "./page.module.css";
 
 const ModificaUtente = () => {
     const [idUtente, setIdUtente] = useState(null);
@@ -94,63 +94,63 @@ const ModificaUtente = () => {
     if (!user) return <div>Caricamento...</div>;
 
     return (
-        <div className={styles.container}>
-            <h1 className={styles.title}>Modifica Utente</h1>
-            <form onSubmit={handleSubmit} className={styles.form}>
-                <label className={styles.label}>
+        <div className={classes.container}>
+            <h1 className={classes.title}>Modifica Utente</h1>
+            <form onSubmit={handleSubmit} className={classes.form}>
+                <label className={classes.label}>
                     Nome:
                     <input
                         type="text"
                         name="nome"
                         value={user.nome || ""}
                         onChange={handleInputChange}
-                        className={styles.input}
+                        className={classes.input}
                     />
                 </label>
-                <label className={styles.label}>
+                <label className={classes.label}>
                     Cognome:
                     <input
                         type="text"
                         name="cognome"
                         value={user.cognome || ""}
                         onChange={handleInputChange}
-                        className={styles.input}
+                        className={classes.input}
                     />
                 </label>
-                <label className={styles.label}>
+                <label className={classes.label}>
                     Email:
                     <input
                         type="email"
                         name="email"
                         value={user.email || ""}
                         onChange={handleInputChange}
-                        className={styles.input}
+                        className={classes.input}
                     />
                 </label>
-                <label className={styles.label}>
+                <label className={classes.label}>
                     Telefono:
                     <input
                         type="text"
                         name="telefono"
                         value={user.telefono || ""}
                         onChange={handleInputChange}
-                        className={styles.input}
+                        className={classes.input}
                     />
                 </label>
-                <label className={styles.label}>
+                <label className={classes.label}>
                     Ruolo:
                     <select
                         name="ruolo"
                         value={user.ruolo || ""}
                         onChange={handleInputChange}
-                        className={styles.input}
+                        className={classes.input}
                     >
                         <option value="ADMIN">ADMIN</option>
                         <option value="CLIENTE NON VERIFICATO">CLIENTE NON VERIFICATO</option>
                         <option value="CLIENTE VERIFICATO">CLIENTE VERIFICATO</option>
                     </select>
                 </label>
-                <button type="submit" className={styles.button}>
+                <button type="submit" className={classes.button}>
                     Salva
                 </button>
             </form>
