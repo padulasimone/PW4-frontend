@@ -42,6 +42,7 @@
   height: 700px;
 }
 
+
 .textBlock, .imageBlock {
   flex: 1;
   padding: 20px;
@@ -143,7 +144,18 @@
 @media (max-width: 768px) {
   .textWithImage, .imageWithText {
     flex-direction: column;
+    align-items: center; /* Centra gli elementi all'interno */
     height: auto;
+    margin: 0 auto; /* Centra il contenitore */
+    padding: 0 10px; /* Aggiungi padding solo ai lati per evitare margini vuoti */
+  }
+
+  .imageWithText{
+    margin-top: 100px;
+  }
+
+  .textWithImage{
+    margin-top: 50px;
   }
 
   .hero {
@@ -154,11 +166,14 @@
   .textBlock, .imageBlock {
     width: 100%;
     padding: 10px;
+    box-sizing: border-box; /* Assicura che il padding non aumenti la larghezza */
+    text-align: center; /* Centra il testo all'interno */
   }
 
   .sideImage {
     width: 90%;
     height: auto;
+    margin: 0 auto; 
   }
 
   .textWithImage .textBlock {
@@ -166,11 +181,125 @@
   }
 
   .textBlock h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin: 0;
   }
 
   .textBlock p {
-    font-size: 1.5rem;
+    font-size: 1.2rem; 
     line-height: 1.4;
+  }
+}
+
+
+
+
+
+
+
+
+.infoSection {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 50px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+  margin-top: -100px;
+  margin-bottom: 80px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  text-align: center;
+}
+
+.hours, .locations {
+  text-align: center;
+}
+
+.hours h3, .locations h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.hours p, .locations p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.middleImage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.extraImage {
+  margin-top: 1rem;
+}
+
+.imageRounded {
+  border-radius: 12px;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.infoButton {
+  background-color: #e36f52;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.infoButton:hover {
+  background-color: #f07f5f;
+}
+
+/* Responsive layout per tablet e mobile */
+@media (max-width: 1024px) {
+  .infoSection {
+    flex-direction: column;
+    padding: 30px;
+    gap: 2rem;
+  }
+
+  .column {
+    align-items: center;
+  }
+
+  .imageRounded {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .infoSection {
+    padding: 20px;
+    margin-top: 50px;
+  }
+
+  .hours h3, .locations h3 {
+    font-size: 1.5rem;
+  }
+
+  .hours p, .locations p {
+    font-size: 0.9rem;
+  }
+
+  .infoButton {
+    padding: 8px 16px;
+    font-size: 0.9rem;
   }
 }

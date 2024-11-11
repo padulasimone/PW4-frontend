@@ -315,6 +315,7 @@
         padding-right: 15%;
         transition: transform 0.9s ease-in-out;
         transition-delay: 0.8s;
+        margin-top: 150px;
     }
 
     .panel h3 {
