@@ -45,14 +45,24 @@
     transform: scale(1.02);
 }
 
-.orderName {
-    color: #444;
+.orderDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%; /* Assicura che gli elementi occupino tutta la larghezza */
+}
+
+.orderDetail {
+    margin-top: 5px;
+}
+
+.orderDetailItem {
+    margin: 0; /* Rimuove margini extra */
 }
 
 .status {
     padding: 0.3rem 0.6rem;
     border-radius: 5px;
-
     color: #fff;
 }
 
@@ -69,33 +79,6 @@
 
 .awaitingConfirmation {
     background-color: #e8891c;
-}
-
-.submitButton {
-    align-self: flex-end;
-    background-color: #4caf50;
-    color: white;
-    padding: 0.3rem 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submitButton:hover {
-    background-color: #43a047;
-}
-
-.orderDetail {
-    margin: 5px 0;
-}
-
-.orderDetails {
-    margin-top: 10px;
-}
-
-.orderDetailItem {
-    margin-left: 20px;
 }
 
 .noOrders {
@@ -134,14 +117,13 @@
     .orderItem {
         flex-direction: column;
         align-items: flex-start;
-        gap: 1rem;
     }
 
-    .commentSection {
-        flex-direction: column;
+    .orderDetails {
+        padding-left: 20px; 
     }
 
-    .submitButton {
-        width: 100%;
+    .orderDetail, .orderDetailItem {
+        margin-left: 0; 
     }
 }

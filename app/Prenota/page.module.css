@@ -29,6 +29,8 @@
   width: 200px;
   height: 200px;
   border-radius: 8px;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
 }
 
 .cakeDetails {
@@ -111,7 +113,9 @@
 
   .img {
     width: 180px;
-    height: auto;
+    height: 180px;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
   }
 
   .cakeDetails {
@@ -160,6 +164,8 @@
     width: 100%;
     max-width: 300px;
     height: auto;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
     align-self: center;
   }
 
