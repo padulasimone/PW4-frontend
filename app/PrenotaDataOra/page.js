@@ -1,35 +1,37 @@
 "use client";
-import { useState } from "react";
+import {useState, useEffect} from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function CalendarPage() {
-    const [selectedMonth, setSelectedMonth] = useState(10); // 10: novembre (0-based)
+    const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
     const [selectedDay, setSelectedDay] = useState(null);
     const [availableTimes, setAvailableTimes] = useState([]);
     const [selectedTime, setSelectedTime] = useState(null);
 
-    const unavailableDays = {
-        10: [5, 10, 15], // Novembre
-        11: [3, 12, 22], // Dicembre
-        0: [15, 10, 19]   // Gennaio
-    };
     const occupiedTimes = ["14:00", "15:30"];
     const weekdays = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
 
     const months = [
-        { name: "Novembre", number: 10 },
-        { name: "Dicembre", number: 11 },
-        { name: "Gennaio", number: 0 }
+        {name: "Novembre", number: new Date().getMonth()},
+        {name: "Dicembre", number: new Date().getMonth() + 1},
+        {name: "Gennaio", number: new Date().getMonth() + 2}
     ];
 
-    // Funzione per ottenere il numero di giorni del mese selezionato
+    useEffect(() => {
+        generateAvailableTimes();
+    }, [selectedDay]);
+
     const getDaysInMonth = (month) => {
-        const year = 2024; // Anno fisso per semplificazione
+        const year = new Date().getFullYear();
         return new Date(year, month + 1, 0).getDate();
     };
 
-    // Funzione per generare fasce orarie
+    const getFirstDayOfMonth = (month) => {
+        const year = new Date().getFullYear();
+        return new Date(year, month, 1).getDay();
+    };
+
     const generateAvailableTimes = () => {
         const times = [];
         for (let hour = 14; hour <= 18; hour++) {
@@ -41,36 +43,29 @@ export default function CalendarPage() {
         setAvailableTimes(times);
     };
 
-    // Funzione per gestire la selezione del giorno
     const handleDayClick = (day) => {
-        if (isWeekend(day) || unavailableDays[selectedMonth]?.includes(day)) return;
+        if (isWeekend(day)) return;
         setSelectedDay(day);
         setSelectedTime(null);
-        generateAvailableTimes();
     };
 
-    // Funzione per gestire la selezione dell'orario
     const handleTimeClick = (time) => {
         if (occupiedTimes.includes(time)) return;
         setSelectedTime(time);
     };
 
-    // Funzione per verificare se un giorno è nel weekend
     const isWeekend = (day) => {
-        const date = new Date(2024, selectedMonth, day);
+        const date = new Date(new Date().getFullYear(), selectedMonth, day);
         const dayOfWeek = date.getDay();
-        return dayOfWeek === 0 || dayOfWeek === 6; // 0 = Domenica, 6 = Sabato
+        return dayOfWeek === 0 || dayOfWeek === 6;
     };
 
-    // Funzione per determinare la classe CSS di un giorno
     const getDayClass = (day) => {
         if (isWeekend(day)) return styles.weekend;
-        if (unavailableDays[selectedMonth]?.includes(day)) return styles.unavailable;
         if (day === selectedDay) return styles.selected;
         return styles.day;
     };
 
-    // Funzione per determinare la classe CSS di un orario
     const getTimeClass = (time) => {
         if (occupiedTimes.includes(time)) return styles.occupiedTime;
         if (time === selectedTime) return styles.selectedTime;
@@ -81,7 +76,6 @@ export default function CalendarPage() {
         <div className={styles.calendarPage}>
             <h1 className={styles.fase}>Fase 2 - Data e Ora Ritiro</h1>
 
-            {/* Selettore del mese */}
             <div className={styles.monthSelector}>
                 {months.map((month) => (
                     <button
@@ -89,7 +83,7 @@ export default function CalendarPage() {
                         className={selectedMonth === month.number ? styles.selectedMonth : styles.monthButton}
                         onClick={() => {
                             setSelectedMonth(month.number);
-                            setSelectedDay(null); // Reset del giorno e dell'orario quando cambia mese
+                            setSelectedDay(null);
                             setSelectedTime(null);
                         }}
                     >
@@ -107,21 +101,29 @@ export default function CalendarPage() {
                                 {day}
                             </div>
                         ))}
-                        {[...Array(getDaysInMonth(selectedMonth))].map((_, index) => (
-                            <div
-                                key={index + 1}
-                                className={getDayClass(index + 1)}
-                                onClick={() => handleDayClick(index + 1)}
-                            >
-                                {index + 1}
-                            </div>
-                        ))}
+                        {[...Array((getFirstDayOfMonth(selectedMonth) + 6) % 7).fill(null), ...Array(getDaysInMonth(selectedMonth))].map((_, index) => {
+                            if (index >= (getFirstDayOfMonth(selectedMonth) + 6) % 7) {
+                                const day = index - (getFirstDayOfMonth(selectedMonth) + 6) % 7 + 1;
+                                return (
+                                    <div
+                                        key={`${selectedMonth}-${day}`}
+                                        className={getDayClass(day)}
+                                        onClick={() => handleDayClick(day)}
+                                    >
+                                        {day}
+                                    </div>
+                                );
+                            } else {
+                                return <div key={`empty-${index}`} className={styles.day}></div>;
+                            }
+                        })}
                     </div>
                 </div>
 
                 {selectedDay && (
                     <div className={styles.timeSelection}>
-                        <h2>Orari disponibili per il {selectedDay} {months.find(m => m.number === selectedMonth)?.name}</h2>
+                        <h2>Orari disponibili per
+                            il {selectedDay} {months.find(m => m.number === selectedMonth)?.name}</h2>
                         <div className={styles.times}>
                             {availableTimes.map((time, index) => (
                                 <button
