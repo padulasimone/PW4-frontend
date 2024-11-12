@@ -1,14 +1,15 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation'; // Aggiunto usePathname
 import { useEffect, useState } from 'react';
-import Link from 'next/link'; 
+import Link from 'next/link';
 import classes from "@/components/main-header.module.css";
 
 export default function Header() {
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
   const router = useRouter();
+  const pathname = usePathname(); // Ottieni il percorso corrente
 
   // Recupera l'utente dal backend utilizzando il valore del cookie di sessione
   useEffect(() => {
@@ -65,7 +66,7 @@ export default function Header() {
           <ul className={classes.navList}>
             {/* Voci comuni a tutti gli utenti */}
             <li>
-              <Link href="/" className={classes.link}>
+              <Link href="/" className={`${classes.link} ${pathname === '/' && classes.activeLink}`}>
                 Home page
               </Link>
             </li>
@@ -73,7 +74,7 @@ export default function Header() {
             {/* Mostra "Contatti" solo se l'utente è non loggato o CLIENTE VERIFICATO */}
             {(role === null || role === "CLIENTE VERIFICATO") && (
               <li>
-                <Link href="/Contatti" className={classes.link}>
+                <Link href="/Contatti" className={`${classes.link} ${pathname === '/Contatti' && classes.activeLink}`}>
                   Contatti
                 </Link>
               </li>
@@ -83,17 +84,17 @@ export default function Header() {
             {role === "CLIENTE VERIFICATO" && (
               <>
                 <li>
-                  <Link href="/Prenota" className={classes.link}>
+                  <Link href="/Prenota" className={`${classes.link} ${pathname === '/Prenota' && classes.activeLink}`}>
                     Prenota
                   </Link>
                 </li>
                 <li>
-                  <Link href="/Torte" className={classes.link}>
+                  <Link href="/Torte" className={`${classes.link} ${pathname === '/Torte' && classes.activeLink}`}>
                     Torte
                   </Link>
                 </li>
                 <li>
-                  <Link href="/AreaPersonale" className={classes.link}>
+                  <Link href="/AreaPersonale" className={`${classes.link} ${pathname === '/AreaPersonale' && classes.activeLink}`}>
                     Area personale
                   </Link>
                 </li>
@@ -104,17 +105,17 @@ export default function Header() {
             {role === "ADMIN" && (
               <>
                 <li>
-                  <Link href="/GestioneMagazzino" className={classes.link}>
+                  <Link href="/GestioneMagazzino" className={`${classes.link} ${pathname === '/GestioneMagazzino' && classes.activeLink}`}>
                     Gestione magazzino
                   </Link>
                 </li>
                 <li>
-                  <Link href="/GestioneOrdini" className={classes.link}>
+                  <Link href="/GestioneOrdini" className={`${classes.link} ${pathname === '/GestioneOrdini' && classes.activeLink}`}>
                     Gestione ordini
                   </Link>
                 </li>
                 <li>
-                  <Link href="/GestioneUtenti" className={classes.link}>
+                  <Link href="/GestioneUtenti" className={`${classes.link} ${pathname === '/GestioneUtenti' && classes.activeLink}`}>
                     Gestione utenti
                   </Link>
                 </li>
@@ -139,7 +140,7 @@ export default function Header() {
                   </button>
                 </>
               ) : (
-                <Link href="/Login" className={classes.link}>
+                <Link href="/Login" className={`${classes.link} ${pathname === '/Login' && classes.activeLink}`}>
                   Login
                 </Link>
               )}

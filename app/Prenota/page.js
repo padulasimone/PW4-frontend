@@ -72,8 +72,8 @@ const CakeReservation = () => {
               <h2>{cake.nome}</h2>
               <p className={classes.descrizione}>{cake.descrizione}</p>
               <p className={classes.ingredienti}>Ingredienti: {cake.ingredienti}</p>
-              <p className={classes.prezzo}>Prezzo: {cake.prezzo}€</p>
-              <p className={classes.quantita}>Disponibilità: {cake.quantita}</p>
+              <p className={classes.prezzo}>Prezzo: <strong>{cake.prezzo}€</strong></p>
+              <p className={classes.quantita}>Disponibilità: <strong>{cake.quantita}</strong></p>
               <div className={classes.counter}>
                 <button onClick={() => handleDecrement(index)} className={classes.counterButton}>
                   -
