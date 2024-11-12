@@ -2,14 +2,63 @@
 import {useState, useEffect} from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
+import Cookies from "js-cookie";
 
 export default function CalendarPage() {
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
     const [selectedDay, setSelectedDay] = useState(null);
     const [availableTimes, setAvailableTimes] = useState([]);
     const [selectedTime, setSelectedTime] = useState(null);
+    const [orders, setOrders] = useState(null);
+    const [occupiedDays, setOccupiedDays] = useState({});
+    const [fullyBookedDays, setFullyBookedDays] = useState([]);
+    const [orderDetails, setOrderDetails] = useState(null);
 
-    const occupiedTimes = ["14:00", "15:30"];
+    useEffect(() => {
+        generateAvailableTimes();
+        fetchOrders();
+    }, []);
+
+    useEffect(() => {
+        const orderDetailsFromCookie = Cookies.get('dettaglioOrdine');
+        if (orderDetailsFromCookie) {
+            setOrderDetails(JSON.parse(orderDetailsFromCookie));
+        }
+    }, []);
+
+    const fetchOrders = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/ordine', {
+                credentials: 'include'
+            });
+            const data = await response.json();
+            setOrders(data);
+
+            const tempOccupiedDays = {};
+            const tempFullyBookedDays = [];
+
+            data.forEach(ordine => {
+                const date = ordine.data_ritiro.split('T')[0];
+                const time = ordine.data_ritiro.split('T')[1].slice(0, 5);
+
+                if (!tempOccupiedDays[date]) {
+                    tempOccupiedDays[date] = [];
+                }
+                tempOccupiedDays[date].push(time);
+
+                if (tempOccupiedDays[date].length === availableTimes.length) {
+                    tempFullyBookedDays.push(date);
+                }
+            });
+
+            setOccupiedDays(tempOccupiedDays);
+            setFullyBookedDays(tempFullyBookedDays);
+
+        } catch (error) {
+            console.error('Error fetching order details:', error);
+        }
+    };
+
     const weekdays = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
 
     const months = [
@@ -18,18 +67,15 @@ export default function CalendarPage() {
         {name: "Gennaio", number: new Date().getMonth() + 2}
     ];
 
-    useEffect(() => {
-        generateAvailableTimes();
-    }, [selectedDay]);
-
     const getDaysInMonth = (month) => {
         const year = new Date().getFullYear();
         return new Date(year, month + 1, 0).getDate();
     };
 
+
     const getFirstDayOfMonth = (month) => {
         const year = new Date().getFullYear();
-        return new Date(year, month, 1).getDay();
+        return (new Date(year, month, 1).getDay() + 6) % 7; // Adjust to start the week on Monday
     };
 
     const generateAvailableTimes = () => {
@@ -44,13 +90,15 @@ export default function CalendarPage() {
     };
 
     const handleDayClick = (day) => {
-        if (isWeekend(day)) return;
-        setSelectedDay(day);
+        const date = new Date(new Date().getFullYear(), selectedMonth, day).toISOString().split('T')[0];
+        if (isWeekend(day) || fullyBookedDays.includes(date)) return;
+        setSelectedDay(day + 1);
         setSelectedTime(null);
     };
 
     const handleTimeClick = (time) => {
-        if (occupiedTimes.includes(time)) return;
+        const date = new Date(new Date().getFullYear(), selectedMonth, selectedDay).toISOString().split('T')[0];
+        if (occupiedDays[date]?.includes(time)) return;
         setSelectedTime(time);
     };
 
@@ -61,15 +109,33 @@ export default function CalendarPage() {
     };
 
     const getDayClass = (day) => {
-        if (isWeekend(day)) return styles.weekend;
-        if (day === selectedDay) return styles.selected;
+        const date = new Date(new Date().getFullYear(), selectedMonth, day).toISOString().split('T')[0];
+        if (isWeekend(day) || fullyBookedDays.includes(date)) return styles.weekend;
+        if (day + 1 === selectedDay) return styles.selected;
         return styles.day;
     };
 
     const getTimeClass = (time) => {
-        if (occupiedTimes.includes(time)) return styles.occupiedTime;
+        const date = new Date(new Date().getFullYear(), selectedMonth, selectedDay).toISOString().split('T')[0];
+        if (occupiedDays[date]?.includes(time)) return styles.occupiedTime;
         if (time === selectedTime) return styles.selectedTime;
         return styles.timeButton;
+    };
+
+    const handleNextClick = () => {
+        if (orderDetails && selectedDay && selectedTime) {
+            const year = new Date().getFullYear();
+            const month = String(selectedMonth + 1).padStart(2, "0");
+            const day = String(selectedDay-1).padStart(2, "0");
+            const dataRitiro = `${year}-${month}-${day}T${selectedTime}:00`;
+
+            const newOrderDetails = {
+                ...orderDetails,
+                data_ritiro: dataRitiro
+            };
+
+            Cookies.set('dettaglioOrdineEDataOra', JSON.stringify(newOrderDetails));
+        }
     };
 
     return (
@@ -101,9 +167,9 @@ export default function CalendarPage() {
                                 {day}
                             </div>
                         ))}
-                        {[...Array((getFirstDayOfMonth(selectedMonth) + 6) % 7).fill(null), ...Array(getDaysInMonth(selectedMonth))].map((_, index) => {
-                            if (index >= (getFirstDayOfMonth(selectedMonth) + 6) % 7) {
-                                const day = index - (getFirstDayOfMonth(selectedMonth) + 6) % 7 + 1;
+                        {[...Array(getFirstDayOfMonth(selectedMonth)).fill(null), ...Array(getDaysInMonth(selectedMonth))].map((_, index) => {
+                            if (index >= getFirstDayOfMonth(selectedMonth)) {
+                                const day = index - getFirstDayOfMonth(selectedMonth) + 1;
                                 return (
                                     <div
                                         key={`${selectedMonth}-${day}`}
@@ -141,8 +207,8 @@ export default function CalendarPage() {
 
             {selectedTime && (
                 <div className={styles.buttonContainer}>
-                    <Link href="/PrenotaDataOra">
-                        <button className={styles.nextButton}>Successivo</button>
+                    <Link href="/PrenotaConfermaOrdine">
+                        <button onClick={handleNextClick} className={styles.nextButton}>Successivo</button>
                     </Link>
                 </div>
             )}
