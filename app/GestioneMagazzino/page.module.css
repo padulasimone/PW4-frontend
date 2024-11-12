@@ -1,102 +1,124 @@
 /* InventoryTable.module.css */
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: auto;
-  padding: 20px;
-  max-width: 80%;
-  background-color: #f9f9f9;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+    max-width: 80%;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .title {
-  font-size: 30px;
-  color: #333;
-  text-align: center;
-  margin-bottom: 40px;
+    font-size: 30px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .table {
-  border-collapse: collapse;
+    border-collapse: collapse;
 }
 
 .tableHead {
-  background-color: #f3bc9f;
-  color: rgb(0, 0, 0);
+    background-color: #f3bc9f;
+    color: rgb(0, 0, 0);
 }
 
 .tableCell,
 .tableHeader {
-  padding: 14px;
-  text-transform: lowercase;
+    padding: 14px;
+    text-transform: lowercase;
 
-  border: 1px solid #ddd;
+    border: 1px solid #ddd;
 }
 
 .tableHeader {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 .tableRow:nth-child(even) {
-  background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
 .tableRow:hover {
-  background-color: #e0f7fa;
+    background-color: #e0f7fa;
 }
 
 .img {
-  max-width: 90%;
-  border-radius: 4px;
-  margin: 10px;
+    max-width: 90%;
+    border-radius: 4px;
+    margin: 10px;
 }
 
 .button {
-  padding: 8px 12px;
-  margin: 5px;
-  font-size: 14px;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    padding: 8px 12px;
+    margin: 5px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 .edit {
-  background-color: #007bff;
+    background-color: #007bff;
 }
 
 .delete {
-  background-color: #dc3545;
+    background-color: #dc3545;
 }
 
 .edit:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 .delete:hover {
-  background-color: #c82333;
+    background-color: #c82333;
 }
 
 .addButton {
-  margin-bottom: 30px;
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
+    margin-bottom: 30px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
 .addButton:hover {
-  background-color: #45a049;
+    background-color: #45a049;
+}
+
+.exportButton {
+    margin-bottom: 30px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.exportButton:hover {
+    background-color: #45a049;
+}
+
+.addProductAndExport {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 }

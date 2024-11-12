@@ -1,187 +1,193 @@
 .container {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .title {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-  
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
 .cakeList {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .cakeItem {
-    display: flex;
-    gap: 1.5rem;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    align-items: center;
-  }
-  
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  align-items: center;
+}
+
 .img {
-    width: 200px;
-    height: auto;
-    border-radius: 8px;
-  }
-  
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+}
+
 .cakeDetails {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-.descrizione, .ingredienti, .prezzo, .quantita {
-    margin: 0.3rem 0;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.descrizione,
+.ingredienti,
+.prezzo,
+.quantita {
+  margin: 0.3rem 0;
+  text-transform: lowercase;
+}
+
 .counter {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   
+}
+
 .counterButton {
-    padding: 0.5rem;
-    font-size: 1.2rem;
-    width: 40px;
-    height: 40px;
-    border: none;
-    background-color: #f3bc9f;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #f3bc9f;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
 .counterValue {
-    font-size: 1.2rem;
-    padding: 0.5rem;
-    width: 40px;
-    text-align: center;
-    background-color: #eee;
-    border-radius: 4px;
-  }
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  width: 40px;
+  text-align: center;
+  background-color: #eee;
+  border-radius: 4px;
+}
 
 .buttonContainer {
-    display: flex;
-    justify-content: right;
-    margin-top: 2rem;
-  }
-  
-.nextButton {
-    padding: 0.8rem 1.5rem;
-    font-size: 1.2rem;
-    color: white;
-    background-color: #f3bc9f;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-.nextButton:hover {
-    background-color: #e36f52;
-  }
-  
+  display: flex;
+  justify-content: right;
+  margin-top: 2rem;
+}
 
-  
+.nextButton {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #f3bc9f;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nextButton:hover {
+  background-color: #e36f52;
+}
+
 /* Stili per tablet */
 @media (max-width: 1024px) {
-    .container {
-        padding: 1.5rem;
-    }
+  .container {
+    padding: 1.5rem;
+  }
 
-    .title {
-        font-size: 1.8rem;
-    }
+  .title {
+    font-size: 1.8rem;
+  }
 
-    .cakeItem {
-        flex-direction: row;
-        gap: 1rem;
-        padding: 1rem;
-    }
+  .cakeItem {
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
+  }
 
-    .img {
-        width: 180px;
-        height: auto;
-    }
+  .img {
+    width: 180px;
+    height: auto;
+  }
 
-    .cakeDetails {
-        gap: 0.5rem;
-        align-items: center;
-    }
+  .cakeDetails {
+    gap: 0.5rem;
+    align-items: center;
+  }
 
-    .descrizione, .ingredienti, .prezzo, .quantita {
-        font-size: 1rem;
-        margin: 0.2rem 0;
-    }
+  .descrizione,
+  .ingredienti,
+  .prezzo,
+  .quantita {
+    font-size: 1rem;
+    margin: 0.2rem 0;
+  }
 
-    .counterButton {
-        width: 35px;
-        height: 35px;
-        font-size: 1.1rem;
-    }
+  .counterButton {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
+  }
 
-    .counterValue {
-        width: 35px;
-        font-size: 1.1rem;
-    }
+  .counterValue {
+    width: 35px;
+    font-size: 1.1rem;
+  }
 }
 
 /* Stili per mobile */
 @media (max-width: 768px) {
-    .container {
-        padding: 1rem;
-    }
+  .container {
+    padding: 1rem;
+  }
 
-    .title {
-        font-size: 1.5rem;
-    }
+  .title {
+    font-size: 1.5rem;
+  }
 
-    .cakeItem {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-        padding: 1rem;
-    }
+  .cakeItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
 
-    .img {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        align-self: center;
-    }
+  .img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    align-self: center;
+  }
 
-    .cakeDetails {
-        gap: 0.4rem;
-    }
+  .cakeDetails {
+    gap: 0.4rem;
+  }
 
-    .descrizione, .ingredienti, .prezzo, .quantita {
-        font-size: 0.9rem;
-        margin: 0.2rem 0;
-    }
+  .descrizione,
+  .ingredienti,
+  .prezzo,
+  .quantita {
+    font-size: 0.9rem;
+    margin: 0.2rem 0;
+  }
 
-    .counter {
-        justify-content: flex-start;
-        margin-top: 0.3rem;
-    }
+  .counter {
+    justify-content: flex-start;
+    margin-top: 0.3rem;
+  }
 
-    .counterButton {
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
-    }
+  .counterButton {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
 
-    .counterValue {
-        width: 30px;
-        font-size: 1rem;
-    }
+  .counterValue {
+    width: 30px;
+    font-size: 1rem;
+  }
 }
-  
-
