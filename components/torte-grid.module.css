@@ -1,0 +1,18 @@
+.torta {
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  list-style: none;
+  justify-content: space-around; /* Distribuisce gli elementi equamente */
+  /* Distribuisce gli elementi equamente */
+}
+
+.torta > li {
+  flex: 1 1 calc(33.333% - 3.33rem); /* Imposta 3 elementi per riga */
+
+  /* Modificare in casp di media query */
+  max-width: calc(
+    33.333% - 3.33rem
+  ); /* Larghezza fissa per tre elementi per riga */
+}
