@@ -122,3 +122,83 @@
     align-items: center;
     width: 100%;
 }
+
+@media (max-width: 1023px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .tableHead {
+        display: none !important;
+    }
+
+    .tableRow {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: #fff;
+    }
+
+    .tableHeader,
+    .tableCell {
+        display: block;
+        width: 100%;
+        font-size: 14px;
+        text-align: left;
+        padding: 8px 0;
+    }
+
+    .tableCell {
+        padding: 12px 8px;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .tableHeader {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .tableRow:hover {
+        background-color: #f9f9f9;
+    }
+
+    .img {
+        width: 80%;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .addProductAndExport {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .addButton,
+    .exportButton {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
+

@@ -49,7 +49,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%; /* Assicura che gli elementi occupino tutta la larghezza */
 }
 
 .orderDetail {
@@ -117,10 +116,6 @@
     .orderItem {
         flex-direction: column;
         align-items: flex-start;
-    }
-
-    .orderDetails {
-        padding-left: 20px; 
     }
 
     .orderDetail, .orderDetailItem {

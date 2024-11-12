@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
+
 import classes from "./page.module.css";
 
 export default function AreaPersonale() {
@@ -41,6 +42,7 @@ export default function AreaPersonale() {
         }
     }, [user]);
 
+
     useEffect(() => {
         if (user && user.ruolo === "CLIENTE VERIFICATO") {
             const fetchCurrentOrders = async () => {
@@ -72,7 +74,8 @@ export default function AreaPersonale() {
                         </div>
                     ) : (
                         <h2>Ordini</h2>
-                    )}
+                    )
+                    }
                 </div>
                 <div className={classes.orderList}>
                     {currentOrders.slice(0, 3).map((order) => (
@@ -83,8 +86,9 @@ export default function AreaPersonale() {
                                         <p>{item.nome} x{item.quantita}</p>
                                     </div>
                                 ))}
-                                <p className={classes.orderDetail}>Data di ritiro: {new Date(order.data_ritiro).toLocaleString()}</p>
                             </div>
+                            <p className={classes.orderDetail}>Data di
+                                ritiro: {new Date(order.data_ritiro).toLocaleString()}</p>
                             {order.stato === "IN PREPARAZIONE" ? (
                                 <p className={`${classes.status} ${classes.inProgress}`}>{order.stato}</p>
                             ) : (
@@ -107,7 +111,8 @@ export default function AreaPersonale() {
                         </div>
                     ) : (
                         <h2>Storico Ordini</h2>
-                    )}
+                    )
+                    }
                 </div>
                 <div className={classes.orderList}>
                     {orderHistory.slice(0, 3).map((order) => (
@@ -118,8 +123,9 @@ export default function AreaPersonale() {
                                         <p>{item.nome} x{item.quantita}</p>
                                     </div>
                                 ))}
-                                <p className={classes.orderDetail}>Data di ritiro: {new Date(order.data_ritiro).toLocaleString()}</p>
                             </div>
+                            <p className={classes.orderDetail}>Data di
+                                ritiro: {new Date(order.data_ritiro).toLocaleString()}</p>
                             <p className={`${classes.status} ${classes.delivered}`}>{order.stato}</p>
                         </div>
                     ))}
