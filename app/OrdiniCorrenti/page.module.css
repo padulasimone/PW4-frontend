@@ -109,12 +109,6 @@
     align-items: center;
 }
 
-.sectionHeaderWithLink {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-}
-
 .viewAllLink {
     color: #007bff;
     text-decoration: none;
