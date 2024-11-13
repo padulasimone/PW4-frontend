@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import styles from "./page.module.css";
+import classes from "./page.module.css";
 
 const AggiungiProdotto = () => {
   const [product, setProduct] = useState({
@@ -47,9 +47,9 @@ const AggiungiProdotto = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Aggiungi Prodotto</h1>
-      <form onSubmit={handleSubmit} className={styles.form}>
+    <div className={classes.container}>
+      <h1 className={classes.title}>Aggiungi Prodotto</h1>
+      <form onSubmit={handleSubmit} className={classes.form}>
         <label>
           Nome:
           <input
@@ -116,7 +116,9 @@ const AggiungiProdotto = () => {
             placeholder="URL della foto del prodotto"
           />
         </label>
+        <div className={classes.buttonSpace}>
         <button type="submit">Aggiungi</button>
+        </div>
       </form>
     </div>
   );

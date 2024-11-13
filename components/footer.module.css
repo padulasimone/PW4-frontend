@@ -1,12 +1,10 @@
 .footer {
   position: relative;
   padding: 40px;
-  background-image: url('/immagini/footer.jpg');
+  background-image: url("/immagini/footer.jpg");
   background-size: cover;
   background-position: center;
   color: #fff;
-  font-family: "Quicksand";
-  font-style: italic;
   overflow: hidden;
 }
 
@@ -23,10 +21,10 @@
 
 .container {
   position: relative;
-  z-index: 2; 
+  z-index: 2;
   display: flex;
   justify-content: space-between;
-  background-color: transparent; 
+ 
 }
 
 .section {
@@ -35,13 +33,14 @@
 }
 
 .sectionTitle {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
   color: #f3bc9f;
 }
 
 .section p {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #ffffff;
   line-height: 2;
   margin: 0.5rem 0;
@@ -53,16 +52,28 @@
   display: flex;
   justify-content: center;
   color: #fff;
-  font-family: "Quicksand";
 }
 
 .smallFooter p {
   margin: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .container {
     flex-direction: column;
-    align-items: left;
+    
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    
+   
+  }
+
+  .section {
+    text-align: center;
+   
   }
 }

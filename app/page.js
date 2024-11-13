@@ -1,17 +1,17 @@
-import styles from "./page.module.css";
+import classes from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.topBackground}>
-        <section className={styles.hero}>
-          <div className={styles.heroContent}></div>
+    <main className={classes.main}>
+      <div className={classes.topBackground}>
+        <section className={classes.hero}>
+          <div className={classes.heroContent}></div>
         </section>
 
-        <section className={styles.textWithImage}>
-          <div className={styles.textBlock}>
+        <section className={classes.textWithImage}>
+          <div className={classes.textBlock}>
             <h2>Pasticceria C'est la Vie a Varese</h2>
             <p>
               Mi chiamo Giacomo Aceti e sono il titolare di C'est la Vie. La mia
@@ -27,85 +27,85 @@ export default function Home() {
             </p>
             {/* <button className={styles.button}>Ordina Ora</button> */}
           </div>
-          <div className={styles.imageBlock}>
+          <div className={classes.imageBlock}>
             <Image
               src="/immagini/bakery.jpg"
               alt="Interno pasticceria"
               width={600}
               height={500}
-              className={styles.sideImage}
+              className={classes.sideImage}
             />
           </div>
         </section>
 
-        <section className={styles.infoSection}>
-          <div className={styles.column}>
-            <div className={styles.hours}>
+        <section className={classes.infoSection}>
+          <div className={classes.column}>
+            <div className={classes.hours}>
               <h3>Orari di apertura</h3>
               <p>Lunedì: Chiuso</p>
               <p>Mar - Ven: 08:00 - 13:00 | 14:30 - 19:00</p>
               <p>Sab - Dom: 14:30 - 19:00</p>
             </div>
-            <div className={styles.extraImage}>
+            <div className={classes.extraImage}>
               <Image
                 src="/immagini/foto6.jpg"
                 alt="Immagine orari"
                 width={300}
                 height={200}
-                className={styles.imageRounded}
+                className={classes.imageRounded}
               />
             </div>
           </div>
 
-          <div className={styles.middleImage}>
+          <div className={classes.middleImage}>
             <Image
               src="/immagini/foto4.jpg"
               alt="Vetrina di macarons"
               width={400}
               height={300}
-              className={styles.imageRounded}
+              className={classes.imageRounded}
             />
           </div>
 
-          <div className={styles.column}>
-            <div className={styles.extraImage}>
+          <div className={classes.column}>
+            <div className={classes.extraImage}>
               <Image
                 src="/immagini/foto5.jpg"
                 alt="Immagine sedi"
                 width={300}
                 height={200}
-                className={styles.imageRounded}
+                className={classes.imageRounded}
               />
             </div>
-            <div className={styles.locations}>
+            <div className={classes.locations}>
               <h3>Le nostre sedi</h3>
               <p>Laboratorio: Via Garibaldi, 5 - Varese</p>
               <p>Boutique: Via Carlo Croce, 4 - Varese</p>
               <Link href="/Contatti">
-                <button className={styles.infoButton}>Scopri di più</button>
+                <button className={classes.infoButton}>Scopri di più</button>
               </Link>
             </div>
           </div>
         </section>
 
-        <section className={styles.fullWidthImageContainer}>
-          <div className={styles.whiteOverlay}></div>{" "}
+        <section className={classes.fullWidthImageContainer}>
+          <div className={classes.whiteOverlay}></div>{" "}
           {/* Sovrapposizione bianca */}
         </section>
       </div>
 
-      <div className={styles.bottomBackground}>
-        <section className={styles.imageWithText}>
-          <div className={styles.imageBlock}>
+      <div className={classes.bottomBackground}>
+        <section className={classes.imageWithText}>
+          <div className={classes.imageBlock}>
             <Image
               src="/immagini/foto3.jpg"
               alt="Dolci"
               width={600}
               height={400}
-              className={styles.sideImage}
+              className={classes.sideImage}
             />
           </div>
-          <div className={styles.textBlock}>
+          <div className={classes.textBlock}>
             <h2>Pasticceria C'est la Vie a Varese</h2>
             <p>
               Mi chiamo Giacomo Aceti e sono il titolare di C'est la Vie. La mia
@@ -121,8 +121,6 @@ export default function Home() {
             </p>
             {/* <button className={styles.button}>Ordina Ora</button> */}
           </div>
-
-
         </section>
       </div>
     </main>
