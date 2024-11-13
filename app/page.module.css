@@ -107,7 +107,7 @@
 }
 
 /* Layout per tablet */
-@media (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px){
   .textWithImage, .imageWithText {
     flex-direction: column;
     height: auto;
@@ -131,11 +131,11 @@
   }
 
   .textBlock h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .textBlock p {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     line-height: 1.6;
   }
 }
@@ -190,12 +190,6 @@
     line-height: 1.4;
   }
 }
-
-
-
-
-
-
 
 
 .infoSection {
@@ -267,11 +261,19 @@
 }
 
 /* Responsive layout per tablet e mobile */
-@media (max-width: 1024px) {
+@media (min-width: 769px) and (max-width: 1024px) {
   .infoSection {
     flex-direction: column;
     padding: 30px;
     gap: 2rem;
+  }
+
+  .infoSection h3{
+    font-size: 2.5rem;
+  }
+
+  .infoSection p{
+    font-size: 2.2rem;
   }
 
   .column {
@@ -286,20 +288,28 @@
 
 @media (max-width: 768px) {
   .infoSection {
-    padding: 20px;
-    margin-top: 50px;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      margin-top: 50px;
   }
 
-  .hours h3, .locations h3 {
-    font-size: 1.5rem;
-  }
-
-  .hours p, .locations p {
-    font-size: 0.9rem;
+  .hours, .locations {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 20px; 
+      text-align: center; 
   }
 
   .infoButton {
-    padding: 8px 16px;
-    font-size: 0.9rem;
+      width: 100%; 
+      font-size: 1rem;
   }
 }
+
+
+
+
+
+
+

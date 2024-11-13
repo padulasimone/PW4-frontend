@@ -1,7 +1,7 @@
 .calendarPage {
     padding: 20px;
-    font-family: Arial, sans-serif;
-    min-height: 600px;
+    min-height: 867px;
+    
 }
 
 .monthSelector {
@@ -147,7 +147,8 @@
 
 /* Responsive styles */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+
     .columns {
         flex-direction: column;
         align-items: center;
@@ -185,10 +186,10 @@
 
 @media (max-width: 480px) {
     .calendar {
-        grid-template-columns: repeat(7, minmax(0, 1fr)); /* Mantieni la griglia a 7 colonne per l'ordine */
+        grid-template-columns: repeat(7, minmax(0, 1fr)); 
     }
 
     .times {
-        grid-template-columns: 1fr 1fr; /* Orari in coppie */
+        grid-template-columns: 1fr 1fr; 
     }
 }
