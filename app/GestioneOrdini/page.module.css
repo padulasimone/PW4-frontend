@@ -1,274 +1,180 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    padding: 20px;
-    max-width: 80%;
-    background-color: #f9f9f9;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 15px;
+  max-width: 90%;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .title {
-    font-size: 30px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 40px;
+  font-size: 30px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 .table {
-    border-collapse: collapse;
-    margin: 0 auto; /* Centra la tabella */
-    max-width: 100%; /* Limita la larghezza della tabella */
+  border-collapse: collapse;
+  margin: 0 auto; /* Centra la tabella */
 }
 
 .tableHead {
-    background-color: #f3bc9f;
-    color: rgb(0, 0, 0);
+  background-color: #f3bc9f;
+  color: rgb(0, 0, 0);
 }
 
 .tableCell,
 .tableHeader {
-    padding: 14px;
+    padding: 15px;
     border: 1px solid #ddd;
 }
 
 .tableHeader {
-    font-size: 16px;
-    font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .tableRow:nth-child(even) {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 .tableRow:hover {
-    background-color: #e0f7fa;
-}
-
-.img {
-    max-width: 90%;
-    border-radius: 4px;
-    margin: 10px;
+  background-color: #e0f7fa;
 }
 
 .button {
-    padding: 8px 12px;
-    margin: 5px;
-    font-size: 14px;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+  padding: 8px 12px;
+  margin: 5px;
 
-.button:hover {
-    opacity: 0.8;
-}
-
-.edit {
-    background-color: #007bff;
-}
-
-.delete {
-    background-color: #dc3545;
-}
-
-.edit:hover {
-    background-color: #0056b3;
-}
-
-.delete:hover {
-    background-color: #c82333;
-}
-
-.addButton {
-    margin-bottom: 30px;
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.addButton:hover {
-    background-color: #45a049;
-}
-
-.exportButton {
-    margin-bottom: 30px;
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.exportButton:hover {
-    background-color: #45a049;
-}
-
-.addProductAndExport {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .confirmButton {
-    background-color: #28a745;
-    color: white;
+  background-color: #28a745;
+  color: white;
 }
 
 .confirmButton:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
 @media (max-width: 767px) {
-    .container {
-        max-width: 100%;
-        padding: 15px; /* Maggior padding per un aspetto più arioso */
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
+  .container {
+    max-width: 100%;
+    padding: 15px; /* Maggior padding per un aspetto più arioso */
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 
-    .title {
-        font-size: 24px;
-        margin-bottom: 25px;
-        text-align: center;
-    }
+  .table {
+    display: block;
+    overflow-x: auto;
+  }
 
-    .table {
-        display: block;
-        overflow-x: auto;
-        padding: 10px 0;
-    }
+  .tableHead {
+    display: none;
+  }
 
-    .tableHead {
-        display: none;
-    }
+  .tableRow {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    padding: 12px;
+    background-color: #fff;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
 
-    .tableRow {
-        display: flex;
-        flex-direction: column;
-        border: 1px solid #ddd;
-        margin-bottom: 12px;
-        border-radius: 8px;
-        padding: 12px;
-        background-color: #fff;
-        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    }
+  .tableHeader,
+  .tableCell {
+    max-width: 100%;
+    font-size: 15px;
+  }
 
-    .tableHeader,
-    .tableCell {
-        display: block;
-        width: 100%;
-        font-size: 15px;
-        text-align: left;
-    }
+  .tableHeader {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
 
-    .tableCell {
-        padding: 10px 5px;
-        margin-bottom: 8px;
-    }
+  .tableRow:hover {
+    background-color: #f0f0f0;
+  }
 
-    .tableHeader {
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 5px;
-    }
-
-    .tableRow:hover {
-        background-color: #f0f0f0;
-    }
-
-    .img {
-        width: 100%; /* Imposta al 100% per riempire l’area disponibile */
-        max-width: 300px; /* Limite massimo per non espandersi troppo */
-        height: auto;
-        display: block;
-        margin: 10px auto;
-        border-radius: 6px;
-    }
-
-    .addProductAndExport {
-        flex-direction: column;
-        gap: 12px;
-        width: 100%;
-        padding: 10px 0;
-    }
-
-    .addButton,
-    .exportButton {
-        width: 100%;
-        padding: 10px;
-        font-size: 14px;
-    }
-
-    .button {
-        padding: 8px 12px;
-        font-size: 14px;
-        margin-top: 5px;
-    }
+  .button {
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-top: 5px;
+  }
 }
 
-
 @media (min-width: 768px) and (max-width: 1024px) {
-    .container {
-        max-width: 90%; /* Limita la larghezza del contenitore */
-        padding: 0 10px;
-        overflow-x: hidden;
-    }
+  .container {
+    max-width: 100%; /* Limita la larghezza del contenitore */
+    padding: 15px;
+    overflow-x: hidden;
+  }
 
-    .table {
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto;
-        overflow-x: auto; /* Aggiunge scorrimento orizzontale, se necessario */
-        table-layout: fixed; /* Distribuisce le colonne in modo uniforme */
-    }
+  .table {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-x: auto; /* Aggiunge scorrimento orizzontale, se necessario */
+    table-layout: fixed; /* Distribuisce le colonne in modo uniforme */
+  }
 
-    .tableHeader,
-    .tableCell {
-        padding: 8px; /* Riduce il padding per risparmiare spazio */
-        text-align: center; /* Centra il contenuto per una migliore leggibilità */
-        white-space: nowrap; /* Impedisce il testo a capo, mantenendo il contenuto visibile */
-        overflow: hidden;
-        text-overflow: ellipsis; /* Aggiunge i puntini per il testo lungo */
-    }
+  .tableHeader,
+  .tableCell {
+    padding: 8px; /* Riduce il padding per risparmiare spazio */
+    text-align: center; /* Centra il contenuto per una migliore leggibilità */
+    white-space: nowrap; /* Impedisce il testo a capo, mantenendo il contenuto visibile */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Aggiunge i puntini per il testo lungo */
+  }
 
-    /* Specifica larghezze minime per ogni colonna */
-    .tableHeader:nth-child(1),
-    .tableCell:nth-child(1) { /* Colonna Commento */
-        min-width: 80px;
-    }
-    
-    .tableHeader:nth-child(2),
-    .tableCell:nth-child(2) { /* Colonna Data */
-        min-width: 100px;
-    }
+  /* Specifica larghezze minime per ogni colonna */
+  .tableHeader:nth-child(1),
+  .tableCell:nth-child(1) {
+    /* Colonna Commento */
+    min-width: 80px;
+  }
 
-    .tableHeader:nth-child(3),
-    .tableCell:nth-child(3) { /* Colonna Data Ritiro */
-        min-width: 100px;
-    }
+  .tableHeader:nth-child(2),
+  .tableCell:nth-child(2) {
+    /* Colonna Data */
+    min-width: 100px;
+  }
 
-    .tableHeader:nth-child(4),
-    .tableCell:nth-child(4) { /* Colonna Email Utente */
-        min-width: 150px;
-    }
+  .tableHeader:nth-child(3),
+  .tableCell:nth-child(3) {
+    /* Colonna Data Ritiro */
+    min-width: 100px;
+  }
 
-    .tableHeader:nth-child(5),
-    .tableCell:nth-child(5) { /* Colonna Prezzo Totale */
-        min-width: 70px;
-    }
+  .tableHeader:nth-child(4),
+  .tableCell:nth-child(4) {
+    /* Colonna Email Utente */
+    min-width: 150px;
+  }
+
+  .tableHeader:nth-child(5),
+  .tableCell:nth-child(5) {
+    /* Colonna Prezzo Totale */
+    min-width: 70px;
+  }
 
     .tableHeader:nth-child(6),
     .tableCell:nth-child(6) { /* Colonna Stato */

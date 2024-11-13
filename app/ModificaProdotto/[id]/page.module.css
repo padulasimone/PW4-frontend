@@ -48,12 +48,12 @@
 .button {
   background-color: #3b82f6;
   color: #fff;
-  padding: 5px;
+  padding: 8px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 10%;
+  width: 15%;
 }
 
 .button:hover {
@@ -78,7 +78,7 @@
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .container {
-    max-width: 80%;
+    max-width: 70%;
   }
 }
 
