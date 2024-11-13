@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import classes from "./page.module.css";
 
@@ -11,38 +12,57 @@ const AggiungiProdotto = () => {
     quantita: "",
     foto: "",
   });
+  const [file, setFile] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.type === "image/jpeg") {
+      setFile(file);
+    } else {
+      alert("Please select a .jpg file");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:8080/prodotto", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(product),
-      });
-      if (res.ok) {
-        alert("Prodotto aggiunto con successo");
-        window.location.href = "/GestioneMagazzino";
-      } else {
-        const errorData = await res.json();
+    if (file) {
+      const fileName = `${product.nome
+        .replace(/\s+/g, "-")
+        .toLocaleLowerCase()}.jpg`;
+      const updatedProduct = { ...product, foto: fileName };
+
+      try {
+        const res = await fetch("http://localhost:8080/prodotto", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(updatedProduct),
+        });
+        if (res.ok) {
+          alert("Prodotto aggiunto con successo");
+          window.location.href = "/GestioneMagazzino";
+        } else {
+          const errorData = await res.json();
+          console.error(
+            "Errore durante l'aggiunta del prodotto:",
+            errorData.message
+          );
+        }
+      } catch (error) {
         console.error(
-          "Errore durante l'aggiunta del prodotto:",
-          errorData.message
+          "Errore durante la chiamata API per aggiungere il prodotto:",
+          error
         );
       }
-    } catch (error) {
-      console.error(
-        "Errore durante la chiamata API per aggiungere il prodotto:",
-        error
-      );
+    } else {
+      alert("Please select a .jpg file");
     }
   };
 
@@ -108,16 +128,15 @@ const AggiungiProdotto = () => {
         <label>
           Foto:
           <input
-            type="text"
+            type="file"
             name="foto"
-            value={product.foto}
-            onChange={handleInputChange}
+            accept=".jpg"
+            onChange={handleFileChange}
             required
-            placeholder="URL della foto del prodotto"
           />
         </label>
         <div className={classes.buttonSpace}>
-        <button type="submit">Aggiungi</button>
+          <button type="submit">Aggiungi</button>
         </div>
       </form>
     </div>
