@@ -18,7 +18,8 @@ export default function AreaPersonale() {
                 const data = await res.json();
                 setUser(data);
             } catch (error) {
-                console.error("Errore durante il recupero dell'utente:", error);
+                alert("Non sei autorizzato a visualizzare questa pagina.");
+                window.location.href = "/";
             }
         };
         fetchUser();

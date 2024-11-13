@@ -7,7 +7,6 @@ const InventoryTable = () => {
     const [products, setProducts] = useState([]);
     const [user, setUser] = useState(null);
 
-    // Recupera l'utente dal backend utilizzando il valore del cookie di sessione
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -17,17 +16,18 @@ const InventoryTable = () => {
                 const data = await res.json();
                 setUser(data);
             } catch (error) {
-                console.error("Errore durante il recupero dell'utente:", error);
+                alert("Non sei autorizzato a visualizzare questa pagina");
+                window.location.href = "/";
             }
         };
         fetchUser();
     }, []);
 
-    // Recupera i prodotti dal backend solo se l'utente loggato ha il ruolo ADMIN o CLIENTE VERIFICATO
+    // Recupera i prodotti dal backend solo se l'utente loggato ha il ruolo ADMIN
     useEffect(() => {
         if (
             user &&
-            (user.ruolo === "ADMIN" || user.ruolo === "CLIENTE VERIFICATO")
+            (user.ruolo === "ADMIN")
         ) {
             const fetchProducts = async () => {
                 try {

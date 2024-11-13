@@ -17,7 +17,8 @@ export default function StoricoOrdini() {
                 const data = await res.json();
                 setOrderHistory(data);
             } catch (error) {
-                console.error("Errore durante il recupero degli ordini storici:", error);
+                alert("Non sei autorizzato a visualizzare questa pagina");
+                window.location.href = "/";
             }
         };
         fetchOrderHistory();

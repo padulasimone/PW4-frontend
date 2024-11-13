@@ -33,7 +33,6 @@
 .tableCell,
 .tableHeader {
     padding: 14px;
-    text-transform: lowercase;
     border: 1px solid #ddd;
 }
 

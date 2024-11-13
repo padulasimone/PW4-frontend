@@ -13,6 +13,23 @@ export default function CalendarPage() {
     const [occupiedDays, setOccupiedDays] = useState({});
     const [fullyBookedDays, setFullyBookedDays] = useState([]);
     const [orderDetails, setOrderDetails] = useState(null);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const res = await fetch("http://localhost:8080/utente", {
+                    credentials: "include",
+                });
+                const data = await res.json();
+                setUser(data);
+            } catch (error) {
+                alert("Non sei autorizzato a visualizzare questa pagina.");
+                window.location.href = "/";
+            }
+        };
+        fetchUser();
+    }, []);
 
     useEffect(() => {
         generateAvailableTimes();

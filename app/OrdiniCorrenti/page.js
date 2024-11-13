@@ -17,7 +17,8 @@ export default function OrdiniCorrenti() {
                 const data = await res.json();
                 setCurrentOrders(data);
             } catch (error) {
-                console.error("Errore durante il recupero degli ordini:", error);
+                alert("Non sei autorizzato a visualizzare questa pagina.");
+                window.location.href = "/";
             }
         };
         fetchCurrentOrders();

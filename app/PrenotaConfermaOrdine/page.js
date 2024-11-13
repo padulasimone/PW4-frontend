@@ -7,6 +7,23 @@ import classes from "./page.module.css";
 export default function PrenotaConfermaOrdine() {
     const [orderDetails, setOrderDetails] = useState(null);
     const [comment, setComment] = useState("");
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const res = await fetch("http://localhost:8080/utente", {
+                    credentials: "include",
+                });
+                const data = await res.json();
+                setUser(data);
+            } catch (error) {
+                alert("Non sei autorizzato a visualizzare questa pagina.");
+                window.location.href = "/";
+            }
+        };
+        fetchUser();
+    }, []);
 
     useEffect(() => {
         const orderDetailsFromCookie = Cookies.get('dettaglioOrdineEDataOra');

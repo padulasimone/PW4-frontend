@@ -27,7 +27,8 @@ const ModificaUtente = () => {
                 const data = await res.json();
                 setCurrentUser(data);
             } catch (error) {
-                console.error("Errore durante il recupero dell'utente:", error);
+                alert("Non sei autorizzato a visualizzare questa pagina.");
+                window.location.href = "/";
             }
         };
         fetchCurrentUser();
