@@ -16,8 +16,24 @@ export default function CalendarPage() {
 
     useEffect(() => {
         generateAvailableTimes();
-        fetchOrders();
     }, []);
+
+    useEffect(() => {
+        if (availableTimes.length > 0) {
+            fetchOrders();
+        }
+    }, [availableTimes]);
+
+    const generateAvailableTimes = () => {
+        const times = [];
+        for (let hour = 14; hour <= 18; hour++) {
+            for (let minute = 0; minute < 60; minute += 10) {
+                if (hour === 18 && minute > 0) break;
+                times.push(`${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`);
+            }
+        }
+        setAvailableTimes(times);
+    };
 
     useEffect(() => {
         const orderDetailsFromCookie = Cookies.get('dettaglioOrdine');
@@ -61,10 +77,24 @@ export default function CalendarPage() {
 
     const weekdays = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
 
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
+    const currentMonth = new Date().getMonth();
     const months = [
-        {name: "Novembre", number: new Date().getMonth()},
-        {name: "Dicembre", number: new Date().getMonth() + 1},
-        {name: "Gennaio", number: new Date().getMonth() + 2}
+        {
+            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth)).toLocaleString('default', {month: 'long'})),
+            number: currentMonth
+        },
+        {
+            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth + 1)).toLocaleString('default', {month: 'long'})),
+            number: currentMonth + 1
+        },
+        {
+            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth + 2)).toLocaleString('default', {month: 'long'})),
+            number: currentMonth + 2
+        }
     ];
 
     const getDaysInMonth = (month) => {
@@ -78,21 +108,10 @@ export default function CalendarPage() {
         return (new Date(year, month, 1).getDay() + 6) % 7; // Adjust to start the week on Monday
     };
 
-    const generateAvailableTimes = () => {
-        const times = [];
-        for (let hour = 14; hour <= 18; hour++) {
-            for (let minute = 0; minute < 60; minute += 10) {
-                if (hour === 18 && minute > 0) break;
-                times.push(`${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`);
-            }
-        }
-        setAvailableTimes(times);
-    };
-
     const handleDayClick = (day) => {
         const date = new Date(new Date().getFullYear(), selectedMonth, day).toISOString().split('T')[0];
-        if (isWeekend(day) || fullyBookedDays.includes(date)) return;
-    
+        if (isWeekend(day) || isFullyBooked(day + 1)) return;
+
         if (selectedDay === day + 1) {
             // Se il giorno selezionato è già selezionato, deseleziona il giorno e nascondi gli orari
             setSelectedDay(null);
@@ -116,9 +135,19 @@ export default function CalendarPage() {
         return dayOfWeek === 0 || dayOfWeek === 6;
     };
 
+    const isFullyBooked = (day) => {
+        const date = new Date(new Date().getFullYear(), selectedMonth, day).toISOString().split('T')[0];
+        return fullyBookedDays.includes(date);
+    }
+
+    const isBeforeToday = (day) => {
+        const date = new Date(new Date().getFullYear(), selectedMonth, day);
+        return date < new Date
+    }
+
     const getDayClass = (day) => {
         const date = new Date(new Date().getFullYear(), selectedMonth, day).toISOString().split('T')[0];
-        if (isWeekend(day) || fullyBookedDays.includes(date)) return styles.weekend;
+        if (isWeekend(day) || isFullyBooked(day + 1) || isBeforeToday(day + 1)) return styles.weekend;
         if (day + 1 === selectedDay) return styles.selected;
         return styles.day;
     };
@@ -134,7 +163,7 @@ export default function CalendarPage() {
         if (orderDetails && selectedDay && selectedTime) {
             const year = new Date().getFullYear();
             const month = String(selectedMonth + 1).padStart(2, "0");
-            const day = String(selectedDay-1).padStart(2, "0");
+            const day = String(selectedDay - 1).padStart(2, "0");
             const dataRitiro = `${year}-${month}-${day}T${selectedTime}:00`;
 
             const newOrderDetails = {
@@ -143,6 +172,7 @@ export default function CalendarPage() {
             };
 
             Cookies.set('dettaglioOrdineEDataOra', JSON.stringify(newOrderDetails));
+            Cookies.remove('dettaglioOrdine');
         }
     };
 
@@ -197,7 +227,7 @@ export default function CalendarPage() {
                 {selectedDay && (
                     <div className={styles.timeSelection}>
                         <h2>Orari disponibili per
-                            il {selectedDay} {months.find(m => m.number === selectedMonth)?.name}</h2>
+                            il {selectedDay - 1} {months.find(m => m.number === selectedMonth)?.name}</h2>
                         <div className={styles.times}>
                             {availableTimes.map((time, index) => (
                                 <button
