@@ -1,195 +1,203 @@
 .calendarPage {
-    padding: 20px;
-    min-height: 867px;
-    
+  padding: 20px;
+  min-height: 600px;
 }
 
 .monthSelector {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.monthButton, .selectedMonth {
-    padding: 8px 12px;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.monthButton,
+.selectedMonth {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .monthButton {
-    color: #333;
-    background-color: #eee;
-    border: none;
+  color: #333;
+  background-color: #eee;
+  border: none;
 }
 
 .selectedMonth {
-    color: white;
-    background-color: #4caf50;
-    border: none;
+  color: white;
+  background-color: #4caf50;
+  border: none;
 }
 
 .timeSelection {
-    margin-left: 100px;
+  margin-left: 100px;
 }
 
 .fase {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .columns {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1000px;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.calendarContainer, .timeSelection {
-    flex: 1;
+.calendarContainer,
+.timeSelection {
+  flex: 1;
 }
 
 .h1 {
-    font-size: 1.5rem;
-    text-align: center;
-    margin-bottom: 10px;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 10px;
 }
 
 .weekday {
-    font-weight: bold;
-    text-align: center;
+  font-weight: bold;
+  text-align: center;
 }
 
-.day, .weekend, .unavailable, .selected {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    text-align: center;
-    cursor: pointer;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #fff;
-    transition: background-color 0.3s ease;
+.day,
+.weekend,
+.unavailable,
+.selected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
 }
 
 .weekend {
-    background-color: #feabab;
-    cursor: not-allowed;
+  background-color: #feabab;
+  cursor: not-allowed;
 }
 
 .unavailable {
-    background-color: #ffeb99;
-    cursor: not-allowed;
+  background-color: #ffeb99;
+  cursor: not-allowed;
 }
 
 .selected {
-    background-color: #90ee90;
+  background-color: #90ee90;
 }
 
 .timeSelection {
-    text-align: center;
+  text-align: center;
 }
 
 .times {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .timeButton {
-    padding: 10px 15px;
-    background-color: #eee;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  padding: 10px 15px;
+  background-color: #eee;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .occupiedTime {
-    background-color: #ffcccc;
-    cursor: not-allowed;
+  background-color: #ffcccc;
+  cursor: not-allowed;
 }
 
 .selectedTime {
-    background-color: #90ee90;
+  background-color: #90ee90;
 }
 
 .buttonContainer {
-    display: flex;
-    justify-content: right;
-    margin-top: 2rem;
+  display: flex;
+  justify-content: right;
+  margin-top: 2rem;
 }
 
 .nextButton {
-    padding: 0.8rem 1.5rem;
-    font-size: 1.2rem;
-    color: white;
-    background-color: #f3bc9f;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #f3bc9f;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .nextButton:hover {
-    background-color: #e36f52;
+  background-color: #e36f52;
 }
 
 /* Responsive styles */
 
 @media (max-width: 1024px) {
+  .columns {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
 
-    .columns {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        gap: 20px;
-    }
-    
-    .calendarContainer, .timeSelection {
-        width: 100%;
-        max-width: 100%;
-        margin-left: 0;
-        padding: 0;
-    }
+  .calendarContainer,
+  .timeSelection {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    padding: 0;
+  }
 
-    /* Mantieni 7 colonne per una disposizione chiara dei giorni della settimana */
-    .calendar {
-        grid-template-columns: repeat(7, 1fr);
-        gap: 2px; /* Riduci il gap per migliorare l'ordine */
-    }
+  /* Mantieni 7 colonne per una disposizione chiara dei giorni della settimana */
+  .calendar {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px; /* Riduci il gap per migliorare l'ordine */
+  }
 
-    /* Impedisce lo scorrimento laterale indesiderato */
-    .calendarPage {
-        padding: 10px;
-        overflow-x: hidden;
-    }
+  /* Impedisce lo scorrimento laterale indesiderato */
+  .calendarPage {
+    padding: 10px;
+    overflow-x: hidden;
+    margin-bottom: 30px;
+  }
 
-    .times {
-        grid-template-columns: repeat(2, 1fr); /* Orari in coppie */
-    }
+  .times {
+    grid-template-columns: repeat(2, 1fr); /* Orari in coppie */
+  }
 
-    .timeSelection {
-        margin-left: 0;
-    }
+  .timeSelection {
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 480px) {
-    .calendar {
-        grid-template-columns: repeat(7, minmax(0, 1fr)); 
-    }
+  .calendar {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
 
-    .times {
-        grid-template-columns: 1fr 1fr; 
-    }
+  .times {
+    grid-template-columns: 1fr 1fr;
+  }
+  .calendarPage {
+    margin-bottom: 30px;
+  }
 }

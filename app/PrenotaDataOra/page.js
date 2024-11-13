@@ -92,8 +92,16 @@ export default function CalendarPage() {
     const handleDayClick = (day) => {
         const date = new Date(new Date().getFullYear(), selectedMonth, day).toISOString().split('T')[0];
         if (isWeekend(day) || fullyBookedDays.includes(date)) return;
-        setSelectedDay(day + 1);
-        setSelectedTime(null);
+    
+        if (selectedDay === day + 1) {
+            // Se il giorno selezionato è già selezionato, deseleziona il giorno e nascondi gli orari
+            setSelectedDay(null);
+            setSelectedTime(null);
+        } else {
+            // Altrimenti, seleziona il giorno e mostra gli orari disponibili
+            setSelectedDay(day + 1);
+            setSelectedTime(null);
+        }
     };
 
     const handleTimeClick = (time) => {
