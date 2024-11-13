@@ -6,6 +6,8 @@ import classes from "./page.module.css";
 const InventoryTable = () => {
     const [products, setProducts] = useState([]);
     const [user, setUser] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 10;
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -95,6 +97,24 @@ const InventoryTable = () => {
         }
     };
 
+    const indexOfLastProducts = currentPage * productsPerPage;
+    const indexOfFirstProducts = indexOfLastProducts - productsPerPage;
+    const productsToShow = products.slice(indexOfFirstProducts, indexOfLastProducts);
+
+    const handleNextPage = () => {
+        if (currentPage < Math.ceil(products.length / productsPerPage)) {
+            setCurrentPage(currentPage + 1);
+            window.scrollTo(0, 0);
+        }
+    }
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            window.scrollTo(0, 0);
+        }
+    }
+
     const handleEditClick = (productId) => {
         window.location.href = `/ModificaProdotto/${productId}`;
     };
@@ -153,7 +173,7 @@ const InventoryTable = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {products.map((product) => (
+                {productsToShow.map((product) => (
                     <tr key={product.id} className={classes.tableRow}>
                         <td className={classes.tableCell}>
                             <img
@@ -185,6 +205,13 @@ const InventoryTable = () => {
                 ))}
                 </tbody>
             </table>
+            <div className={classes.pagination}>
+                <button onClick={handlePreviousPage} disabled={currentPage === 1}>Precedente</button>
+                <span>Pagina {currentPage} di {Math.ceil(products.length / productsPerPage)}</span>
+                <button onClick={handleNextPage}
+                        disabled={currentPage === Math.ceil(products.length / productsPerPage)}>Successivo
+                </button>
+            </div>
         </div>
     )
         ;

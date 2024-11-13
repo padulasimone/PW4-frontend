@@ -6,6 +6,8 @@ import classes from "./page.module.css";
 const UserManagementTable = () => {
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const userPerPage = 10;
 
     // Recupera l'utente loggato
     useEffect(() => {
@@ -71,6 +73,24 @@ const UserManagementTable = () => {
         }
     };
 
+    const indexOfLastUser = currentPage * userPerPage;
+    const indexOfFirstUser = indexOfLastUser - userPerPage;
+    const usersToShow = users.slice(indexOfFirstUser, indexOfLastUser);
+
+    const handleNextPage = () => {
+        if (currentPage < Math.ceil(users.length / userPerPage)) {
+            setCurrentPage(currentPage + 1);
+            window.scrollTo(0, 0);
+        }
+    }
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            window.scrollTo(0, 0);
+        }
+    }
+
     return (
         <div className={classes.container}>
             <h1 className={classes.title}>Gestione Utenti</h1>
@@ -87,7 +107,7 @@ const UserManagementTable = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {users.map((user) => (
+                {usersToShow.map((user) => (
                     <tr key={user.id} className={classes.tableRow}>
                         <td className={classes.tableCell}>{user.id}</td>
 
@@ -114,6 +134,13 @@ const UserManagementTable = () => {
                 ))}
                 </tbody>
             </table>
+            <div className={classes.pagination}>
+                <button onClick={handlePreviousPage} disabled={currentPage === 1}>Precedente</button>
+                <span>Pagina {currentPage} di {Math.ceil(users.length / userPerPage)}</span>
+                <button onClick={handleNextPage}
+                        disabled={currentPage === Math.ceil(users.length / userPerPage)}>Successivo
+                </button>
+            </div>
         </div>
     );
 };
