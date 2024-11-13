@@ -6,6 +6,8 @@ import classes from "./page.module.css";
 const OrderManagementTable = () => {
     const [orders, setOrders] = useState([]);
     const [user, setUser] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const ordersPerPage = 10;
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -43,6 +45,24 @@ const OrderManagementTable = () => {
         };
         fetchOrders();
     }, [user]);
+
+    const indexOfLastOrder = currentPage * ordersPerPage;
+    const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+    const ordersToShow = orders.slice(indexOfFirstOrder, indexOfLastOrder);
+
+    const handleNextPage = () => {
+        if (currentPage < Math.ceil(orders.length / ordersPerPage)) {
+            setCurrentPage(currentPage + 1);
+            window.scrollTo(0, 0);
+        }
+    }
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            window.scrollTo(0, 0);
+        }
+    }
 
     const handleConfirmOrder = async (orderId) => {
         if (!orderId) {
@@ -97,7 +117,7 @@ const OrderManagementTable = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {orders.map((order, index) => {
+                {ordersToShow.map((order, index) => {
                     return (
                         <tr key={order.id || index} className={classes.tableRow}>
 
@@ -122,6 +142,13 @@ const OrderManagementTable = () => {
                 })}
                 </tbody>
             </table>
+            <div className={classes.pagination}>
+                <button onClick={handlePreviousPage} disabled={currentPage === 1}>Precedente</button>
+                <span>Pagina {currentPage} di {Math.ceil(orders.length / ordersPerPage)}</span>
+                <button onClick={handleNextPage}
+                        disabled={currentPage === Math.ceil(orders.length / ordersPerPage)}>Successivo
+                </button>
+            </div>
         </div>
     );
 };

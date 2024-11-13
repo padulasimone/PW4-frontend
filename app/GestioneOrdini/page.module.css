@@ -121,6 +121,23 @@
   }
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.pagination span {
+  margin: 0 10px;
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .container {
     max-width: 100%; /* Limita la larghezza del contenitore */
