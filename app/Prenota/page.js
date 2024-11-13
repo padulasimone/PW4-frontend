@@ -61,14 +61,21 @@ const CakeReservation = () => {
     };
 
     const generateOrderDetails = () => {
-        const orderDetails = cakes
-            .filter(cake => cake.counter > 0)
-            .map(cake => ({
-                nome: cake.nome,
-                quantita: cake.counter,
-                prezzo_unitario: cake.prezzo
-            }));
-        Cookies.set('dettaglioOrdine', JSON.stringify({dettaglio: orderDetails}));
+        if (cakes.every((cake) => cake.counter === 0)) {
+            alert("Seleziona almeno una torta per procedere con la prenotazione.");
+            return;
+        } else {
+            const orderDetails = cakes
+                .filter(cake => cake.counter > 0)
+                .map(cake => ({
+                    nome: cake.nome,
+                    quantita: cake.counter,
+                    prezzo_unitario: cake.prezzo
+                }));
+            Cookies.set('dettaglioOrdine', JSON.stringify({dettaglio: orderDetails}));
+            window.location.href = '/PrenotaDataOra';
+        }
+
     };
 
     return (
@@ -98,9 +105,7 @@ const CakeReservation = () => {
                 ))}
             </div>
             <div className={classes.buttonContainer}>
-                <Link href="/PrenotaDataOra">
-                    <button onClick={generateOrderDetails} className={classes.nextButton}>Successivo</button>
-                </Link>
+                <button onClick={generateOrderDetails} className={classes.nextButton}>Successivo</button>
             </div>
         </div>
     );

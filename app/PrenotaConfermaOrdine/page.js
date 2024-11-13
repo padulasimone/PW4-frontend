@@ -27,7 +27,7 @@ export default function PrenotaConfermaOrdine() {
     const handleConfirmOrder = async () => {
         const updatedOrderDetails = {
             ...orderDetails,
-            comment: comment
+            commento: comment || undefined
         };
 
         try {
@@ -39,14 +39,18 @@ export default function PrenotaConfermaOrdine() {
                 body: JSON.stringify(updatedOrderDetails),
                 credentials: 'include'
             });
+
+            const result = await response.text();
+
             if (response.ok) {
                 Cookies.remove('dettaglioOrdineEDataOra');
-                window.location.href = '/PrenotaConfermaOrdineCompletato';
+                alert(result);
+                window.location.href = '/';
             } else {
-                console.error('Errore durante la creazione dell\'ordine');
+                alert(result);
             }
         } catch (error) {
-            console.error('Errore durante la creazione dell\'ordine:', error);
+            alert('Errore durante la creazione dell\'ordine. Riprova più tardi.');
         }
     };
 
