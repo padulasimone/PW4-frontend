@@ -64,6 +64,7 @@ export default function VerificaMailPage() {
             ? "E-mail verificata"
             : "Errore"}
         </h1>
+        {isVerified && <p className={classes.message1}>Ora puoi fare la login</p>}
         {error && <p className={classes.message}>{error}</p>}
       </div>
     </div>

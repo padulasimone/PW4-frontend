@@ -72,13 +72,13 @@ export default function Torte() {
             <li key={torta.id}>
               <article className={classes.torta}>
                 <header>
-                  <div className={classes.image}>
+                  <section className={classes.image}>
                     <Image
                       src={"/immaginiTorte/" + torta.foto} // dà errore l'utlizzo di tutti i div
                       alt={torta.nome}
                       fill
                     />
-                  </div>
+                  </section>
                   <div className={classes.headerText}>
                     <h2>{torta.nome}</h2>
                     <p className={classes.prezzo}>€{torta.prezzo}</p>
