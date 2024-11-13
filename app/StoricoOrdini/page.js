@@ -5,6 +5,8 @@ import classes from "./page.module.css";
 
 export default function StoricoOrdini() {
     const [orderHistory, setOrderHistory] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const ordersPerPage = 15;
 
     useEffect(() => {
         const fetchOrderHistory = async () => {
@@ -21,6 +23,24 @@ export default function StoricoOrdini() {
         fetchOrderHistory();
     }, []);
 
+    const indexOfLastOrder = currentPage * ordersPerPage;
+    const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+    const currentOrdersToShow = orderHistory.slice(indexOfFirstOrder, indexOfLastOrder);
+
+    const handleNextPage = () => {
+        if (currentPage < Math.ceil(orderHistory.length / ordersPerPage)) {
+            setCurrentPage(currentPage + 1);
+            window.scrollTo(0, 0);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            window.scrollTo(0, 0);
+        }
+    };
+
     return (
         <div className={classes.dashboard}>
             <section className={classes.section}>
@@ -28,7 +48,7 @@ export default function StoricoOrdini() {
                     <h1 className={classes.title}>Storico Ordini</h1>
                 </div>
                 <div className={classes.orderList}>
-                    {orderHistory.map((order) => (
+                    {currentOrdersToShow.map((order) => (
                         <div key={order.id} className={classes.orderItem}>
                             <div className={classes.orderDetails}>
                                 {order.dettaglio.map((item, index) => (
@@ -45,6 +65,13 @@ export default function StoricoOrdini() {
                     {orderHistory.length === 0 && (
                         <p className={classes.noOrders}>Ancora nessun ordine in questa sezione</p>
                     )}
+                </div>
+                <div className={classes.pagination}>
+                    <button onClick={handlePreviousPage} disabled={currentPage === 1}>Precedente</button>
+                    <span>Pagina {currentPage} di {Math.ceil(orderHistory.length / ordersPerPage)}</span>
+                    <button onClick={handleNextPage}
+                            disabled={currentPage === Math.ceil(orderHistory.length / ordersPerPage)}>Successivo
+                    </button>
                 </div>
             </section>
         </div>

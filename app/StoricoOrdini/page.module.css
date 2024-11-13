@@ -119,6 +119,23 @@
     text-decoration: underline;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.pagination span {
+    margin: 0 10px;
+}
+
 /* Stili per smartphone */
 @media (max-width: 768px) {
     .section {

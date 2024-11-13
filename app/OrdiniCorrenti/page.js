@@ -5,6 +5,8 @@ import classes from "./page.module.css";
 
 export default function OrdiniCorrenti() {
     const [currentOrders, setCurrentOrders] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const ordersPerPage = 15;
 
     useEffect(() => {
         const fetchCurrentOrders = async () => {
@@ -21,6 +23,24 @@ export default function OrdiniCorrenti() {
         fetchCurrentOrders();
     }, []);
 
+    const indexOfLastOrder = currentPage * ordersPerPage;
+    const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+    const currentOrdersToShow = currentOrders.slice(indexOfFirstOrder, indexOfLastOrder);
+
+    const handleNextPage = () => {
+        if (currentPage < Math.ceil(currentOrders.length / ordersPerPage)) {
+            setCurrentPage(currentPage + 1);
+            window.scrollTo(0, 0);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            window.scrollTo(0, 0);
+        }
+    };
+
     return (
         <div className={classes.dashboard}>
             <section className={classes.section}>
@@ -28,7 +48,7 @@ export default function OrdiniCorrenti() {
                     <h1 className={classes.title}>Ordini Correnti</h1>
                 </div>
                 <div className={classes.orderList}>
-                    {currentOrders.map((order) => (
+                    {currentOrdersToShow.map((order) => (
                         <div key={order.id} className={classes.orderItem}>
                             <div className={classes.orderDetails}>
                                 {order.dettaglio.map((item, index) => (
@@ -49,6 +69,13 @@ export default function OrdiniCorrenti() {
                     {currentOrders.length === 0 && (
                         <p className={classes.noOrders}>Ancora nessun ordine in questa sezione</p>
                     )}
+                </div>
+                <div className={classes.pagination}>
+                    <button onClick={handlePreviousPage} disabled={currentPage === 1}>Precedente</button>
+                    <span>Pagina {currentPage} di {Math.ceil(currentOrders.length / ordersPerPage)}</span>
+                    <button onClick={handleNextPage}
+                            disabled={currentPage === Math.ceil(currentOrders.length / ordersPerPage)}>Successivo
+                    </button>
                 </div>
             </section>
         </div>
