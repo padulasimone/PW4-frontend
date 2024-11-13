@@ -65,6 +65,7 @@ const OrderManagementTable = () => {
 
             if (res.ok) {
                 alert("Ordine aggiornato con successo! E' stata inviata una notifica all'utente.");
+                window.location.reload();
             } else {
                 const errorText = await res.text();
                 console.error("Errore durante la conferma dell'ordine:", {
