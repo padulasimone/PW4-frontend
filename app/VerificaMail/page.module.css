@@ -41,3 +41,8 @@
 .loading {
   color: #3b82f6;
 }
+.message1 {
+  font-size: 16px;
+  color: #555;
+  margin-top: 10px;
+} 
