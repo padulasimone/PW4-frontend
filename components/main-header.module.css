@@ -1,5 +1,5 @@
 .header {
-  padding: 1.5rem 1rem; /* Ridotto il padding per non occupare troppo spazio */
+  padding: 1.5rem 1rem;
   background-color: #f3bc9f;
   color: #333;
   font-family: "Quicksand";
@@ -8,16 +8,14 @@
 }
 
 .container {
-  margin: 0 auto;
-  padding: 0 1rem;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navCenter {
-  flex-grow: 1;
   display: flex;
-  justify-content: left;
+  align-items: center;
 }
 
 .navList {
@@ -28,20 +26,11 @@
   margin: 0;
 }
 
-.navRight {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .link {
   text-decoration: none;
-  color: #333;
+  color: #000000;
   font-weight: 500;
   transition: color 0.3s;
-}
-
-.link:hover {
-  color: #555;
 }
 
 .logoutButton {
@@ -58,29 +47,45 @@
   color: #fff;
 }
 
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
+.activeLink {
+  color: #ffffffe4;
+  font-weight: bold;
+}
+
+.dropdown {
+  display: none;
+  font-size: 40px;
+  background: none;
+  border: none;
+}
+
+@media (max-width: 767px) {
+  .dropdown {
+    display: block;
   }
 
   .navList {
+    display: none;
     flex-direction: column;
-    gap: 1rem;
     align-items: center;
+    margin-top: 20px;
   }
 
-  .navRight {
-    justify-content: center;
-    margin-top: 1rem;
+  .dropdown {
+    margin: auto;
   }
 
-  .link {
-    font-size: 16px;
+  .showMenu {
+    display: flex;
   }
-}
 
-.activeLink {
-  color: #ffffffe4; /* Cambia il colore per evidenziare */
-  font-weight: bold; /* Aggiungi peso per rendere il testo più evidente */
+  .logoutButton {
+    border: none;
+    font-weight: bold;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
 }

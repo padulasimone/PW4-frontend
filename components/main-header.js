@@ -1,13 +1,14 @@
-'use client';
+"use client";
 
-import { useRouter, usePathname } from 'next/navigation'; // Aggiunto usePathname
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { useRouter, usePathname } from "next/navigation"; // Aggiunto usePathname
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import classes from "@/components/main-header.module.css";
 
 export default function Header() {
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Stato per il menu dropdown
   const router = useRouter();
   const pathname = usePathname(); // Ottieni il percorso corrente
 
@@ -50,7 +51,7 @@ export default function Header() {
       if (res.ok) {
         setUser(null);
         setRole(null);
-        router.push('/');
+        router.push("/");
       } else {
         console.error("Errore durante il logout:", res.statusText);
       }
@@ -59,14 +60,31 @@ export default function Header() {
     }
   };
 
+  // Funzione per aprire/chiudere il menu dropdown
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <header className={classes.header}>
+      <button className={classes.dropdown} onClick={toggleMenu}>
+        ☰
+      </button>
       <div className={classes.container}>
         <div className={classes.navCenter}>
-          <ul className={classes.navList}>
+          <ul
+            className={`${classes.navList} ${
+              isMenuOpen ? classes.showMenu : ""
+            }`}
+          >
             {/* Voci comuni a tutti gli utenti */}
             <li>
-              <Link href="/" className={`${classes.link} ${pathname === '/' && classes.activeLink}`}>
+              <Link
+                href="/"
+                className={`${classes.link} ${
+                  pathname === "/" && classes.activeLink
+                }`}
+              >
                 Home page
               </Link>
             </li>
@@ -74,7 +92,12 @@ export default function Header() {
             {/* Mostra "Contatti" solo se l'utente è non loggato o CLIENTE VERIFICATO */}
             {(role === null || role === "CLIENTE VERIFICATO") && (
               <li>
-                <Link href="/Contatti" className={`${classes.link} ${pathname === '/Contatti' && classes.activeLink}`}>
+                <Link
+                  href="/Contatti"
+                  className={`${classes.link} ${
+                    pathname === "/Contatti" && classes.activeLink
+                  }`}
+                >
                   Contatti
                 </Link>
               </li>
@@ -84,17 +107,32 @@ export default function Header() {
             {role === "CLIENTE VERIFICATO" && (
               <>
                 <li>
-                  <Link href="/Prenota" className={`${classes.link} ${pathname === '/Prenota' && classes.activeLink}`}>
+                  <Link
+                    href="/Prenota"
+                    className={`${classes.link} ${
+                      pathname === "/Prenota" && classes.activeLink
+                    }`}
+                  >
                     Prenota
                   </Link>
                 </li>
                 <li>
-                  <Link href="/Torte" className={`${classes.link} ${pathname === '/Torte' && classes.activeLink}`}>
+                  <Link
+                    href="/Torte"
+                    className={`${classes.link} ${
+                      pathname === "/Torte" && classes.activeLink
+                    }`}
+                  >
                     Torte
                   </Link>
                 </li>
                 <li>
-                  <Link href="/AreaPersonale" className={`${classes.link} ${pathname === '/AreaPersonale' && classes.activeLink}`}>
+                  <Link
+                    href="/AreaPersonale"
+                    className={`${classes.link} ${
+                      pathname === "/AreaPersonale" && classes.activeLink
+                    }`}
+                  >
                     Area personale
                   </Link>
                 </li>
@@ -105,17 +143,32 @@ export default function Header() {
             {role === "ADMIN" && (
               <>
                 <li>
-                  <Link href="/GestioneMagazzino" className={`${classes.link} ${pathname === '/GestioneMagazzino' && classes.activeLink}`}>
+                  <Link
+                    href="/GestioneMagazzino"
+                    className={`${classes.link} ${
+                      pathname === "/GestioneMagazzino" && classes.activeLink
+                    }`}
+                  >
                     Gestione magazzino
                   </Link>
                 </li>
                 <li>
-                  <Link href="/GestioneOrdini" className={`${classes.link} ${pathname === '/GestioneOrdini' && classes.activeLink}`}>
+                  <Link
+                    href="/GestioneOrdini"
+                    className={`${classes.link} ${
+                      pathname === "/GestioneOrdini" && classes.activeLink
+                    }`}
+                  >
                     Gestione ordini
                   </Link>
                 </li>
                 <li>
-                  <Link href="/GestioneUtenti" className={`${classes.link} ${pathname === '/GestioneUtenti' && classes.activeLink}`}>
+                  <Link
+                    href="/GestioneUtenti"
+                    className={`${classes.link} ${
+                      pathname === "/GestioneUtenti" && classes.activeLink
+                    }`}
+                  >
                     Gestione utenti
                   </Link>
                 </li>
@@ -125,7 +178,11 @@ export default function Header() {
         </div>
 
         <div className={classes.navRight}>
-          <ul className={classes.navList}>
+          <ul
+            className={`${classes.navList} ${
+              isMenuOpen ? classes.showMenu : ""
+            }`}
+          >
             <li>
               {user ? (
                 <>
@@ -140,13 +197,20 @@ export default function Header() {
                   </button>
                 </>
               ) : (
-                <Link href="/Login" className={`${classes.link} ${pathname === '/Login' && classes.activeLink}`}>
+                <Link
+                  href="/Login"
+                  className={`${classes.link} ${
+                    pathname === "/Login" && classes.activeLink
+                  }`}
+                >
                   Login
                 </Link>
               )}
             </li>
           </ul>
         </div>
+
+        {/* Pulsante per aprire/chiudere il menu dropdown */}
       </div>
     </header>
   );
