@@ -1,90 +1,106 @@
 /* page.module.css */
 
 .container {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  max-width: 40%;
-  margin: 0 auto;
-  background-color: #eff0f1;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
-  margin-bottom: 40px;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 40%;
+    margin: 0 auto;
+    background-color: #eff0f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    margin-bottom: 40px;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: baseline;
+    width: 90%;
+    gap: 80% 20%;
+}
+
+.backButton {
+    border: none;
+    cursor: pointer;
+    font-size: large;
 }
 
 .title {
-  font-size: 2rem;
-  margin-bottom: 3rem;
-  color: #333;
-  text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: #333;
+    text-align: center;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     width: 70%;
 }
 
 .label {
-  font-weight: bold;
-  color: #555;
-  
+    font-weight: bold;
+    color: #555;
+
 }
 
 .input {
-  padding: 0.5rem;
+    padding: 0.5rem;
 
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
 
-  outline: none;
-  transition: border-color 0.3s ease;
+    outline: none;
+    transition: border-color 0.3s ease;
 }
 
 .input:focus {
-  border-color: #0070f3;
+    border-color: #0070f3;
 }
 
 .button {
-  color: #fff;
-  background-color: #0070f3;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 20%;
-  padding: 0.5rem;
+    color: #fff;
+    background-color: #0070f3;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 20%;
+    padding: 0.5rem;
 }
 
 .button:hover {
-  background-color: #005bb5;
+    background-color: #005bb5;
 }
 
 /* Responsive adjustments */
 @media (max-width: 767px) {
-  .container {
-    padding: 1.5rem;
-    max-width: 80%;
-  }
+    .container {
+        padding: 1.5rem;
+        max-width: 80%;
+    }
 
-  .title {
-    font-size: 1.75rem;
-  }
+    .title {
+        font-size: 1.75rem;
+    }
 
-  .label {
-    width: 90%;
-  }
+    .label {
+        width: 90%;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .container {
-    max-width: 80%;
-  }
-  .form {
-    width: 80%;
-  }
+    .container {
+        max-width: 80%;
+    }
+
+    .form {
+        width: 80%;
+    }
 }

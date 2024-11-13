@@ -1,97 +1,99 @@
 /* Style generale della pagina */
 .container {
-  display: flex;
-  align-items: center;
-  background: linear-gradient(135deg, #f1f1f1, #e0e0e0);
-  padding: 20px;
-  flex-direction: column; /* Per mettere il titolo sopra il form */
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #f1f1f1, #e0e0e0);
+    padding: 20px;
+    flex-direction: column; /* Per mettere il titolo sopra il form */
 }
 
 /* Stile per il form */
 .form {
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 30%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* Titolo */
 .title {
-  color: #333;
-  font-size: 24px;
+    color: #333;
+    font-size: 24px;
 
-  margin-bottom: 30px; /* Spazio tra il titolo e il form */
+    margin-bottom: 30px; /* Spazio tra il titolo e il form */
 }
 
 /* Stile per i label */
 .form label {
-  font-size: 16px;
+    font-size: 16px;
 
-  color: #444;
-  display: flex;
-  flex-direction: column;
-  padding: 10px 0;
+    color: #444;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
 }
 
 /* Stile per gli input */
 .form input {
-  padding: 12px;
-  font-size: 13px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background-color: #fafafa;
-  transition: all 0.3s ease;
+    padding: 12px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
 }
 
 .form input:focus {
-  border-color: #4caf50;
-  outline: none;
-  background-color: #fff;
+    border-color: #4caf50;
+    outline: none;
+    background-color: #fff;
 }
 
 /* Stile per il bottone */
 .form button {
-  padding: 7px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
+    padding: 7px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
 }
+
 .buttonSpace {
-  display: flex;
-  justify-content: end;
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
 }
 
 .form button:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
+    background-color: #45a049;
+    transform: scale(1.05);
 }
 
 /* Effetto per i form input e label */
 .form input::placeholder {
-  color: #bbb;
+    color: #bbb;
 }
 
 .form input:focus::placeholder {
-  color: #777;
+    color: #777;
 }
 
 @media (max-width: 767px) {
-  .form {
-    width: 90%;
-  }
+    .form {
+        width: 90%;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  .form {
-    width: 50%;
-  }
+    .form {
+        width: 50%;
+    }
 }

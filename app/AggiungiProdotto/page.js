@@ -153,6 +153,7 @@ const AggiungiProdotto = () => {
                     />
                 </label>
                 <div className={classes.buttonSpace}>
+                    <button type="button" onClick={() => window.location.href = "/GestioneMagazzino"}>Annulla</button>
                     <button type="submit">Aggiungi</button>
                 </div>
             </form>

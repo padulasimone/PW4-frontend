@@ -2,6 +2,7 @@
 "use client";
 
 import {useState, useEffect} from "react";
+import {IoIosArrowBack} from "react-icons/io";
 import classes from "./page.module.css";
 
 const ModificaUtente = () => {
@@ -96,7 +97,15 @@ const ModificaUtente = () => {
 
     return (
         <div className={classes.container}>
-            <h1 className={classes.title}>Modifica Utente</h1>
+            <div className={classes.header}>
+                <h1 className={classes.title}>Modifica Utente</h1>
+                <button
+                    onClick={() => window.history.back()}
+                    className={classes.backButton}
+                >
+                    <IoIosArrowBack/>
+                </button>
+            </div>
             <form onSubmit={handleSubmit} className={classes.form}>
                 <label className={classes.label}>
                     Nome:
