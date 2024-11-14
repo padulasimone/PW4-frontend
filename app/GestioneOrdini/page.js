@@ -2,11 +2,14 @@
 
 import {useState, useEffect} from "react";
 import classes from "./page.module.css";
+import {FaRegFileExcel} from "react-icons/fa6";
 
 const OrderManagementTable = () => {
     const [orders, setOrders] = useState([]);
     const [user, setUser] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [uniqueDates, setUniqueDates] = useState([]);
+    const [selectedDate, setSelectedDate] = useState("");
     const ordersPerPage = 10;
 
     useEffect(() => {
@@ -17,7 +20,6 @@ const OrderManagementTable = () => {
                 });
                 const data = await res.json();
                 setUser(data);
-
             } catch (error) {
                 alert("Non sei autorizzato a visualizzare questa pagina.");
                 window.location.href = "/";
@@ -34,17 +36,41 @@ const OrderManagementTable = () => {
                         credentials: "include",
                     });
                     const data = await res.json();
-                    console.log("Dati degli ordini:", data); // Verifica la struttura dei dati ricevuti
                     setOrders(data);
 
+                    // Extract unique dates
+                    const dates = [...new Set(data.map(order => order.data_ritiro.split("T")[0]))];
+                    setUniqueDates(dates);
                 } catch (error) {
                     console.error("Errore durante il recupero degli ordini:", error);
                 }
             }
-
         };
         fetchOrders();
     }, [user]);
+
+    const handleDownloadExcel = async () => {
+        if (selectedDate) {
+            try {
+                const res = await fetch(`http://localhost:8080/ordine/excel/${selectedDate}`, {
+                    method: "GET",
+                    credentials: "include",
+                });
+                if (res.ok) {
+                    const blob = await res.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    window.URL.revokeObjectURL(url);
+                    alert("File Excel scaricato con successo");
+                } else {
+                    console.error("Errore durante il download del file Excel");
+                }
+            } catch (error) {
+                console.error("Errore durante la chiamata API per il download del file Excel:", error);
+            }
+        } else {
+            alert("Seleziona una data di ritiro");
+        }
+    };
 
     const indexOfLastOrder = currentPage * ordersPerPage;
     const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
@@ -55,14 +81,14 @@ const OrderManagementTable = () => {
             setCurrentPage(currentPage + 1);
             window.scrollTo(0, 0);
         }
-    }
+    };
 
     const handlePreviousPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
             window.scrollTo(0, 0);
         }
-    }
+    };
 
     const handleConfirmOrder = async (orderId) => {
         if (!orderId) {
@@ -91,7 +117,7 @@ const OrderManagementTable = () => {
                 console.error("Errore durante la conferma dell'ordine:", {
                     status: res.status,
                     statusText: res.statusText,
-                    errorText: errorText || "Errore sconosciuto"
+                    errorText: errorText || "Errore sconosciuto",
                 });
                 alert(`Errore durante la conferma dell'ordine: ${res.status} ${res.statusText}. Riprova.`);
             }
@@ -103,7 +129,27 @@ const OrderManagementTable = () => {
 
     return (
         <div className={classes.container}>
-            <h1 className={classes.title}>Gestione Ordini</h1>
+            <div className={classes.header}>
+                <h1 className={classes.title}>Gestione Ordini</h1>
+                <form className={classes.form}>
+                    <label htmlFor="dateSelect">Seleziona Data Ritiro:</label>
+                    <select
+                        id="dateSelect"
+                        value={selectedDate}
+                        onChange={(e) => setSelectedDate(e.target.value)}
+                    >
+                        <option value="">Nessuna data selezionata</option>
+                        {uniqueDates.map((date) => (
+                            <option key={date} value={date}>
+                                {date}
+                            </option>
+                        ))}
+                    </select>
+                    <button type="button" onClick={handleDownloadExcel}>
+                        Esporta Excel <FaRegFileExcel />
+                    </button>
+                </form>
+            </div>
             <table className={classes.table}>
                 <thead className={classes.tableHead}>
                 <tr>
@@ -117,36 +163,44 @@ const OrderManagementTable = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {ordersToShow.map((order, index) => {
-                    return (
-                        <tr key={order.id || index} className={classes.tableRow}>
-
-                            <td className={classes.tableCell}>{new Date(order.data).toLocaleString()}</td>
-                            <td className={classes.tableCell}>{order.email_utente}</td>
-                            <td className={classes.tableCell}>{new Date(order.data_ritiro).toLocaleString()}</td>
-                            <td className={classes.tableCell}>{order.prezzoTotale}€</td>
-                            <td className={classes.tableCell}>{order.stato}</td>
-                            <td className={classes.tableCell}>{order.commento}</td>
-                            <td className={classes.tableCell}>
-                                {order.stato === "IN ATTESA DI CONFERMA" && (
-                                    <button
-                                        className={`${classes.button} ${classes.confirmButton}`}
-                                        onClick={() => handleConfirmOrder(order.id)}
-                                    >
-                                        Conferma
-                                    </button>
-                                )}
-                            </td>
-                        </tr>
-                    );
-                })}
+                {ordersToShow.map((order, index) => (
+                    <tr key={order.id || index} className={classes.tableRow}>
+                        <td className={classes.tableCell}>
+                            {new Date(order.data).toLocaleString()}
+                        </td>
+                        <td className={classes.tableCell}>{order.email_utente}</td>
+                        <td className={classes.tableCell}>
+                            {new Date(order.data_ritiro).toLocaleString()}
+                        </td>
+                        <td className={classes.tableCell}>{order.prezzoTotale}€</td>
+                        <td className={classes.tableCell}>{order.stato}</td>
+                        <td className={classes.tableCell}>{order.commento}</td>
+                        <td className={classes.tableCell}>
+                            {order.stato === "IN ATTESA DI CONFERMA" && (
+                                <button
+                                    className={`${classes.button} ${classes.confirmButton}`}
+                                    onClick={() => handleConfirmOrder(order.id)}
+                                >
+                                    Conferma
+                                </button>
+                            )}
+                        </td>
+                    </tr>
+                ))}
                 </tbody>
             </table>
             <div className={classes.pagination}>
-                <button onClick={handlePreviousPage} disabled={currentPage === 1}>Precedente</button>
-                <span>Pagina {currentPage} di {Math.ceil(orders.length / ordersPerPage)}</span>
-                <button onClick={handleNextPage}
-                        disabled={currentPage === Math.ceil(orders.length / ordersPerPage)}>Successivo
+                <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+                    Precedente
+                </button>
+                <span>
+          Pagina {currentPage} di {Math.ceil(orders.length / ordersPerPage)}
+        </span>
+                <button
+                    onClick={handleNextPage}
+                    disabled={currentPage === Math.ceil(orders.length / ordersPerPage)}
+                >
+                    Successivo
                 </button>
             </div>
         </div>
