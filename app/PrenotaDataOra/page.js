@@ -221,14 +221,17 @@ export default function CalendarPage() {
     const isClosedNow = (date) => {
         // se adesso è domenica e sono passate le 12:30, significa che è chiuso, oppure se è un giorno tra martedì e sabato e sono passate le 17, significa che è chiuso
         const now = new Date();
-        // se now e date sono lo stesso giorno, allora devo controllare l'ora attuale
-        if (now.getDate() === date) {
-            const dayOfWeek = now.getDay();
-            const hour = now.getHours();
-            const minute = now.getMinutes();
-            if (dayOfWeek === 0 && (hour > 12 || (hour === 12 && minute > 30))) return true;
-            if (dayOfWeek >= 2 && dayOfWeek <= 6 && (hour > 17 || (hour === 17 && minute > 0))) return true;
+        // se now e date sono lo stesso giorno dello stesso mese, allora devo controllare l'ora attuale
+        if (now.getMonth() === selectedMonth && now.getDate() === date) {
+            if (now.getDate() === date) {
+                const dayOfWeek = now.getDay();
+                const hour = now.getHours();
+                const minute = now.getMinutes();
+                if (dayOfWeek === 0 && (hour > 12 || (hour === 12 && minute > 30))) return true;
+                if (dayOfWeek >= 2 && dayOfWeek <= 6 && (hour > 17 || (hour === 17 && minute > 0))) return true;
+            }
         }
+
         return false;
     }
 
