@@ -82,7 +82,7 @@
     outline: none;
     border: none;
     line-height: 1;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 1.1rem;
     color: #333;
 }
@@ -521,11 +521,11 @@
     }
 
     .panel h3 {
-        font-size: 1.2rem;
+        font-size: 2.0rem;
     }
 
     .panel p {
-        font-size: 0.7rem;
+        font-size: 1.7rem;
         padding: 0.5rem 0;
     }
 
