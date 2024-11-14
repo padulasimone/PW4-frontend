@@ -1,5 +1,5 @@
 "use client";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import Cookies from "js-cookie";
@@ -14,6 +14,16 @@ export default function CalendarPage() {
     const [fullyBookedDays, setFullyBookedDays] = useState([]);
     const [orderDetails, setOrderDetails] = useState(null);
     const [user, setUser] = useState(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const updateMedia = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        window.addEventListener("resize", updateMedia);
+        updateMedia();
+        return () => window.removeEventListener("resize", updateMedia);
+    }, []);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -92,7 +102,9 @@ export default function CalendarPage() {
         }
     };
 
-    const weekdays = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
+    const weekdays = isMobile
+        ? ["lun.", "mar.", "mer.", "gio.", "ven.", "sab.", "dom."]
+        : ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
 
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -101,15 +113,15 @@ export default function CalendarPage() {
     const currentMonth = new Date().getMonth();
     const months = [
         {
-            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth)).toLocaleString('default', {month: 'long'})),
+            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth)).toLocaleString('default', { month: 'long' })),
             number: currentMonth
         },
         {
-            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth + 1)).toLocaleString('default', {month: 'long'})),
+            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth + 1)).toLocaleString('default', { month: 'long' })),
             number: currentMonth + 1
         },
         {
-            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth + 2)).toLocaleString('default', {month: 'long'})),
+            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth + 2)).toLocaleString('default', { month: 'long' })),
             number: currentMonth + 2
         }
     ];
@@ -119,10 +131,9 @@ export default function CalendarPage() {
         return new Date(year, month + 1, 0).getDate();
     };
 
-
     const getFirstDayOfMonth = (month) => {
         const year = new Date().getFullYear();
-        return (new Date(year, month, 1).getDay() + 6) % 7; // Adjust to start the week on Monday
+        return (new Date(year, month, 1).getDay() + 6) % 7;
     };
 
     const handleDayClick = (day) => {
@@ -130,11 +141,9 @@ export default function CalendarPage() {
         if (isWeekend(day) || isFullyBooked(day + 1)) return;
 
         if (selectedDay === day + 1) {
-            // Se il giorno selezionato è già selezionato, deseleziona il giorno e nascondi gli orari
             setSelectedDay(null);
             setSelectedTime(null);
         } else {
-            // Altrimenti, seleziona il giorno e mostra gli orari disponibili
             setSelectedDay(day + 1);
             setSelectedTime(null);
         }
@@ -159,7 +168,7 @@ export default function CalendarPage() {
 
     const isBeforeToday = (day) => {
         const date = new Date(new Date().getFullYear(), selectedMonth, day);
-        return date < new Date
+        return date < new Date;
     }
 
     const getDayClass = (day) => {

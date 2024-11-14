@@ -80,7 +80,7 @@
 .fullWidthImageContainer {
   width: 100%;
   height: 650px;
-  clip-path: polygon(0 0, 100% 15%, 100% 85%, 0 100%);
+  clip-path: polygon(0 0, 100% 25%, 100% 85%, 0 100%);
   overflow: hidden;
   position: relative;
   margin-bottom: 100px;
@@ -112,6 +112,10 @@
     flex-direction: column;
     height: auto;
     padding: 20px;
+  }
+
+  .imageWithText{
+    margin-top: 150px;
   }
 
   .hero {
@@ -306,6 +310,110 @@
       font-size: 1rem;
   }
 }
+
+
+.ctaSection {
+  background-image: url('/immagini/foto2.jpg');
+  background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
+  padding: 60px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  color: #fff;
+  height: 500px;
+  overflow: hidden;
+  box-sizing: border-box; /* Assicura che padding e margini non causino overflow */
+}
+
+.ctaSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Overlay più scuro per migliorare la leggibilità */
+  z-index: 1;
+}
+
+.ctaContent {
+  max-width: 800px;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  padding: 20px; /* Padding aggiuntivo per schermi piccoli */
+  box-sizing: border-box;
+}
+
+.ctaContent h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.ctaContent p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.ctaButton {
+  background-color: #e36f52;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #f07f5f;
+  transform: scale(1.05);
+}
+
+/* Layout responsive per schermi piccoli */
+@media (max-width: 768px) {
+  .ctaSection {
+    padding: 40px 10px; /* Riduce il padding per schermi piccoli */
+  }
+  .ctaContent h2 {
+    font-size: 2rem;
+  }
+  .ctaContent p {
+    font-size: 1rem;
+  }
+  .ctaButton {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
+
+/* Layout responsive per schermi molto piccoli */
+@media (max-width: 480px) {
+  .ctaSection {
+    padding: 30px 10px;
+    height: auto;
+  }
+  .ctaContent h2 {
+    font-size: 1.8rem;
+  }
+  .ctaContent p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  .ctaButton {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+}
+
 
 
 

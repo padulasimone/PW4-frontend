@@ -122,6 +122,18 @@ export default function Home() {
             {/* <button className={styles.button}>Ordina Ora</button> */}
           </div>
         </section>
+        <section className={classes.ctaSection}>
+          <div className={classes.ctaContent}>
+            <h2>Ordina e Ritira in Sede!</h2>
+            <p>
+              Ora puoi effettuare un ordine e ritirarlo direttamente in pasticceria! Assapora le nostre delizie senza attese.
+            </p>
+            <Link href="/Prenota">
+              <button className={classes.ctaButton}>Scopri di più e Ordina Ora</button>
+            </Link>
+          </div>
+        </section>
+
       </div>
     </main>
   );

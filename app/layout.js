@@ -1,30 +1,29 @@
 // app/layout.js
 import "./globals.css";
-import Head from "next/head";
-
 import MainHeader from "@/components/main-header";
 import Footer from "@/components/footer";
 
-export const metadata = {
-    title: "Login & Signup Form",
-    description: "Pagina di Login e Registrazione",
-};
-
-export default function RootLayout({children}) {
+export default function RootLayout({ children }) {
     return (
         <html lang="it">
-        <Head>
-            {/* Link a Font Awesome */}
-            <link
-                rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-            />
-        </Head>
-        <body>
-        <MainHeader></MainHeader>
-        {children}
-        <Footer></Footer>
-        </body>
+            <head>
+                <title>C'est La Vie</title>
+                <meta name="description" content="Pasticceria Varese C'est La Vie" />
+                
+                {/* Link a Font Awesome */}
+                <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+                />
+                
+                {/* Link alla favicon */}
+                <link rel="icon" href="/immagini/logo_v2.png" type="image/png" />
+            </head>
+            <body>
+                <MainHeader />
+                {children}
+                <Footer />
+            </body>
         </html>
     );
 }
