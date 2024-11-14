@@ -39,6 +39,17 @@
     gap: 2rem;
 }
 
+.submitContainer {
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+}
+
 .label {
     display: flex;
     flex-direction: column;

@@ -79,6 +79,17 @@
     background-color: #005bb5;
 }
 
+.submitContainer {
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 767px) {
     .container {

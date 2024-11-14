@@ -143,7 +143,7 @@ export default function LoginPage() {
                             <input
                                 type="text"
                                 name="email"
-                                placeholder="Telefono / e-mail"
+                                placeholder="Telefono / E-mail"
                                 required
                             />
                         </div>
@@ -159,9 +159,9 @@ export default function LoginPage() {
                         <input
                             type="submit"
                             value="Login"
-                            className={`${classes.btn} ${classes.solid}`}
+                            className={`${classes.btn}`}
                         />
-                        {errorMessage && <p className={classes.error}>{errorMessage}</p>}
+                        {errorMessage && <p>{errorMessage}</p>}
                     </form>
 
                     <form className={classes.signUpForm} onSubmit={handleSignUpSubmit}>
@@ -169,7 +169,7 @@ export default function LoginPage() {
 
                         <div className={classes.inputField}>
                             <i className="fas fa-user"></i>
-                            <input type="text" name="nome" placeholder="Nome" required/>
+                            <input type="text" name="nome" placeholder="Nome"/>
                         </div>
                         <div className={classes.inputField}>
                             <i className="fas fa-user"></i>
@@ -177,7 +177,6 @@ export default function LoginPage() {
                                 type="text"
                                 name="cognome"
                                 placeholder="Cognome"
-                                required
                             />
                         </div>
                         <div className={classes.inputField}>
@@ -202,11 +201,10 @@ export default function LoginPage() {
                                 type="password"
                                 name="password"
                                 placeholder="Password"
-                                required
                             />
                         </div>
                         <input type="submit" className={classes.btn} value="Sign up"/>
-                        {errorMessage && <p className={classes.error}>{errorMessage}</p>}
+                        {errorMessage && <p>{errorMessage}</p>}
                     </form>
                 </div>
             </div>
