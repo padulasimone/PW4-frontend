@@ -89,7 +89,6 @@
     display: flex;
     flex-direction: column;
     border: 1px solid #ddd;
-    margin-bottom: 12px;
     border-radius: 8px;
     padding: 12px;
     background-color: #fff;
@@ -116,7 +115,7 @@
 
   .button {
     padding: 8px 12px;
-    font-size: 14px;
+    font-size: 15px;
     margin-top: 5px;
   }
 }
@@ -140,7 +139,7 @@
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .container {
-    max-width: 100%; /* Limita la larghezza del contenitore */
+    max-width: 100%; 
     padding: 15px;
     overflow-x: hidden;
   }
@@ -149,62 +148,62 @@
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    overflow-x: auto; /* Aggiunge scorrimento orizzontale, se necessario */
-    table-layout: fixed; /* Distribuisce le colonne in modo uniforme */
+    overflow-x: auto; 
+    table-layout: fixed; 
   }
 
   .tableHeader,
   .tableCell {
-    padding: 8px; /* Riduce il padding per risparmiare spazio */
-    text-align: center; /* Centra il contenuto per una migliore leggibilità */
-    white-space: nowrap; /* Impedisce il testo a capo, mantenendo il contenuto visibile */
+    padding: 8px; 
+    text-align: center; 
+    white-space: nowrap; 
     overflow: hidden;
-    text-overflow: ellipsis; /* Aggiunge i puntini per il testo lungo */
+    text-overflow: ellipsis;
   }
 
-  /* Specifica larghezze minime per ogni colonna */
+  
   .tableHeader:nth-child(1),
   .tableCell:nth-child(1) {
-    /* Colonna Commento */
+   
     min-width: 80px;
   }
 
   .tableHeader:nth-child(2),
   .tableCell:nth-child(2) {
-    /* Colonna Data */
+   
     min-width: 100px;
   }
 
   .tableHeader:nth-child(3),
   .tableCell:nth-child(3) {
-    /* Colonna Data Ritiro */
+   
     min-width: 100px;
   }
 
   .tableHeader:nth-child(4),
   .tableCell:nth-child(4) {
-    /* Colonna Email Utente */
+   
     min-width: 150px;
   }
 
   .tableHeader:nth-child(5),
   .tableCell:nth-child(5) {
-    /* Colonna Prezzo Totale */
+  
     min-width: 70px;
   }
 
     .tableHeader:nth-child(6),
-    .tableCell:nth-child(6) { /* Colonna Stato */
+    .tableCell:nth-child(6) { 
         min-width: 100px;
     }
 
     .tableHeader:nth-child(7),
-    .tableCell:nth-child(7) { /* Colonna Azioni */
+    .tableCell:nth-child(7) { 
         min-width: 100px;
     }
 
     .button {
         padding: 6px 10px;
-        font-size: 12px; /* Riduce leggermente la dimensione del font per risparmiare spazio */
+        font-size: 12px; 
     }
 }

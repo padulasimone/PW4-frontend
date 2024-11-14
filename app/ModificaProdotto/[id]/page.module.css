@@ -85,6 +85,19 @@
     background-color: #2563eb;
 }
 
+.loading {
+    font-size: 1.5rem;
+    color: #f3bc9f; /* Cambia il colore come preferisci */
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Centra verticalmente nella pagina */
+    background-color: #f9f9f9; /* Sfondo chiaro per evidenziare il testo */
+  }
+  
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
@@ -97,13 +110,42 @@
     }
 
     .title {
-        font-size: 1.75rem;
+        font-size: 2rem;
+    }
+
+    .form label {
+        font-size: 1.2rem;
+    }
+
+    .form input {
+        font-size: 1.2rem;
+    }
+
+    .form textarea {
+        font-size: 1.1rem;
+    }
+
+    .backButton {
+        font-size: 1.5rem;
     }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .container {
         max-width: 70%;
+    }
+    .form label {
+        font-size: 1.1rem;
+    }
+    .form input {
+        font-size: 1.1rem;
+    }
+    .form textarea {
+        font-size: 1.0rem;
+    }
+
+    .backButton {
+        font-size: 1.3rem;
     }
 }
 

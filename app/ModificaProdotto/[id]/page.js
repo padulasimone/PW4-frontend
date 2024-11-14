@@ -88,7 +88,8 @@ const ModificaProdotto = () => {
         }
     };
 
-    if (!product) return <div>Caricamento...</div>;
+    if (!product) return <div className={classes.loading}>Caricamento...</div>
+
 
     return (
         <div className={classes.container}>

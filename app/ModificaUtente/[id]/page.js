@@ -91,7 +91,7 @@ const ModificaUtente = () => {
         }
     };
 
-    if (!user) return <div>Caricamento...</div>;
+    if (!user) return <div className={classes.loading}>Caricamento...</div>
 
     return (
         <div className={classes.container}>

@@ -1,4 +1,4 @@
-/* Style generale della pagina */
+
 .container {
     display: flex;
     align-items: center;
@@ -7,7 +7,6 @@
     flex-direction: column; /* Per mettere il titolo sopra il form */
 }
 
-/* Stile per il form */
 .form {
     background-color: white;
     padding: 30px;
@@ -26,9 +25,9 @@
     margin-bottom: 30px; /* Spazio tra il titolo e il form */
 }
 
-/* Stile per i label */
+
 .form label {
-    font-size: 16px;
+    font-size: 20px;
 
     color: #444;
     display: flex;
@@ -36,10 +35,9 @@
     padding: 10px 0;
 }
 
-/* Stile per gli input */
 .form input {
     padding: 12px;
-    font-size: 13px;
+    font-size: 15px;
     border: 1px solid #ddd;
     border-radius: 6px;
     background-color: #fafafa;
