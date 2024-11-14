@@ -9,6 +9,7 @@ const ModificaUtente = () => {
     const [idUtente, setIdUtente] = useState(null);
     const [user, setUser] = useState(null);
     const [currentUser, setCurrentUser] = useState(null);
+    const [errorMessage, setErrorMessage] = useState("");
 
     // Recupera idUtente lato client
     useEffect(() => {
@@ -76,11 +77,8 @@ const ModificaUtente = () => {
                     alert("Utente aggiornato con successo");
                     window.location.href = "/GestioneUtenti";
                 } else {
-                    const errorData = await res.json();
-                    console.error(
-                        "Errore durante l'aggiornamento dell'utente:",
-                        errorData.message
-                    );
+                    const errorData = await res.text();
+                    setErrorMessage(errorData);
                 }
             } catch (error) {
                 console.error(
@@ -93,7 +91,7 @@ const ModificaUtente = () => {
         }
     };
 
-    if (!user) return <div>Caricamento...</div>;
+    if (!user) return <div className={classes.loading}>Caricamento...</div>
 
     return (
         <div className={classes.container}>
@@ -160,9 +158,14 @@ const ModificaUtente = () => {
                         <option value="CLIENTE VERIFICATO">CLIENTE VERIFICATO</option>
                     </select>
                 </label>
-                <button type="submit" className={classes.button}>
-                    Salva
-                </button>
+                <div className={classes.submitContainer}>
+                    <button type="submit" className={classes.button}>
+                        Salva
+                    </button>
+                    {errorMessage && (
+                        <p className={classes.error}>{errorMessage}</p>
+                    )}
+                </div>
             </form>
         </div>
     );

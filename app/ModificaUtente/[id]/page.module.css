@@ -26,7 +26,8 @@
 .backButton {
     border: none;
     cursor: pointer;
-    font-size: large;
+    font-size: 1.5rem;
+
 }
 
 .title {
@@ -79,6 +80,31 @@
     background-color: #005bb5;
 }
 
+.submitContainer {
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+}
+
+
+.loading {
+    font-size: 1.5rem;
+    color: #f3bc9f; /* Cambia il colore come preferisci */
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Centra verticalmente nella pagina */
+    background-color: #f9f9f9; /* Sfondo chiaro per evidenziare il testo */
+  }
+  
+
 /* Responsive adjustments */
 @media (max-width: 767px) {
     .container {
@@ -92,6 +118,18 @@
 
     .label {
         width: 90%;
+        font-size: 1.2rem;
+    }
+
+    .button{
+
+        width: 30%;
+        font-size: 1rem;
+        
+    }
+
+    .input{
+        font-size: 1rem;
     }
 }
 
@@ -102,5 +140,16 @@
 
     .form {
         width: 80%;
+    }
+
+    .input{
+        font-size: 1.2rem;
+    }
+    .label {
+        font-size: 1.4rem;
+    }
+    .button{
+        
+        font-size: 1.2rem;
     }
 }

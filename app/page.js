@@ -25,7 +25,7 @@ export default function Home() {
               un’arte di alta qualità e creazioni che uniscono tradizione e
               innovazione.
             </p>
-            {/* <button className={styles.button}>Ordina Ora</button> */}
+      
           </div>
           <div className={classes.imageBlock}>
             <Image
@@ -93,6 +93,7 @@ export default function Home() {
           {/* Sovrapposizione bianca */}
         </section>
       </div>
+      
 
       <div className={classes.bottomBackground}>
         <section className={classes.imageWithText}>
@@ -118,7 +119,7 @@ export default function Home() {
               team trasmettendo valori per me fondamentali in questo
               lavoro: Divertimento, Passione, Ricercatezza, Innovazione e Attenzione al dettaglio.
             </p>
-            {/* <button className={styles.button}>Ordina Ora</button> */}
+          
           </div>
         </section>
         <section className={classes.ctaSection}>

@@ -9,7 +9,7 @@ const UserManagementTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const userPerPage = 10;
 
-    // Recupera l'utente loggato
+ 
     useEffect(() => {
         const fetchCurrentUser = async () => {
             try {
@@ -26,7 +26,7 @@ const UserManagementTable = () => {
         fetchCurrentUser();
     }, []);
 
-    // Recupera tutti gli utenti se l'utente loggato è ADMIN
+   
     useEffect(() => {
         if (currentUser?.ruolo === "ADMIN") {
             const fetchUsers = async () => {
