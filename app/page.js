@@ -107,18 +107,17 @@ export default function Home() {
             />
           </div>
           <div className={classes.textBlock}>
-            <h2>Pasticceria C'est la Vie a Varese</h2>
+            <h2>Il mio TEAM</h2>
             <p>
-              Mi chiamo Giacomo Aceti e sono il titolare di C'est la Vie. La mia
-              pasticceria nasce nel 2018, come una tradizione italiana
-              rivisitata e stravolta. Vi aspetto per la vendita diretta in Via
-              Carlo Croce 4.
+              Il mio è un giovanissimo team che guido con entusiasmo e passione.
+              Una passione che porto avanti da 16 anni, iniziata con un percorso
+              nella scuola alberghiera di Stresa e concluso con il corso
+              superiore di pasticceria di Alma.
             </p>
             <p>
-              Nel laboratorio produciamo tutti i prodotti messi a disposizione
-              della nostra boutique, con un obiettivo: fare della pasticceria
-              un’arte di alta qualità e creazioni che uniscono tradizione e
-              innovazione.
+              Accanto a me, uno staff giovane e preparato. Formo personalmente il mio
+              team trasmettendo valori per me fondamentali in questo
+              lavoro: Divertimento, Passione, Ricercatezza, Innovazione e Attenzione al dettaglio.
             </p>
           
           </div>
