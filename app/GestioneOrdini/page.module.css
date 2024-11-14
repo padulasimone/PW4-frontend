@@ -1,32 +1,69 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  padding: 15px;
-  max-width: 90%;
-  background-color: #f9f9f9;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 15px;
+    max-width: 90%;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .title {
-  font-size: 30px;
-  color: #333;
-  text-align: center;
-  margin-bottom: 30px;
-  margin-top: 30px;
+    font-size: 30px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.form label {
+    font-weight: bold;
+}
+
+.form select {
+    padding: 5px;
+    font-size: 16px;
+}
+
+.form button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.form button:hover {
+    background-color: #45a049;
 }
 
 .table {
-  border-collapse: collapse;
-  margin: 0 auto; /* Centra la tabella */
+    border-collapse: collapse;
+    margin: 0 auto; /* Centra la tabella */
 }
 
 .tableHead {
-  background-color: #f3bc9f;
-  color: rgb(0, 0, 0);
+    background-color: #f3bc9f;
+    color: rgb(0, 0, 0);
 }
 
 .tableCell,
@@ -36,174 +73,174 @@
 }
 
 .tableHeader {
-  font-size: 16px;
-  font-weight: bold;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .tableRow:nth-child(even) {
-  background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
 .tableRow:hover {
-  background-color: #e0f7fa;
+    background-color: #e0f7fa;
 }
 
 .button {
-  padding: 8px 12px;
-  margin: 5px;
+    padding: 8px 12px;
+    margin: 5px;
 
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .confirmButton {
-  background-color: #28a745;
-  color: white;
+    background-color: #28a745;
+    color: white;
 }
 
 .confirmButton:hover {
-  background-color: #218838;
+    background-color: #218838;
 }
 
 @media (max-width: 767px) {
-  .container {
-    max-width: 100%;
-    padding: 15px; /* Maggior padding per un aspetto più arioso */
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
+    .container {
+        max-width: 100%;
+        padding: 15px; /* Maggior padding per un aspetto più arioso */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 
-  .table {
-    display: block;
-    overflow-x: auto;
-  }
+    .table {
+        display: block;
+        overflow-x: auto;
+    }
 
-  .tableHead {
-    display: none;
-  }
+    .tableHead {
+        display: none;
+    }
 
-  .tableRow {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 12px;
-    background-color: #fff;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
+    .tableRow {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+        background-color: #fff;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
 
-  .tableHeader,
-  .tableCell {
-    max-width: 100%;
-    font-size: 15px;
-  }
+    .tableHeader,
+    .tableCell {
+        max-width: 100%;
+        font-size: 15px;
+    }
 
-  .tableHeader {
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
-  }
+    .tableHeader {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
 
-  .tableRow:hover {
-    background-color: #f0f0f0;
-  }
+    .tableRow:hover {
+        background-color: #f0f0f0;
+    }
 
-  .button {
-    padding: 8px 12px;
-    font-size: 15px;
-    margin-top: 5px;
-  }
+    .button {
+        padding: 8px 12px;
+        font-size: 15px;
+        margin-top: 5px;
+    }
 }
 
 .pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
 .pagination button {
-  margin: 0 10px;
-  padding: 5px 10px;
-  cursor: pointer;
+    margin: 0 10px;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
 .pagination span {
-  margin: 0 10px;
+    margin: 0 10px;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  .container {
-    max-width: 100%; 
-    padding: 15px;
-    overflow-x: hidden;
-  }
+    .container {
+        max-width: 100%;
+        padding: 15px;
+        overflow-x: hidden;
+    }
 
-  .table {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    overflow-x: auto; 
-    table-layout: fixed; 
-  }
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow-x: auto;
+        table-layout: fixed;
+    }
 
-  .tableHeader,
-  .tableCell {
-    padding: 8px; 
-    text-align: center; 
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+    .tableHeader,
+    .tableCell {
+        padding: 8px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
-  
-  .tableHeader:nth-child(1),
-  .tableCell:nth-child(1) {
-   
-    min-width: 80px;
-  }
 
-  .tableHeader:nth-child(2),
-  .tableCell:nth-child(2) {
-   
-    min-width: 100px;
-  }
+    .tableHeader:nth-child(1),
+    .tableCell:nth-child(1) {
 
-  .tableHeader:nth-child(3),
-  .tableCell:nth-child(3) {
-   
-    min-width: 100px;
-  }
+        min-width: 80px;
+    }
 
-  .tableHeader:nth-child(4),
-  .tableCell:nth-child(4) {
-   
-    min-width: 150px;
-  }
+    .tableHeader:nth-child(2),
+    .tableCell:nth-child(2) {
 
-  .tableHeader:nth-child(5),
-  .tableCell:nth-child(5) {
-  
-    min-width: 70px;
-  }
+        min-width: 100px;
+    }
+
+    .tableHeader:nth-child(3),
+    .tableCell:nth-child(3) {
+
+        min-width: 100px;
+    }
+
+    .tableHeader:nth-child(4),
+    .tableCell:nth-child(4) {
+
+        min-width: 150px;
+    }
+
+    .tableHeader:nth-child(5),
+    .tableCell:nth-child(5) {
+
+        min-width: 70px;
+    }
 
     .tableHeader:nth-child(6),
-    .tableCell:nth-child(6) { 
+    .tableCell:nth-child(6) {
         min-width: 100px;
     }
 
     .tableHeader:nth-child(7),
-    .tableCell:nth-child(7) { 
+    .tableCell:nth-child(7) {
         min-width: 100px;
     }
 
     .button {
         padding: 6px 10px;
-        font-size: 12px; 
+        font-size: 12px;
     }
 }
