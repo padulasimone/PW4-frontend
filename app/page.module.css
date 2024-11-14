@@ -5,7 +5,8 @@
   width: 100%;
 }
 
-.topBackground, .bottomBackground {
+.topBackground,
+.bottomBackground {
   width: 100%;
 }
 
@@ -16,7 +17,7 @@
 .hero {
   width: 100%;
   height: 600px;
-  background-image: url('/immagini/hero.jpg');
+  background-image: url("/immagini/hero.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -33,48 +34,32 @@
   border-radius: 8px;
 }
 
-.textWithImage, .imageWithText {
+.textWithImage,
+.imageWithText {
   display: flex;
   align-items: center;
-  justify-content: center;
   max-width: 1200px;
   margin: 100px auto;
   height: 700px;
 }
 
-
-.textBlock, .imageBlock {
+.textBlock,
+.imageBlock {
   flex: 1;
   padding: 20px;
   text-align: center;
 }
 
 .sideImage {
-  width: 80%;
+  width: 90%;
   height: 500px;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 8px;
   transition: transform 0.3s ease;
 }
 
 .sideImage:hover {
   transform: scale(1.05);
-}
-
-.button {
-  background-color: #f07f5f;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  border-radius: 8px;
-}
-
-.button:hover {
-  transform: scale(1.05);
-  background-color: #e36f52;
 }
 
 .fullWidthImageContainer {
@@ -84,7 +69,7 @@
   overflow: hidden;
   position: relative;
   margin-bottom: 100px;
-  background-image: url('/immagini/foto2.2.jpg');
+  background-image: url("/immagini/foto2.2.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -106,96 +91,6 @@
   margin-top: -350px;
 }
 
-/* Layout per tablet */
-@media (min-width: 768px) and (max-width: 1024px){
-  .textWithImage, .imageWithText {
-    flex-direction: column;
-    height: auto;
-    padding: 20px;
-  }
-
-  .imageWithText{
-    margin-top: 150px;
-  }
-
-  .hero {
-    height: 500px;
-    background-attachment: scroll; 
-  }
-
-  .textBlock, .imageBlock {
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .sideImage {
-    max-width: 500px;
-    height: auto;
-    margin: 0 auto;
-  }
-
-  .textBlock h2 {
-    font-size: 2.5rem;
-  }
-
-  .textBlock p {
-    font-size: 1.8rem;
-    line-height: 1.6;
-  }
-}
-
-/* Layout per mobile */
-@media (max-width: 768px) {
-  .textWithImage, .imageWithText {
-    flex-direction: column;
-    align-items: center; /* Centra gli elementi all'interno */
-    height: auto;
-    margin: 0 auto; /* Centra il contenitore */
-    padding: 0 10px; /* Aggiungi padding solo ai lati per evitare margini vuoti */
-  }
-
-  .imageWithText{
-    margin-top: 100px;
-  }
-
-  .textWithImage{
-    margin-top: 50px;
-  }
-
-  .hero {
-    height: 450px;
-    background-attachment: scroll;
-  }
-
-  .textBlock, .imageBlock {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box; /* Assicura che il padding non aumenti la larghezza */
-    text-align: center; /* Centra il testo all'interno */
-  }
-
-  .sideImage {
-    width: 90%;
-    height: auto;
-    margin: 0 auto; 
-  }
-
-  .textWithImage .textBlock {
-    order: -1;
-  }
-
-  .textBlock h2 {
-    font-size: 1.8rem;
-    margin: 0;
-  }
-
-  .textBlock p {
-    font-size: 1.2rem; 
-    line-height: 1.4;
-  }
-}
-
-
 .infoSection {
   display: flex;
   justify-content: space-around;
@@ -204,7 +99,6 @@
   max-width: 1200px;
   margin: 0 auto;
   gap: 2rem;
-  margin-top: -100px;
   margin-bottom: 80px;
 }
 
@@ -217,16 +111,19 @@
   text-align: center;
 }
 
-.hours, .locations {
+.hours,
+.locations {
   text-align: center;
 }
 
-.hours h3, .locations h3 {
+.hours h3,
+.locations h3 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
 }
 
-.hours p, .locations p {
+.hours p,
+.locations p {
   margin: 0.5rem 0;
   font-size: 1rem;
   line-height: 1.6;
@@ -264,56 +161,8 @@
   background-color: #f07f5f;
 }
 
-/* Responsive layout per tablet e mobile */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .infoSection {
-    flex-direction: column;
-    padding: 30px;
-    gap: 2rem;
-  }
-
-  .infoSection h3{
-    font-size: 2.5rem;
-  }
-
-  .infoSection p{
-    font-size: 2.2rem;
-  }
-
-  .column {
-    align-items: center;
-  }
-
-  .imageRounded {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 768px) {
-  .infoSection {
-      flex-direction: column;
-      align-items: center;
-      padding: 15px;
-      margin-top: 50px;
-  }
-
-  .hours, .locations {
-      width: 100%;
-      margin-right: 0;
-      margin-bottom: 20px; 
-      text-align: center; 
-  }
-
-  .infoButton {
-      width: 100%; 
-      font-size: 1rem;
-  }
-}
-
-
 .ctaSection {
-  background-image: url('/immagini/foto2.jpg');
+  background-image: url("/immagini/foto2.jpg");
   background-size: cover;
   background-position: top;
   background-attachment: fixed;
@@ -337,7 +186,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Overlay più scuro per migliorare la leggibilità */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Overlay più scuro per migliorare la leggibilità */
   z-index: 1;
 }
 
@@ -353,6 +207,7 @@
 .ctaContent h2 {
   font-size: 2.5rem;
   margin-bottom: 10px;
+  margin-top:10px;
   color: #fff;
 }
 
@@ -378,8 +233,56 @@
   transform: scale(1.05);
 }
 
+/* Responsive layout per tablet e mobile */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .infoSection {
+    flex-direction: column;
+    padding: 30px;
+    gap: 2rem;
+  }
+
+  .infoSection h3 {
+    font-size: 2.5rem;
+  }
+
+  .infoSection p {
+    font-size: 2.2rem;
+  }
+
+  .column {
+    align-items: center;
+  }
+
+  .imageRounded {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 767px) {
+  .infoSection {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    margin-top: 50px;
+  }
+
+  .hours,
+  .locations {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .infoButton {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
+
 /* Layout responsive per schermi piccoli */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .ctaSection {
     padding: 40px 10px; /* Riduce il padding per schermi piccoli */
   }
@@ -415,9 +318,94 @@
 }
 
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  .textWithImage,
+  .imageWithText {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+
+  .imageWithText {
+    margin-top: 150px;
+  }
+
+  .hero {
+    height: 500px;
+    background-attachment: scroll;
+  }
+
+  .textBlock,
+  .imageBlock {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .sideImage {
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .textBlock h2 {
+    font-size: 2.5rem;
+  }
+
+  .textBlock p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+  }
+}
 
 
+@media (max-width: 767px) {
+  .textWithImage,
+  .imageWithText {
+    flex-direction: column;
+    align-items: center; /* Centra gli elementi all'interno */
+    height: auto;
+    margin: 0 auto; /* Centra il contenitore */
+    padding: 0 10px; /* Aggiungi padding solo ai lati per evitare margini vuoti */
+  }
 
+  .imageWithText {
+    margin-top: 100px;
+  }
 
+  .textWithImage {
+    margin-top: 50px;
+  }
 
+  .hero {
+    height: 450px;
+    background-attachment: scroll;
+  }
 
+  .textBlock,
+  .imageBlock {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box; /* Assicura che il padding non aumenti la larghezza */
+    text-align: center; /* Centra il testo all'interno */
+  }
+
+  .sideImage {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .textWithImage .textBlock {
+    order: -1;
+  }
+
+  .textBlock h2 {
+    font-size: 1.8rem;
+    margin: 0;
+  }
+
+  .textBlock p {
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+}
