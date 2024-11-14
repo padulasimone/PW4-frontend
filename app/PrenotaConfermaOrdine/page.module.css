@@ -5,7 +5,7 @@
   background-color: #f9f9f9;
   border-radius: 8px;
   padding: 2rem;
-  box-shadow : 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-top: 50px;
   margin-bottom: 50px;
 }
@@ -101,7 +101,7 @@
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  resize: vertical; 
+  resize: vertical;
   font-family: "Montserrat", sans-serif;
   font-style: italic;
 }
@@ -109,14 +109,28 @@
 .textarea:focus {
   border-color: #66afe9;
   box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
-  outline: none; 
- 
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .orderSummary {
+    font-size: 1.2rem;
+  }
+  .confirmButton {
+    font-size: 1.2rem;
+  }
+  .textarea {
+   font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 767px) {
   .orderSummary {
     flex-direction: column;
     padding: 2rem;
+  }
+  .table {
+    font-size: 1.2rem;
   }
 
   .tableHeader {
@@ -133,6 +147,11 @@
   }
 
   .confirmButton {
+    font-size: 1.2rem;
     width: 100%;
+  }
+  .textarea {
+    width: 100%;
+    font-size: 1.2rem;
   }
 }

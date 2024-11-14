@@ -8,14 +8,12 @@
 }
 
 .title {
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin: 40px 0;
     color: #333;
     text-align: center;
 }
 
 .section {
-    width: 60%;
     margin-bottom: 1rem;
 }
 
@@ -39,6 +37,7 @@
     border-radius: 8px;
     padding: 1rem;
     transition: transform 0.2s;
+    gap: 1.2rem;
 }
 
 .orderItem:hover {
@@ -52,15 +51,11 @@
 .status {
     padding: 0.3rem 0.6rem;
     border-radius: 5px;
-
     color: #fff;
 }
 
 .delivered {
     background-color: #4caf50;
-    padding: 0.3rem 0.6rem;
-    border-radius: 5px;
-    color: #fff;
 }
 
 .inProgress {
@@ -86,16 +81,8 @@
     background-color: #43a047;
 }
 
-.orderDetail {
-    margin: 5px 0;
-}
-
-.orderDetails {
-    margin-top: 10px;
-}
-
 .orderDetailItem {
-    margin-left: 20px;
+    margin: 0.5rem 0;
 }
 
 .noOrders {
@@ -105,8 +92,7 @@
 
 .sectionHeader {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+   
 }
 
 .viewAllLink {
@@ -122,8 +108,7 @@
 .pagination {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+    padding: 1rem;
 }
 
 .pagination button {
@@ -136,10 +121,11 @@
     margin: 0 10px;
 }
 
-/* Stili per smartphone */
-@media (max-width: 768px) {
+/* Stili per schermi piccoli e medi */
+@media (max-width: 767px) {
     .section {
         width: 90%;
+        font-size: 1.1rem;
     }
 
     .orderItem {
@@ -148,11 +134,14 @@
         gap: 1rem;
     }
 
-    .commentSection {
-        flex-direction: column;
-    }
-
     .submitButton {
         width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .section {
+        width: 90%;
+        font-size: 1.2rem;
     }
 }
