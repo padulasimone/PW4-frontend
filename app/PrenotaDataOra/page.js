@@ -179,8 +179,7 @@ export default function CalendarPage() {
         setSelectedDay(day);
         setSelectedTime(null);
 
-        const date = new Date(new Date().getFullYear(), selectedMonth, day).toISOString().split('T')[0];
-        if (isMonday(day) || isFullyBooked(day + 1) || isBeforeToday()) return;
+        if (isMonday(day) || isFullyBooked(day + 1) || isBeforeToday(day) || isClosedNow(day + 1)) return;
 
         if (selectedDay === day + 1) {
             setSelectedDay(null);
@@ -194,7 +193,7 @@ export default function CalendarPage() {
 
     const handleTimeClick = (time) => {
         const date = new Date(new Date().getFullYear(), selectedMonth, selectedDay).toISOString().split('T')[0];
-        if (occupiedDays[date]?.includes(time)) return;
+        if (occupiedDays[date]?.includes(time) || isBeforeNow(time)) return;
         setSelectedTime(time);
     };
 
@@ -213,16 +212,35 @@ export default function CalendarPage() {
         return date < new Date;
     }
 
+    const isBeforeNow = (time) => {
+        const date = new Date(new Date().getFullYear(), selectedMonth, selectedDay).toISOString().split('T')[0];
+        const selectedDate = new Date(`${date}T${time}:00`);
+        return selectedDate < new Date;
+    }
+
+    const isClosedNow = (date) => {
+        // se adesso è domenica e sono passate le 12:30, significa che è chiuso, oppure se è un giorno tra martedì e sabato e sono passate le 17, significa che è chiuso
+        const now = new Date();
+        // se now e date sono lo stesso giorno, allora devo controllare l'ora attuale
+        if (now.getDate() === date) {
+            const dayOfWeek = now.getDay();
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            if (dayOfWeek === 0 && (hour > 12 || (hour === 12 && minute > 30))) return true;
+            if (dayOfWeek >= 2 && dayOfWeek <= 6 && (hour > 17 || (hour === 17 && minute > 0))) return true;
+        }
+        return false;
+    }
+
     const getDayClass = (day) => {
-        const date = new Date(new Date().getFullYear(), selectedMonth, day).toISOString().split('T')[0];
-        if (isMonday(day) || isFullyBooked(day + 1) || isBeforeToday(day + 1)) return classes.blockedDay;
+        if (isMonday(day) || isFullyBooked(day + 1) || isBeforeToday(day + 1) || isClosedNow(day)) return classes.blockedDay;
         if (day + 1 === selectedDay) return classes.selected;
         return classes.day;
     };
 
     const getTimeClass = (time) => {
         const date = new Date(new Date().getFullYear(), selectedMonth, selectedDay).toISOString().split('T')[0];
-        if (occupiedDays[date]?.includes(time)) return classes.occupiedTime;
+        if (occupiedDays[date]?.includes(time) || isBeforeNow(time)) return classes.occupiedTime;
         if (time === selectedTime) return classes.selectedTime;
         return classes.timeButton;
     };
