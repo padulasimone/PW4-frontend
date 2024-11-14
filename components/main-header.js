@@ -25,7 +25,7 @@ export default function Header() {
           setRole(data.ruolo);
         }
       } catch (error) {
-        console.error("Errore durante il recupero dell'utente:", error);
+        return null;
       }
     };
     fetchUser();

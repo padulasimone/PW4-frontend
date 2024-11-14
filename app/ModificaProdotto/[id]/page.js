@@ -8,6 +8,7 @@ const ModificaProdotto = () => {
     const [idProdotto, setIdProdotto] = useState(null);
     const [product, setProduct] = useState(null);
     const [user, setUser] = useState(null);
+    const [errorMessage, setErrorMessage] = useState("");
 
     // Recupera idProdotto lato client
     useEffect(() => {
@@ -73,11 +74,8 @@ const ModificaProdotto = () => {
                     alert("Prodotto aggiornato con successo");
                     window.location.href = "/GestioneMagazzino";
                 } else {
-                    const errorData = await res.json();
-                    console.error(
-                        "Errore durante l'aggiornamento del prodotto:",
-                        errorData.message
-                    );
+                    const errorData = await res.text();
+                    setErrorMessage(errorData);
                 }
             } catch (error) {
                 console.error(
@@ -162,9 +160,12 @@ const ModificaProdotto = () => {
                         className={classes.input}
                     />
                 </label>
-                <button type="submit" className={classes.button}>
-                    Salva
-                </button>
+                <div className={classes.submitContainer}>
+                    <button type="submit" className={classes.button}>
+                        Salva
+                    </button>
+                    {errorMessage && <p className={classes.error}>{errorMessage}</p>}
+                </div>
             </form>
         </div>
     );

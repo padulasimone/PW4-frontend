@@ -14,6 +14,7 @@ const AggiungiProdotto = () => {
     });
     const [file, setFile] = useState(null);
     const [user, setUser] = useState(null);
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -66,20 +67,14 @@ const AggiungiProdotto = () => {
                     alert("Prodotto aggiunto con successo");
                     window.location.href = "/GestioneMagazzino";
                 } else {
-                    const errorData = await res.json();
-                    console.error(
-                        "Errore durante l'aggiunta del prodotto:",
-                        errorData.message
-                    );
+                    const errorData = await res.text();
+                    setErrorMessage(errorData);
                 }
             } catch (error) {
-                console.error(
-                    "Errore durante la chiamata API per aggiungere il prodotto:",
-                    error
-                );
+                console.error("Errore durante l'aggiunta del prodotto:", error);
             }
         } else {
-            alert("Please select a .jpg file");
+            setErrorMessage("Seleziona un file .jpg");
         }
     };
 
@@ -156,6 +151,7 @@ const AggiungiProdotto = () => {
                     <button type="button" onClick={() => window.location.href = "/GestioneMagazzino"}>Annulla</button>
                     <button type="submit">Aggiungi</button>
                 </div>
+                {errorMessage && <p className={classes.error}>{errorMessage}</p>}
             </form>
         </div>
     );
