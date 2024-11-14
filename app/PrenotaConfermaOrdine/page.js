@@ -71,6 +71,12 @@ export default function PrenotaConfermaOrdine() {
         }
     };
 
+    const handleDiscardOrder = () => {
+        Cookies.remove('dettaglioOrdine');
+        Cookies.remove('dettaglioOrdineEDataOra');
+        window.location.href = '/';
+    }
+
     return (
         <div className={classes.orderSummary}>
             <div className={classes.section}>
@@ -112,6 +118,7 @@ export default function PrenotaConfermaOrdine() {
                     />
                 </div>
                 <div className={classes.confirmButtonContainer}>
+                    <button className={classes.discardButton} onClick={handleDiscardOrder}>Annulla Ordine</button>
                     <button className={classes.confirmButton} onClick={handleConfirmOrder}>Conferma Ordine</button>
                 </div>
             </div>

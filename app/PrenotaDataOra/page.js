@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import Cookies from "js-cookie";
@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 export default function CalendarPage() {
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
     const [selectedDay, setSelectedDay] = useState(null);
-    const [availableTimes, setAvailableTimes] = useState([]);
+    const [availableTimes, setAvailableTimes] = useState({tueToSat: [], sun: []});
     const [selectedTime, setSelectedTime] = useState(null);
     const [orders, setOrders] = useState(null);
     const [occupiedDays, setOccupiedDays] = useState({});
@@ -46,21 +46,16 @@ export default function CalendarPage() {
     }, []);
 
     useEffect(() => {
-        if (availableTimes.length > 0) {
+        if (availableTimes.tueToSat.length > 0 || availableTimes.sun.length > 0) {
             fetchOrders();
         }
     }, [availableTimes]);
 
-    const generateAvailableTimes = () => {
-        const times = [];
-        for (let hour = 14; hour <= 18; hour++) {
-            for (let minute = 0; minute < 60; minute += 10) {
-                if (hour === 18 && minute > 0) break;
-                times.push(`${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`);
-            }
+    useEffect(() => {
+        if (availableTimes.length > 0) {
+            fetchOrders();
         }
-        setAvailableTimes(times);
-    };
+    }, [availableTimes]);
 
     useEffect(() => {
         const orderDetailsFromCookie = Cookies.get('dettaglioOrdine');
@@ -89,13 +84,17 @@ export default function CalendarPage() {
                 }
                 tempOccupiedDays[date].push(time);
 
-                if (tempOccupiedDays[date].length === availableTimes.length) {
+                const dayOfWeek = new Date(date).getDay();
+                const availableTimesForDay = dayOfWeek === 0 ? availableTimes.sun : availableTimes.tueToSat;
+
+                if (tempOccupiedDays[date].length === availableTimesForDay.length) {
                     tempFullyBookedDays.push(date);
                 }
             });
 
             setOccupiedDays(tempOccupiedDays);
             setFullyBookedDays(tempFullyBookedDays);
+            console.log('Fully booked days:', tempFullyBookedDays);
 
         } catch (error) {
             console.error('Error fetching order details:', error);
@@ -113,18 +112,56 @@ export default function CalendarPage() {
     const currentMonth = new Date().getMonth();
     const months = [
         {
-            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth)).toLocaleString('default', { month: 'long' })),
+            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth)).toLocaleString('default', {month: 'long'})),
             number: currentMonth
         },
         {
-            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth + 1)).toLocaleString('default', { month: 'long' })),
+            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth + 1)).toLocaleString('default', {month: 'long'})),
             number: currentMonth + 1
         },
         {
-            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth + 2)).toLocaleString('default', { month: 'long' })),
+            name: capitalizeFirstLetter(new Date(new Date().setMonth(currentMonth + 2)).toLocaleString('default', {month: 'long'})),
             number: currentMonth + 2
         }
     ];
+
+    const generateAvailableTimes = () => {
+        const tueToSatTimes = [];
+        for (let hour = 7; hour <= 17; hour++) {
+            for (let minute = 0; minute < 60; minute += 10) {
+                if ((hour < 13 || (hour === 13 && minute === 0)) && (hour > 7 || (hour === 7 && minute >= 30))) {
+                    tueToSatTimes.push(`${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`);
+                }
+                if ((hour < 17 || (hour === 17 && minute === 0)) && (hour > 14 || (hour === 14 && minute >= 30))) {
+                    tueToSatTimes.push(`${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`);
+                }
+            }
+        }
+
+        const sunTimes = [];
+        for (let hour = 8; hour <= 12; hour++) {
+            for (let minute = 0; minute < 60; minute += 10) {
+                if ((hour < 12 || (hour === 12 && minute <= 30)) && hour >= 8) {
+                    sunTimes.push(`${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`);
+                }
+            }
+        }
+
+        setAvailableTimes({
+            tueToSat: tueToSatTimes,
+            sun: sunTimes
+        });
+    };
+
+    const getAvailableTimesForSelectedDay = () => {
+        const dayOfWeek = new Date(new Date().getFullYear(), selectedMonth, selectedDay - 1).getDay();
+        if (dayOfWeek === 0) {
+            return availableTimes.sun;
+        } else if (dayOfWeek >= 2 && dayOfWeek <= 6) {
+            return availableTimes.tueToSat;
+        }
+        return [];
+    };
 
     const getDaysInMonth = (month) => {
         const year = new Date().getFullYear();
@@ -137,8 +174,13 @@ export default function CalendarPage() {
     };
 
     const handleDayClick = (day) => {
+        const dayClass = getDayClass(day);
+        if (dayClass === styles.blockedDay) return;
+        setSelectedDay(day);
+        setSelectedTime(null);
+
         const date = new Date(new Date().getFullYear(), selectedMonth, day).toISOString().split('T')[0];
-        if (isWeekend(day) || isFullyBooked(day + 1)) return;
+        if (isMonday(day) || isFullyBooked(day + 1) || isBeforeToday()) return;
 
         if (selectedDay === day + 1) {
             setSelectedDay(null);
@@ -146,6 +188,7 @@ export default function CalendarPage() {
         } else {
             setSelectedDay(day + 1);
             setSelectedTime(null);
+            generateAvailableTimes(day);
         }
     };
 
@@ -155,10 +198,9 @@ export default function CalendarPage() {
         setSelectedTime(time);
     };
 
-    const isWeekend = (day) => {
+    const isMonday = (day) => {
         const date = new Date(new Date().getFullYear(), selectedMonth, day);
-        const dayOfWeek = date.getDay();
-        return dayOfWeek === 0 || dayOfWeek === 6;
+        return date.getDay() === 1;
     };
 
     const isFullyBooked = (day) => {
@@ -173,7 +215,7 @@ export default function CalendarPage() {
 
     const getDayClass = (day) => {
         const date = new Date(new Date().getFullYear(), selectedMonth, day).toISOString().split('T')[0];
-        if (isWeekend(day) || isFullyBooked(day + 1) || isBeforeToday(day + 1)) return styles.weekend;
+        if (isMonday(day) || isFullyBooked(day + 1) || isBeforeToday(day + 1)) return styles.blockedDay;
         if (day + 1 === selectedDay) return styles.selected;
         return styles.day;
     };
@@ -255,7 +297,7 @@ export default function CalendarPage() {
                         <h2>Orari disponibili per
                             il {selectedDay - 1} {months.find(m => m.number === selectedMonth)?.name}</h2>
                         <div className={styles.times}>
-                            {availableTimes.map((time, index) => (
+                            {getAvailableTimesForSelectedDay().map((time, index) => (
                                 <button
                                     key={index}
                                     className={getTimeClass(time)}
