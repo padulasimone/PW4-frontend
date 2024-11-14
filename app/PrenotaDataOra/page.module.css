@@ -1,13 +1,15 @@
 .calendarPage {
   padding: 20px;
   min-height: 600px;
+  margin-bottom: 50px;
+  margin-top: 50px;
 }
 
 .monthSelector {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .monthButton,
@@ -42,20 +44,15 @@
 
 .columns {
   display: flex;
-  justify-content: space-between;
-  max-width: 1000px;
+  max-width: 90%;
   margin: 0 auto;
-}
-
-.calendarContainer,
-.timeSelection {
-  flex: 1;
 }
 
 .h1 {
   font-size: 1.5rem;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .calendar {
@@ -91,11 +88,6 @@
   cursor: not-allowed;
 }
 
-.unavailable {
-  background-color: #ffeb99;
-  cursor: not-allowed;
-}
-
 .selected {
   background-color: #90ee90;
 }
@@ -112,7 +104,7 @@
 }
 
 .timeButton {
-  padding: 10px 15px;
+  padding: 10px;
   background-color: #eee;
   border: none;
   border-radius: 4px;
@@ -122,6 +114,8 @@
 .occupiedTime {
   background-color: #ffcccc;
   cursor: not-allowed;
+  border: none;
+  border-radius: 4px;
 }
 
 .selectedTime {
@@ -149,14 +143,18 @@
   background-color: #e36f52;
 }
 
-/* Responsive styles */
-
 @media (max-width: 1024px) {
   .columns {
     flex-direction: column;
     align-items: center;
     width: 100%;
     gap: 20px;
+  }
+  .occupiedTime {
+    padding: 10px 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: not-allowed;
   }
 
   .calendarContainer,
@@ -165,15 +163,13 @@
     max-width: 100%;
     margin-left: 0;
     padding: 0;
+    font-size: 1.2rem;
   }
-
-  /* Mantieni 7 colonne per una disposizione chiara dei giorni della settimana */
   .calendar {
     grid-template-columns: repeat(7, 1fr);
     gap: 2px; /* Riduci il gap per migliorare l'ordine */
   }
 
-  /* Impedisce lo scorrimento laterale indesiderato */
   .calendarPage {
     padding: 10px;
     overflow-x: hidden;
@@ -181,15 +177,20 @@
   }
 
   .times {
-    grid-template-columns: repeat(2, 1fr); /* Orari in coppie */
+    grid-template-columns: repeat(2, 1fr);
+   
   }
 
   .timeSelection {
     margin-left: 0;
   }
+  .timeButton{
+    padding: 10px;
+    font-size: 1rem;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .calendar {
     grid-template-columns: repeat(7, minmax(0, 1fr));
   }
@@ -199,5 +200,11 @@
   }
   .calendarPage {
     margin-bottom: 30px;
+  }
+  .occupiedTime {
+    padding: 10px 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: not-allowed;
   }
 }

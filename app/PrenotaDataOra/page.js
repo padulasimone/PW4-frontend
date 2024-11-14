@@ -1,7 +1,7 @@
 "use client";
 import {useState, useEffect} from "react";
 import Link from "next/link";
-import styles from "./page.module.css";
+import classes from "./page.module.css";
 import Cookies from "js-cookie";
 
 export default function CalendarPage() {
@@ -175,7 +175,7 @@ export default function CalendarPage() {
 
     const handleDayClick = (day) => {
         const dayClass = getDayClass(day);
-        if (dayClass === styles.blockedDay) return;
+        if (dayClass === classes.blockedDay) return;
         setSelectedDay(day);
         setSelectedTime(null);
 
@@ -215,16 +215,16 @@ export default function CalendarPage() {
 
     const getDayClass = (day) => {
         const date = new Date(new Date().getFullYear(), selectedMonth, day).toISOString().split('T')[0];
-        if (isMonday(day) || isFullyBooked(day + 1) || isBeforeToday(day + 1)) return styles.blockedDay;
-        if (day + 1 === selectedDay) return styles.selected;
-        return styles.day;
+        if (isMonday(day) || isFullyBooked(day + 1) || isBeforeToday(day + 1)) return classes.blockedDay;
+        if (day + 1 === selectedDay) return classes.selected;
+        return classes.day;
     };
 
     const getTimeClass = (time) => {
         const date = new Date(new Date().getFullYear(), selectedMonth, selectedDay).toISOString().split('T')[0];
-        if (occupiedDays[date]?.includes(time)) return styles.occupiedTime;
-        if (time === selectedTime) return styles.selectedTime;
-        return styles.timeButton;
+        if (occupiedDays[date]?.includes(time)) return classes.occupiedTime;
+        if (time === selectedTime) return classes.selectedTime;
+        return classes.timeButton;
     };
 
     const handleNextClick = () => {
@@ -245,14 +245,14 @@ export default function CalendarPage() {
     };
 
     return (
-        <div className={styles.calendarPage}>
-            <h1 className={styles.fase}>Fase 2 - Data e Ora Ritiro</h1>
+        <div className={classes.calendarPage}>
+            <h1 className={classes.fase}>Fase 2 - Data e Ora Ritiro</h1>
 
-            <div className={styles.monthSelector}>
+            <div className={classes.monthSelector}>
                 {months.map((month) => (
                     <button
                         key={month.number}
-                        className={selectedMonth === month.number ? styles.selectedMonth : styles.monthButton}
+                        className={selectedMonth === month.number ? classes.selectedMonth : classes.monthButton}
                         onClick={() => {
                             setSelectedMonth(month.number);
                             setSelectedDay(null);
@@ -264,12 +264,12 @@ export default function CalendarPage() {
                 ))}
             </div>
 
-            <div className={styles.columns}>
-                <div className={styles.calendarContainer}>
-                    <h1 className={styles.h1}>Seleziona un giorno</h1>
-                    <div className={styles.calendar}>
+            <div className={classes.columns}>
+                <div className={classes.calendarContainer}>
+                    <h1 className={classes.h1}>Seleziona un giorno</h1>
+                    <div className={classes.calendar}>
                         {weekdays.map((day, index) => (
-                            <div key={index} className={styles.weekday}>
+                            <div key={index} className={classes.weekday}>
                                 {day}
                             </div>
                         ))}
@@ -286,17 +286,17 @@ export default function CalendarPage() {
                                     </div>
                                 );
                             } else {
-                                return <div key={`empty-${index}`} className={styles.day}></div>;
+                                return <div key={`empty-${index}`} className={classes.day}></div>;
                             }
                         })}
                     </div>
                 </div>
 
                 {selectedDay && (
-                    <div className={styles.timeSelection}>
+                    <div className={classes.timeSelection}>
                         <h2>Orari disponibili per
                             il {selectedDay - 1} {months.find(m => m.number === selectedMonth)?.name}</h2>
-                        <div className={styles.times}>
+                        <div className={classes.times}>
                             {getAvailableTimesForSelectedDay().map((time, index) => (
                                 <button
                                     key={index}
@@ -312,9 +312,9 @@ export default function CalendarPage() {
             </div>
 
             {selectedTime && (
-                <div className={styles.buttonContainer}>
+                <div className={classes.buttonContainer}>
                     <Link href="/PrenotaConfermaOrdine">
-                        <button onClick={handleNextClick} className={styles.nextButton}>Successivo</button>
+                        <button onClick={handleNextClick} className={classes.nextButton}>Successivo</button>
                     </Link>
                 </div>
             )}
