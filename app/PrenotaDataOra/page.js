@@ -179,7 +179,7 @@ export default function CalendarPage() {
         setSelectedDay(day);
         setSelectedTime(null);
 
-        if (isMonday(day) || isFullyBooked(day + 1) || isBeforeToday(day) || isClosedNow(day + 1)) return;
+        if (isMonday(day) || isFullyBooked(day + 1) || isBeforeToday(day + 1) || isClosedNow(day + 1)) return;
 
         if (selectedDay === day + 1) {
             setSelectedDay(null);
